@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customer Capture Field Notes</title>
+  <meta name="description" content="Public, practical checklists for finding where interested customers lose momentum before they become conversations." />
+  <style>
+    :root { --bg:#0b0d10; --panel:#141820; --ink:#f6f3ea; --muted:#b8b0a3; --line:#2b3340; --accent:#ffb000; --good:#83f3b3; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--ink); line-height:1.55; }
+    a { color:var(--accent); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 36px 20px 72px; }
+    header { padding: 42px 0 32px; border-bottom:1px solid var(--line); }
+    .eyebrow { color:var(--good); text-transform:uppercase; font-weight:800; letter-spacing:.12em; font-size:.82rem; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height:.92; margin:.3em 0 .2em; letter-spacing:-.06em; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin:2.2em 0 .6em; letter-spacing:-.04em; }
+    h3 { margin:1.4em 0 .4em; }
+    p.lead { font-size: clamp(1.1rem, 2vw, 1.35rem); color:var(--muted); max-width: 760px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; margin:26px 0; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.22); }
+    .card strong { color:var(--good); }
+    .note { border-left:4px solid var(--accent); background:#15130d; padding:14px 16px; border-radius:10px; color:#f8e8bc; }
+    .checklist li { margin:.55em 0; }
+    code { background:#11151c; border:1px solid var(--line); padding:.1em .35em; border-radius:6px; color:#ffe2a6; }
+    .footer { margin-top:48px; padding-top:24px; border-top:1px solid var(--line); color:var(--muted); font-size:.95rem; }
+    .tag { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:6px 10px; margin:4px 6px 4px 0; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="eyebrow">Customer Capture Field Notes</div>
+      <h1>Find the leak before buying more traffic.</h1>
+      <p class="lead">A public notebook of practical, public-only checks for founders, agencies, and operators who already have interested people hitting their site — and might be losing momentum before a real conversation starts.</p>
+      <p><span class="tag">public-only</span><span class="tag">no login required</span><span class="tag">no private data</span><span class="tag">boring problems first</span></p>
+    </header>
+
+    <section>
+      <h2>Field Note #1: Demo-to-qualified-call handoff QA</h2>
+      <p>If your site has more than one path toward a demo, quote, or sales conversation, the first useful audit is not “install more AI.” It is simpler: make sure a warm visitor can understand what happens next and does not have to restart their context at every step.</p>
+      <div class="note">Careful language matters: a public page can show friction. It does not prove lost revenue by itself. The right claim is “possible friction,” not “you are losing money.”</div>
+      <div class="grid">
+        <div class="card"><strong>1. CTA expectation map</strong><br />List every public CTA that implies a sales/demo path. Compare the words, destination, and next expectation.</div>
+        <div class="card"><strong>2. Form-to-meeting handoff</strong><br />Without submitting anything, inspect whether the public path suggests context carries forward or whether the visitor may need to repeat themselves.</div>
+        <div class="card"><strong>3. Routing clarity</strong><br />Check whether sales, support, security, partnership, and enterprise intent have visibly different paths or all collapse into one vague inbox.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>The 10-minute public-only pass</h2>
+      <ol class="checklist">
+        <li>Open the homepage on mobile and desktop.</li>
+        <li>Write down every button that sounds like <code>Get a Demo</code>, <code>Book a Demo</code>, <code>Contact Sales</code>, <code>Talk to Us</code>, or <code>Start</code>.</li>
+        <li>Click only public paths. Do not submit forms. Do not enter private information.</li>
+        <li>For each path, answer: “What happens next?” If the answer changes depending on the button, flag it.</li>
+        <li>Look for a public email or contact path. If it exists, note whether the right buyer knows when to use it.</li>
+        <li>Write one sentence describing the possible friction without accusing the company of losing money.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Safe outreach phrasing</h2>
+      <div class="card">
+        <p><strong>Use this:</strong></p>
+        <p>“I noticed a possible demo/contact handoff issue that may be creating friction. Would it be okay if I sent a one-page public-only example with the checks I’d run?”</p>
+        <p><strong>Not this:</strong></p>
+        <p>“Your site is leaking money and I found critical conversion failures.”</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What this project will become</h2>
+      <p>One tangible public artifact that improves every week: checklists, examples, teardown templates, reply-safe language, and small tools for people who want customer capture fixed without buying a twenty-piece software circus.</p>
+    </section>
+
+    <div class="footer">
+      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.1.
+    </div>
+  </main>
+</body>
+</html>
