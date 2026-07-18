@@ -30,6 +30,10 @@
     .worksheet th { background:#171d27; color:var(--good); }
     .worksheet td { background:#10141b; color:var(--muted); }
     .blank { color:#6d7685; min-height: 42px; display:block; }
+    .score { font-weight:800; color:var(--ink); }
+    .score.green { color:var(--good); }
+    .score.yellow { color:#ffd166; }
+    .score.red { color:#ff8585; }
     .print { display:inline-block; margin-top:10px; padding:10px 14px; border:1px solid var(--accent); border-radius:10px; text-decoration:none; font-weight:800; }
     @media print { body { background:white; color:#111; } .card, .note, .worksheet td, .worksheet th { background:white; color:#111; box-shadow:none; } .footer, header p:last-child, .print { display:none; } }
   </style>
@@ -119,6 +123,34 @@
     </section>
 
     <section>
+      <h2 id="cta-clarity-scorer">Tiny no-backend scorer: CTA clarity</h2>
+      <p>Use this as a fast manual score before rewriting pages, buying ads, or adding more automation. Score only what a public visitor can see. No forms, no logins, no private data.</p>
+      <table class="worksheet" aria-label="Tiny CTA clarity scorer">
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>0 points</th>
+            <th>1 point</th>
+            <th>2 points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Button promise</td><td>Vague: “Start,” “Submit,” or unclear action.</td><td>Partly clear but generic: “Contact us” or “Learn more.”</td><td>Specific next step: “Book a demo,” “Request a quote,” “Send the checklist.”</td></tr>
+          <tr><td>Destination match</td><td>Click leads somewhere unexpected or unrelated.</td><td>Mostly related, but wording changes or context feels reset.</td><td>Next page clearly fulfills the button promise.</td></tr>
+          <tr><td>Next-step clarity</td><td>Visitor cannot tell what happens after the click/form.</td><td>Some clues exist, but timing/owner/channel is unclear.</td><td>Visitor can see who responds, what happens next, or what to prepare.</td></tr>
+          <tr><td>Routing fit</td><td>Sales/support/partner/security paths collapse into one confusing route.</td><td>Some segmentation exists but important buyer intents still collide.</td><td>High-intent visitors can choose the right public route without guessing.</td></tr>
+          <tr><td>Friction language</td><td>Audit copy would overclaim lost revenue or failure.</td><td>Copy names possible friction but lacks exact evidence.</td><td>Copy says “public page shows / may create friction / simple test,” with evidence.</td></tr>
+        </tbody>
+      </table>
+      <div class="grid">
+        <div class="card"><span class="score red">0–4: Red</span><br />Do not buy more traffic yet. First fix the promise, path, and next-step explanation.</div>
+        <div class="card"><span class="score yellow">5–7: Yellow</span><br />The path exists, but a one-page teardown can identify the one or two points where intent may fade.</div>
+        <div class="card"><span class="score green">8–10: Green</span><br />CTA expectations mostly hold. Look next at proof, response speed, or post-submit handoff.</div>
+      </div>
+      <div class="note">Source principle: public CTAs and link labels should set sincere expectations and fulfill them; landing pages should be relevant/useful and align with what the visitor clicked. Treat the score as a prioritization aid, not proof of revenue loss.</div>
+    </section>
+
+    <section>
       <h2>Safe outreach phrasing</h2>
       <div class="card">
         <p><strong>Use this:</strong></p>
@@ -134,7 +166,7 @@
     </section>
 
     <div class="footer">
-      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.3 — public-only teardown template added.
+      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.4 — tiny no-backend CTA clarity scorer added.
     </div>
   </main>
 </body>
