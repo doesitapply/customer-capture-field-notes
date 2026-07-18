@@ -25,6 +25,13 @@
     code { background:#11151c; border:1px solid var(--line); padding:.1em .35em; border-radius:6px; color:#ffe2a6; }
     .footer { margin-top:48px; padding-top:24px; border-top:1px solid var(--line); color:var(--muted); font-size:.95rem; }
     .tag { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:6px 10px; margin:4px 6px 4px 0; color:var(--muted); }
+    .worksheet { width:100%; border-collapse: collapse; margin: 18px 0; overflow:hidden; border-radius:14px; }
+    .worksheet th, .worksheet td { border:1px solid var(--line); padding:12px; vertical-align:top; text-align:left; }
+    .worksheet th { background:#171d27; color:var(--good); }
+    .worksheet td { background:#10141b; color:var(--muted); }
+    .blank { color:#6d7685; min-height: 42px; display:block; }
+    .print { display:inline-block; margin-top:10px; padding:10px 14px; border:1px solid var(--accent); border-radius:10px; text-decoration:none; font-weight:800; }
+    @media print { body { background:white; color:#111; } .card, .note, .worksheet td, .worksheet th { background:white; color:#111; box-shadow:none; } .footer, header p:last-child, .print { display:none; } }
   </style>
 </head>
 <body>
@@ -60,6 +67,35 @@
     </section>
 
     <section>
+      <h2>Worksheet: CTA map</h2>
+      <p>Use this before changing tools or buying traffic. The goal is to see whether every public call-to-action sends a warm visitor toward the same clear next step.</p>
+      <table class="worksheet" aria-label="CTA map worksheet">
+        <thead>
+          <tr>
+            <th>CTA text</th>
+            <th>Where it appears</th>
+            <th>Destination / next screen</th>
+            <th>Visitor expectation</th>
+            <th>Possible friction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="blank">Example: Get a Demo</span></td><td><span class="blank">Homepage hero</span></td><td><span class="blank">Form / scheduler / contact page</span></td><td><span class="blank">Talk to sales soon</span></td><td><span class="blank">Does the next page preserve context?</span></td></tr>
+          <tr><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+          <tr><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+          <tr><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+        </tbody>
+      </table>
+      <h3>Scoring</h3>
+      <div class="grid">
+        <div class="card"><strong>Green</strong><br />CTA text, destination, and next expectation match. A visitor knows what happens next.</div>
+        <div class="card"><strong>Yellow</strong><br />The path works, but the next step changes wording, asks repeated context, or creates mild doubt.</div>
+        <div class="card"><strong>Red</strong><br />The CTA promises one thing and routes to something else, a vague inbox, a broken path, or a dead-end.</div>
+      </div>
+      <a class="print" href="javascript:window.print()">Print / save this worksheet</a>
+    </section>
+
+    <section>
       <h2>Safe outreach phrasing</h2>
       <div class="card">
         <p><strong>Use this:</strong></p>
@@ -75,7 +111,7 @@
     </section>
 
     <div class="footer">
-      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.1.
+      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.2 — CTA map worksheet added.
     </div>
   </main>
 </body>

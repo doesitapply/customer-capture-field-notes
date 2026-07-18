@@ -5,6 +5,7 @@ A public, practical notebook for finding customer-capture friction before buying
 ## Current public artifact
 
 - `index.html` — Field Note #1: Demo-to-qualified-call handoff QA.
+- v0.2 adds a printable/savable CTA map worksheet with green/yellow/red scoring.
 
 ## Operating rule
 
@@ -31,6 +32,6 @@ Do not claim:
 ## Next improvements
 
 1. Add printable one-page checklist.
-2. Add a simple CTA map worksheet.
-3. Add public-only example teardown format.
-4. Add tiny browser-free HTML tool for scoring CTA clarity.
+2. Add public-only example teardown format.
+3. Add tiny browser-free HTML tool for scoring CTA clarity.
+4. Add a real example walkthrough using a public demo/contact path.
