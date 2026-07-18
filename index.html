@@ -150,6 +150,36 @@
       <div class="note">Source principle: public CTAs and link labels should set sincere expectations and fulfill them; landing pages should be relevant/useful and align with what the visitor clicked. Treat the score as a prioritization aid, not proof of revenue loss.</div>
     </section>
 
+
+    <section>
+      <h2 id="example-demo-form-walkthrough">Example walkthrough: demo page with embedded form</h2>
+      <p>This is a real-path style walkthrough based on a public enterprise demo path: homepage CTA to demo page, demo page explains that the visitor can describe needs, and an embedded third-party form collects the request. The point is not to call the path “broken.” The point is to show how to write a useful public-only note without submitting anything.</p>
+      <div class="note">Safety line for this example: check the public path, page title, visible promise, and form container only. Do not submit the form, guess backend routing, inspect private analytics, or claim lost revenue.</div>
+      <table class="worksheet" aria-label="Example public-only demo walkthrough">
+        <thead>
+          <tr>
+            <th>Public observation</th>
+            <th>Safe interpretation</th>
+            <th>Scorecard row</th>
+            <th>Low-risk fix idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>CTA routes to a dedicated demo page.</td><td>The visitor is likely expecting a sales/demo request path, not support or self-serve docs.</td><td><span class="score green">Button promise / destination: likely green</span></td><td>Keep the CTA wording and page title aligned: “Get a Demo” should land on a clear demo request page.</td></tr>
+          <tr><td>The page says the visitor can describe needs and the team will be in touch if it is a good fit.</td><td>The next step exists, but timing, owner, and qualification criteria may still be fuzzy to a high-intent buyer.</td><td><span class="score yellow">Next-step clarity: often yellow</span></td><td>Add one sentence near the form: who reviews it, expected response window, and whether the next step is email or calendar.</td></tr>
+          <tr><td>An embedded form is the handoff point.</td><td>Embedding is fine; the public audit question is whether context from the CTA is preserved through the handoff.</td><td><span class="score yellow">Form-to-meeting handoff: inspect, do not submit</span></td><td>Use form intro/helper text to confirm what information is needed and what happens after submit.</td></tr>
+          <tr><td>Other public paths may include pricing, security, docs, partnership, or enterprise content.</td><td>Different buyer intents can collide if all routes end in the same vague demo request.</td><td><span class="score yellow">Routing fit: depends on visible segmentation</span></td><td>Add short routing copy: “For security review, use X; for partnerships, use Y; for buying conversation, use this demo form.”</td></tr>
+        </tbody>
+      </table>
+      <h3>Example one-page note you could send after permission</h3>
+      <div class="card">
+        <p><strong>Subject:</strong> Tiny public-only demo handoff note</p>
+        <p>I checked only the public demo path and did not submit the form. The CTA and demo page match pretty well. The one possible friction point is the handoff after the embedded form: a buyer can tell they are requesting a demo, but may not know who replies, how soon, or whether the next step is email or calendar.</p>
+        <p>A simple test would be adding one line near the form: “Tell us what you are trying to automate; a team member will review and reply by email with the best next step.”</p>
+        <p>If useful, I can turn this into a one-page public-only checklist for the rest of the path. If not, no need to reply.</p>
+      </div>
+    </section>
+
     <section>
       <h2>Safe outreach phrasing</h2>
       <div class="card">
@@ -166,7 +196,7 @@
     </section>
 
     <div class="footer">
-      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.4 — tiny no-backend CTA clarity scorer added.
+      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.5 — example demo-form walkthrough added.
     </div>
   </main>
 </body>

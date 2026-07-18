@@ -8,6 +8,7 @@ A public, practical notebook for finding customer-capture friction before buying
 - v0.2 adds a printable/savable CTA map worksheet with green/yellow/red scoring.
 - v0.3 adds a public-only teardown note template with safe wording blocks and hard boundaries.
 - v0.4 adds a tiny no-backend CTA clarity scorer for manual 0–10 prioritization.
+- v0.5 adds an example public-only demo-form walkthrough with safe one-page note copy.
 
 ## Operating rule
 
@@ -33,5 +34,5 @@ Do not claim:
 
 ## Next improvements
 
-1. Add a real example walkthrough using a public demo/contact path.
-2. Add printable one-page checklist variant if visitors need a shorter handout.
+1. Add printable one-page checklist variant if visitors need a shorter handout.
+2. Add a short “what to screenshot” checklist for public-only teardown notes.
