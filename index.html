@@ -35,7 +35,17 @@
     .score.yellow { color:#ffd166; }
     .score.red { color:#ff8585; }
     .print { display:inline-block; margin-top:10px; padding:10px 14px; border:1px solid var(--accent); border-radius:10px; text-decoration:none; font-weight:800; }
-    @media print { body { background:white; color:#111; } .card, .note, .worksheet td, .worksheet th { background:white; color:#111; box-shadow:none; } .footer, header p:last-child, .print { display:none; } }
+    .toc { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 8px; }
+    .toc a { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:8px 12px; text-decoration:none; color:var(--muted); background:#10141b; font-size:.92rem; }
+    .toc a:hover { border-color:var(--accent); color:var(--ink); }
+    section { scroll-margin-top: 18px; }
+    @media print {
+      body { background:white; color:#111; }
+      .card, .note, .worksheet td, .worksheet th { background:white; color:#111; box-shadow:none; }
+      .footer, header p:last-child, .print, .toc { display:none; }
+      section { break-inside: avoid; page-break-inside: avoid; }
+      h2 { break-after: avoid; page-break-after: avoid; }
+    }
   </style>
 </head>
 <body>
@@ -45,6 +55,18 @@
       <h1>Find the leak before buying more traffic.</h1>
       <p class="lead">A public notebook of practical, public-only checks for founders, agencies, and operators who already have interested people hitting their site — and might be losing momentum before a real conversation starts.</p>
       <p><span class="tag">public-only</span><span class="tag">no login required</span><span class="tag">no private data</span><span class="tag">boring problems first</span></p>
+      <nav class="toc" aria-label="Jump to tools">
+        <a href="#one-page-capture-checklist">One-page checklist</a>
+        <a href="#cta-map-worksheet">CTA map</a>
+        <a href="#public-only-teardown-template">Teardown template</a>
+        <a href="#what-to-screenshot-checklist">Screenshot checklist</a>
+        <a href="#cta-clarity-scorer">CTA scorer</a>
+        <a href="#example-demo-form-walkthrough">Demo-form example</a>
+        <a href="#after-the-form-expectation-checklist">After-the-form</a>
+        <a href="#multi-intent-routing-worksheet">Routing map</a>
+        <a href="#example-competing-cta-walkthrough">Competing CTAs example</a>
+        <a href="#money-path">Money path</a>
+      </nav>
     </header>
 
     <section>
@@ -329,17 +351,150 @@
     </section>
 
     <section>
+      <h2 id="multi-intent-routing-worksheet">Worksheet: multi-intent routing map</h2>
+      <p>Field Note #1’s third check is routing clarity. Use this when a site has more than one high-intent door — demo, sales, support, security, partners, enterprise, careers — and you need to see whether those intents stay separated in public or collapse into one vague inbox.</p>
+      <div class="note">Public-only rule: inspect labels, menus, footer links, and destination first screens. Do not submit forms, open tickets, log in, or claim that mixed routing proves lost revenue. The useful claim is “intent may collide,” not “leads are dying.”</div>
+      <div class="grid">
+        <div class="card"><strong>1. List the doors</strong><br />Write every public path that implies a different owner or urgency.</div>
+        <div class="card"><strong>2. Name the owner guess</strong><br />Sales, CS, security, partnerships, recruiting, billing — based only on public labels.</div>
+        <div class="card"><strong>3. Trace the landing</strong><br />Same form, same mailto, same chat, or a visibly different destination?</div>
+        <div class="card"><strong>4. Flag collision risk</strong><br />If two different intents land in the same bucket with no routing note, mark yellow/red.</div>
+      </div>
+      <table class="worksheet" aria-label="Multi-intent routing map worksheet">
+        <thead>
+          <tr>
+            <th>Public intent / label</th>
+            <th>Where it appears</th>
+            <th>Destination first screen</th>
+            <th>Likely owner (guess)</th>
+            <th>Collision risk</th>
+            <th>Smallest safe fix idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="blank">Demo / Talk to sales</span></td>
+            <td><span class="blank">Hero / nav</span></td>
+            <td><span class="blank">Demo form / scheduler</span></td>
+            <td><span class="blank">Sales / AE</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Keep label + destination wording aligned</span></td>
+          </tr>
+          <tr>
+            <td><span class="blank">Support / Help / Docs</span></td>
+            <td><span class="blank">Nav / footer</span></td>
+            <td><span class="blank">Help center / ticket form</span></td>
+            <td><span class="blank">CS / support</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Separate support CTA from demo CTA</span></td>
+          </tr>
+          <tr>
+            <td><span class="blank">Security / Trust / Compliance</span></td>
+            <td><span class="blank">Footer / trust page</span></td>
+            <td><span class="blank">Trust center / contact</span></td>
+            <td><span class="blank">Security / legal ops</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Add “security review requests use…” note</span></td>
+          </tr>
+          <tr>
+            <td><span class="blank">Partners / Agencies</span></td>
+            <td><span class="blank">Nav / footer</span></td>
+            <td><span class="blank">Partner form / same demo form</span></td>
+            <td><span class="blank">Partnerships</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Add partner-only path or field hint</span></td>
+          </tr>
+          <tr>
+            <td><span class="blank">Enterprise / Contact</span></td>
+            <td><span class="blank">Pricing / hero secondary</span></td>
+            <td><span class="blank">Generic contact / same demo</span></td>
+            <td><span class="blank">Sales / AE</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Say what “enterprise” changes next</span></td>
+          </tr>
+          <tr>
+            <td><span class="blank">&nbsp;</span></td>
+            <td><span class="blank">&nbsp;</span></td>
+            <td><span class="blank">&nbsp;</span></td>
+            <td><span class="blank">&nbsp;</span></td>
+            <td><span class="blank">&nbsp;</span></td>
+            <td><span class="blank">&nbsp;</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Scoring the map</h3>
+      <div class="grid">
+        <div class="card"><span class="score green">Green</span><br />Different intents have visibly different destinations or clear routing notes. A careful visitor can self-sort.</div>
+        <div class="card"><span class="score yellow">Yellow</span><br />Labels differ, but several doors land on the same form/inbox with weak helper text. Intent may still collide.</div>
+        <div class="card"><span class="score red">Red</span><br />Sales, support, security, or partner paths look interchangeable, broken, or dump into one unlabeled contact bucket.</div>
+      </div>
+      <div class="note">Source principles used as framing only: public link/CTA labels should make purpose understandable in context (W3C / plain-language link purpose); pages should fulfill the expectation set by the clicked label (expectation matching / mismatched-destination friction). This worksheet is a prioritization aid, not proof of revenue loss, SLA failure, or org-chart truth.</div>
+      <a class="print" href="javascript:window.print()">Print / save the routing map</a>
+    </section>
+
+    <section>
+      <h2 id="example-competing-cta-walkthrough">Example walkthrough: competing CTAs on one homepage</h2>
+      <p>This second example is different from the embedded demo-form walkthrough. Here the public pattern is a homepage with two or more high-intent buttons that sound related but may not lead to the same kind of conversation — for example <code>Get a Demo</code>, <code>Contact Sales</code>, <code>Start free</code>, and a footer <code>Support</code> link.</p>
+      <div class="note">Safety line: compare button text, destination titles, and first-screen promises only. Do not submit forms, start trials with real identity, open support tickets, or claim one path is “stealing” revenue from another.</div>
+      <table class="worksheet" aria-label="Competing CTA public walkthrough">
+        <thead>
+          <tr>
+            <th>Public observation</th>
+            <th>Safe interpretation</th>
+            <th>Routing / scorecard row</th>
+            <th>Low-risk fix idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Homepage shows both “Get a Demo” and “Contact Sales.”</td>
+            <td>A visitor may wonder which door is for product fit vs. procurement / enterprise buying.</td>
+            <td><span class="score yellow">Routing fit: inspect destinations</span></td>
+            <td>Add one clarifying phrase under each button: “product walkthrough” vs “pricing / security / procurement.”</td>
+          </tr>
+          <tr>
+            <td>Both buttons land on the same generic form.</td>
+            <td>Labels differ, but the bucket may not. Intent collision is possible even if the form works.</td>
+            <td><span class="score yellow">Multi-intent map: yellow if helper text is thin</span></td>
+            <td>Keep one form if needed, but add a required-intent selector or helper line naming the paths.</td>
+          </tr>
+          <tr>
+            <td>“Start free” goes to a self-serve signup while “Get a Demo” goes to sales.</td>
+            <td>That split can be healthy — if the public page says who each path is for.</td>
+            <td><span class="score green">Promise / destination can be green when explained</span></td>
+            <td>Add “best if you want hands-on now” vs “best if you want a guided eval.”</td>
+          </tr>
+          <tr>
+            <td>Footer “Support” uses the same contact form as sales.</td>
+            <td>Existing customers and new buyers may enter the same queue with no public triage.</td>
+            <td><span class="score red">Collision risk if no routing note</span></td>
+            <td>Point support to docs/help center, or label the form “New sales questions only.”</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Example one-page note you could send after permission</h3>
+      <div class="card">
+        <p><strong>Subject:</strong> Tiny public-only routing note</p>
+        <p>I checked only public homepage CTAs and destinations — no forms submitted. The individual buttons are clear enough on their own. The possible friction is routing: more than one high-intent label appears to land in a similar contact bucket, so a visitor may not know which door is for demo vs sales vs support.</p>
+        <p>A simple test would be one line under each CTA naming the intended next conversation, or a single “what do you need?” selector before the shared form.</p>
+        <p>If useful, I can turn this into a one-page multi-intent routing map for the rest of the public paths. If not, no need to reply.</p>
+      </div>
+    </section>
+
+    <section>
       <h2>Safe outreach phrasing</h2>
       <div class="card">
         <p><strong>Use this:</strong></p>
         <p>“I noticed a possible demo/contact handoff issue that may be creating friction. Would it be okay if I sent a one-page public-only example with the checks I’d run?”</p>
+        <p><strong>Routing variant:</strong></p>
+        <p>“I noticed a few public CTAs that may send different buyer intents into a similar contact path. Would it be okay if I sent a one-page multi-intent routing map based only on public pages?”</p>
         <p><strong>Not this:</strong></p>
         <p>“Your site is leaking money and I found critical conversion failures.”</p>
       </div>
     </section>
 
 
-    <section>
+    <section id="money-path">
       <h2>Where the money comes from</h2>
       <p>This project is not meant to stay as free advice forever. The free field notes prove the thinking. The paid work is helping a specific team find and fix their customer-capture friction without asking for private data first.</p>
       <div class="grid">
@@ -363,7 +518,7 @@
     </section>
 
     <div class="footer">
-      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v1.0 — after-the-form expectation checklist added.
+      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v1.1 — multi-intent routing map + competing CTAs example added.
     </div>
   </main>
 </body>
