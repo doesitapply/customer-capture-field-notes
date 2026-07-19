@@ -9,6 +9,8 @@ A public, practical notebook for finding customer-capture friction before buying
 - v0.3 adds a public-only teardown note template with safe wording blocks and hard boundaries.
 - v0.4 adds a tiny no-backend CTA clarity scorer for manual 0–10 prioritization.
 - v0.5 adds an example public-only demo-form walkthrough with safe one-page note copy.
+- v0.6 adds a printable one-page capture checklist.
+- v0.7 adds the money path: $99 public-only teardown, $450 setup sprint, optional $150/month watch pass.
 
 ## Operating rule
 
