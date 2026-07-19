@@ -11,6 +11,7 @@ A public, practical notebook for finding customer-capture friction before buying
 - v0.5 adds an example public-only demo-form walkthrough with safe one-page note copy.
 - v0.6 adds a printable one-page capture checklist.
 - v0.7 adds the money path: $99 public-only teardown, $450 setup sprint, optional $150/month watch pass.
+- v0.8 replaces personal Gmail with professional domain-email identity: hello@artificiallyeducated.com.
 
 ## Operating rule
 
