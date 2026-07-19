@@ -155,6 +155,81 @@
     </section>
 
     <section>
+      <h2 id="what-to-screenshot-checklist">Checklist: what to screenshot (public-only)</h2>
+      <p>Use this before writing a teardown note or a $99 public-only review. Screenshots are for evidence of what a visitor can see — not for private systems, filled forms, or overclaiming lost revenue.</p>
+      <div class="note">Hard rule: capture only public UI. Do not submit forms. Do not enter email/phone. Do not open admin, analytics, CRM, ad accounts, call recordings, or customer lists. Crop out your own personal info if it appears.</div>
+      <div class="grid">
+        <div class="card"><strong>Must capture</strong><br />Homepage hero CTA, destination after the click, and the handoff surface (form/scheduler/contact block) without submitting.</div>
+        <div class="card"><strong>Usually useful</strong><br />Mobile vs desktop of the same CTA, pricing/contact alternate routes, footer/urgent contact, and any “what happens next” helper text.</div>
+        <div class="card"><strong>Never capture</strong><br />Filled form fields, logins, private dashboards, customer names, emails, phone numbers, contracts, recordings, or payment details.</div>
+      </div>
+      <table class="worksheet" aria-label="What to screenshot checklist">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Shot</th>
+            <th>Why it matters</th>
+            <th>Pass?</th>
+            <th>File / note label</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Homepage hero CTA (desktop)</td>
+            <td>Shows the main promise a warm visitor sees first.</td>
+            <td><span class="blank">Yes / No / N/A</span></td>
+            <td><span class="blank">01-home-cta-desktop</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Same homepage CTA (mobile)</td>
+            <td>Checks whether mobile compresses or hides the real next step.</td>
+            <td><span class="blank">Yes / No / N/A</span></td>
+            <td><span class="blank">02-home-cta-mobile</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Destination page after CTA click</td>
+            <td>Proves whether the next screen matches the button promise.</td>
+            <td><span class="blank">Yes / No / N/A</span></td>
+            <td><span class="blank">03-destination-match</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Form / scheduler / contact block (empty)</td>
+            <td>Shows the handoff surface and any “what happens next” copy — without submitting.</td>
+            <td><span class="blank">Yes / No / N/A</span></td>
+            <td><span class="blank">04-handoff-surface</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Alternate route (pricing, enterprise, support, partner)</td>
+            <td>Checks whether buyer intents collide into one vague inbox.</td>
+            <td><span class="blank">Yes / No / N/A</span></td>
+            <td><span class="blank">05-routing-alternate</span></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Footer / after-hours / direct email if public</td>
+            <td>Documents the fallback path a careful buyer might use.</td>
+            <td><span class="blank">Yes / No / N/A</span></td>
+            <td><span class="blank">06-fallback-contact</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Labeling rule</h3>
+      <ol class="checklist">
+        <li>Name files with path + device + intent, e.g. <code>stackai-home-cta-desktop.png</code>.</li>
+        <li>In the note, cite what is visible: button text, page title, helper sentence — not guessed backend routing.</li>
+        <li>Pair every screenshot with one safe sentence: “The public page shows…” / “This may create friction because…” / “A simple test would be…”</li>
+        <li>Stop at 3 friction points for a $99 public-only teardown. More shots without a clearer next step is noise.</li>
+      </ol>
+      <div class="note">This checklist supports the public-only teardown template and the $99 teardown deliverable. It is a capture aid, not proof of revenue loss, compliance failure, or implementation success.</div>
+      <a class="print" href="javascript:window.print()">Print / save the screenshot checklist</a>
+    </section>
+
+    <section>
       <h2 id="cta-clarity-scorer">Tiny no-backend scorer: CTA clarity</h2>
       <p>Use this as a fast manual score before rewriting pages, buying ads, or adding more automation. Score only what a public visitor can see. No forms, no logins, no private data.</p>
       <table class="worksheet" aria-label="Tiny CTA clarity scorer">
@@ -247,7 +322,7 @@
     </section>
 
     <div class="footer">
-      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.8 — professional email identity added.
+      Built by Artificially Educated as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v0.9 — what-to-screenshot checklist added.
     </div>
   </main>
 </body>
