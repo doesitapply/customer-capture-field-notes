@@ -65,6 +65,8 @@
         <a href="#after-the-form-expectation-checklist">After-the-form</a>
         <a href="#multi-intent-routing-worksheet">Routing map</a>
         <a href="#example-competing-cta-walkthrough">Competing CTAs example</a>
+        <a href="#mobile-desktop-path-worksheet">Mobile vs desktop</a>
+        <a href="#what-you-get-for-99">What $99 includes</a>
         <a href="#money-path">Money path</a>
       </nav>
     </header>
@@ -482,6 +484,88 @@
     </section>
 
     <section>
+      <h2 id="mobile-desktop-path-worksheet">Worksheet: mobile vs desktop path consistency</h2>
+      <p>Desktop can look fine while mobile quietly breaks the same CTA path. Use this after the CTA map and screenshot checklist when phone traffic matters, paid social is in play, or the hero button looks different on a small screen.</p>
+      <div class="note">Public-only rule: resize the browser or use a phone. Do not submit forms, create accounts, or claim a mobile issue proves lost revenue. The safe claim is “possible friction on one device,” not “you are losing money on mobile.”</div>
+      <div class="grid">
+        <div class="card"><strong>1. Same promise?</strong><br />Does the main CTA text mean the same next action on phone and desktop?</div>
+        <div class="card"><strong>2. Same destination?</strong><br />Does the click land on the same first screen, or a thinner / different mobile route?</div>
+        <div class="card"><strong>3. Same next step?</strong><br />Is the handoff (form, scheduler, contact block) still visible and understandable without pinch-zoom gymnastics?</div>
+        <div class="card"><strong>4. Tap-safe?</strong><br />Is the primary button easy to tap, not buried under sticky chrome, tiny type, or competing links?</div>
+      </div>
+      <table class="worksheet" aria-label="Mobile vs desktop path consistency worksheet">
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>Desktop observation</th>
+            <th>Mobile observation</th>
+            <th>Match?</th>
+            <th>Smallest safe fix idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Primary CTA wording</td>
+            <td><span class="blank">Button text / location</span></td>
+            <td><span class="blank">Button text / location</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Keep wording identical across breakpoints</span></td>
+          </tr>
+          <tr>
+            <td>Destination first screen</td>
+            <td><span class="blank">Title / first promise</span></td>
+            <td><span class="blank">Title / first promise</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Align mobile landing first screen with desktop intent</span></td>
+          </tr>
+          <tr>
+            <td>Handoff surface visible</td>
+            <td><span class="blank">Form / scheduler / contact block</span></td>
+            <td><span class="blank">Still visible without hunt?</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Move primary handoff above the fold on mobile</span></td>
+          </tr>
+          <tr>
+            <td>After-click next-step helper</td>
+            <td><span class="blank">Who replies / timing text</span></td>
+            <td><span class="blank">Same helper present?</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Repeat one helper line near the mobile form</span></td>
+          </tr>
+          <tr>
+            <td>Tap target / competing chrome</td>
+            <td><span class="blank">N/A or mouse-easy</span></td>
+            <td><span class="blank">Tiny button, sticky bar, overlapping links?</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Enlarge primary CTA; reduce competing mobile links</span></td>
+          </tr>
+          <tr>
+            <td>Alternate doors (support / pricing / free trial)</td>
+            <td><span class="blank">Where they sit</span></td>
+            <td><span class="blank">Collapsed into hamburger / same form?</span></td>
+            <td><span class="blank">Green / Yellow / Red</span></td>
+            <td><span class="blank">Label mobile menu doors the same as desktop</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Score the path (manual, no backend)</h3>
+      <div class="grid">
+        <div class="card"><span class="score green">Green</span><br />Promise, destination, and handoff match across devices. Mobile is not a second, thinner product.</div>
+        <div class="card"><span class="score yellow">Yellow</span><br />Same intent, but mobile hides helper text, shrinks the CTA, or adds one extra hunt step.</div>
+        <div class="card"><span class="score red">Red</span><br />Mobile CTA wording, destination, or handoff diverges enough that a visitor may restart their intent.</div>
+      </div>
+      <h3>Example one-page note after permission</h3>
+      <div class="card">
+        <p><strong>Subject:</strong> Tiny public-only mobile path note</p>
+        <p>I checked only the public homepage → demo path on desktop and a phone-width screen. I did not submit anything. Desktop looks coherent. The possible friction is mobile consistency: the primary CTA still appears, but the first screen after the click / the handoff helper is harder to see on a small screen.</p>
+        <p>A simple test would be matching CTA wording across breakpoints and repeating one “what happens next” line above the mobile handoff.</p>
+        <p>If useful, I can turn this into a one-page mobile vs desktop consistency worksheet for the rest of the public path. If not, no need to reply.</p>
+      </div>
+      <div class="note">Source principles used as framing only: mobile visitors often make up a large share of traffic; primary CTAs should stay thumb-friendly and expectation-matched after the click; dual/competing CTAs get harder on small screens. This worksheet is a prioritization aid, not proof of revenue loss, accessibility compliance, or ad-performance failure.</div>
+      <a class="print" href="javascript:window.print()">Print / save the mobile vs desktop worksheet</a>
+    </section>
+
+    <section>
       <h2>Safe outreach phrasing</h2>
       <div class="card">
         <p><strong>Use this:</strong></p>
@@ -515,7 +599,7 @@
           <tr><td>Async written deliverable</td><td>Standing meetings, retainer work, or rush deadlines unless separately approved</td></tr>
         </tbody>
       </table>
-      <div class="note">Payment link stays off this page until a real checkout URL is approved. Request the teardown first; pay only after scope is clear.</div>
+      <div class="note">Checkout stays off this free notebook on purpose. Request the teardown first; pay only after public-only scope is clear. No cold payment-link blasting from this page.</div>
     </section>
 
     <section id="money-path">
@@ -543,7 +627,7 @@
     </section>
 
     <div class="footer">
-      Built under SMIRK / smirkcalls.com as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v1.4.1 — identity note corrected (use alerts@smirkcalls.com; ban personal Gmail / artificiallyeducated.com).</div>
+      Built under SMIRK / smirkcalls.com as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v1.5 — mobile vs desktop path consistency worksheet; TOC links for $99 deliverable + mobile worksheet.</div>
   </main>
 </body>
 </html>
