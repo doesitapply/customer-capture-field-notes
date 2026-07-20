@@ -41,3 +41,4 @@ Do not claim:
 2. Add a short “what to screenshot” checklist for public-only teardown notes.
 
 - v1.2 adds a public “What you get for $99” deliverable card so the money path is concrete.
+- v1.3 replaces non-owned artificiallyeducated.com identity with owned domains: smirkcalls.com + courtreadyevidence.com.
