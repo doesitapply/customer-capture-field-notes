@@ -39,3 +39,5 @@ Do not claim:
 
 1. Add printable one-page checklist variant if visitors need a shorter handout.
 2. Add a short “what to screenshot” checklist for public-only teardown notes.
+
+- v1.2 adds a public “What you get for $99” deliverable card so the money path is concrete.
