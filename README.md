@@ -44,3 +44,4 @@ Do not claim:
 - v1.3 replaces non-owned artificiallyeducated.com identity with owned domains: smirkcalls.com + courtreadyevidence.com.
 
 - v1.4 uses SMIRK Resend sender identity alerts@smirkcalls.com (not artificiallyeducated.com).
+- v1.4.1 corrects the identity note: use alerts@smirkcalls.com / smirkcalls.com; ban personal Gmail and artificiallyeducated.com (previous note wrongly said not to use smirkcalls.com).
