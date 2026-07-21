@@ -63,6 +63,7 @@
         <a href="#cta-clarity-scorer">CTA scorer</a>
         <a href="#example-demo-form-walkthrough">Demo-form example</a>
         <a href="#after-the-form-expectation-checklist">After-the-form</a>
+        <a href="#booking-path-vs-followup-worksheet">Booking vs follow-up</a>
         <a href="#multi-intent-routing-worksheet">Routing map</a>
         <a href="#example-competing-cta-walkthrough">Competing CTAs example</a>
         <a href="#mobile-desktop-path-worksheet">Mobile vs desktop</a>
@@ -566,12 +567,130 @@
     </section>
 
     <section>
+      <h2 id="booking-path-vs-followup-worksheet">Worksheet: booking path vs “we’ll follow up”</h2>
+      <p>After the form is visible, many SaaS and high-ticket service paths split into two very different public shapes: <strong>self-serve booking</strong> (calendar / suggested times on the same path) versus <strong>async follow-up</strong> (“someone will be in touch”). Neither is automatically wrong. The operator job is to name which shape the public page actually promises — and whether the first screen after interest matches that promise.</p>
+      <div class="note">Public-only rule: inspect labels, helper copy, embedded scheduler chrome, and confirmation-path wording. Do not submit forms, create calendar holds with real identity, log into booking tools, or claim that a follow-up path “kills demos.” Useful claim: “path shape may create waiting friction,” not “you are losing meetings.”</div>
+      <div class="grid">
+        <div class="card"><strong>Shape A — Self-serve booking</strong><br />Visitor can pick a time on the same public path (inline calendar, suggested slots, or a clearly labeled “choose a time” step) without waiting for a human first email.</div>
+        <div class="card"><strong>Shape B — Async follow-up</strong><br />Visitor is told a human will reply, qualify, or send a link later. Timing/owner copy matters more than calendar chrome.</div>
+        <div class="card"><strong>Shape C — Hybrid / unclear</strong><br />Page hints at both (“book a demo” + “we’ll be in touch”) or the CTA promise and destination shape disagree.</div>
+      </div>
+      <table class="worksheet" aria-label="Booking path vs follow-up worksheet">
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>Public observation</th>
+            <th>Shape signal</th>
+            <th>Match green / yellow / red</th>
+            <th>Smallest safe fix idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Primary CTA wording</td>
+            <td><span class="blank">Exact button/link text</span></td>
+            <td><span class="blank">Book / Schedule / Request / Contact / Talk</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">Align verb with real next step</span></td>
+          </tr>
+          <tr>
+            <td>First screen after click (no submit)</td>
+            <td><span class="blank">Form only / calendar visible / thank-you copy / other</span></td>
+            <td><span class="blank">A / B / C</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">Show the real handoff earlier</span></td>
+          </tr>
+          <tr>
+            <td>Scheduler chrome visible without login</td>
+            <td><span class="blank">Inline calendar, “pick a time,” or none</span></td>
+            <td><span class="blank">A if yes; B if no</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">If A is intended, surface slots; if B, say so</span></td>
+          </tr>
+          <tr>
+            <td>“We’ll follow up” / “in touch” language</td>
+            <td><span class="blank">Exact phrase + where it appears</span></td>
+            <td><span class="blank">B signal (or C if mixed with Book)</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">Name owner + timing window</span></td>
+          </tr>
+          <tr>
+            <td>Timing expectation stated</td>
+            <td><span class="blank">“within 1 business day,” none, fake urgency</span></td>
+            <td><span class="blank">B needs this more than A</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">Add a realistic window; avoid fake urgency</span></td>
+          </tr>
+          <tr>
+            <td>Owner / role visible</td>
+            <td><span class="blank">AE, founder, solutions, “team,” none</span></td>
+            <td><span class="blank">B clarity signal</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">Name a role, not a black box</span></td>
+          </tr>
+          <tr>
+            <td>Qualification gate honesty</td>
+            <td><span class="blank">“If good fit…,” ICP hints, none</span></td>
+            <td><span class="blank">Either shape can use this</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">Say what good fit means in plain words</span></td>
+          </tr>
+          <tr>
+            <td>Preparation ask before the meeting</td>
+            <td><span class="blank">Use case / stack / urgency hints</span></td>
+            <td><span class="blank">Improves both shapes</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">One helper line beats five extra fields</span></td>
+          </tr>
+          <tr>
+            <td>CTA promise vs destination shape</td>
+            <td><span class="blank">Does “Book a demo” land on “we’ll email you”?</span></td>
+            <td><span class="blank">Mismatch = C / yellow-red</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">Rename CTA or change handoff copy</span></td>
+          </tr>
+          <tr>
+            <td>Write-up stays buyer-safe</td>
+            <td><span class="blank">URL + path + device</span></td>
+            <td><span class="blank">Language check</span></td>
+            <td><span class="blank">G / Y / R</span></td>
+            <td><span class="blank">“May create waiting friction,” not “killing demos”</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Operator scoring (manual, public-only)</h3>
+      <div class="grid">
+        <div class="card"><span class="score red">Red</span><br />CTA promises booking (or urgency) but the public path only shows a vague follow-up — or the reverse. Fix the promise/shape match before buying more demo traffic.</div>
+        <div class="card"><span class="score yellow">Yellow</span><br />Shape is mostly clear, but owner, timing, or preparation is thin. A $99 public-only teardown can usually name 1–2 lines to test.</div>
+        <div class="card"><span class="score green">Green</span><br />Visitor can answer: “Do I pick a time now, or wait for a human?” plus who/when/what to prepare — without submitting.</div>
+      </div>
+      <h3>Permission-based one-page note sample</h3>
+      <div class="card">
+        <p>I checked only the public homepage → demo path. I did not submit the form or create a calendar hold.</p>
+        <p>The page looks like <strong>Shape B (async follow-up)</strong> even though the primary CTA reads like booking language. Possible friction: a warm visitor may expect to pick a time, then lands on “we’ll be in touch” with no owner or timing window on the public screen.</p>
+        <p>A simple test would be either (1) rename the CTA to “Request a demo review” and add a one-line timing/owner expectation, or (2) if self-serve is intended, surface a public “choose a time” step that matches the button.</p>
+        <p>If useful, I can turn this into a one-page booking-path vs follow-up worksheet for the rest of the public path. If not, no need to reply.</p>
+      </div>
+      <h3>Safe outreach variant (booking-path)</h3>
+      <div class="card">
+        <p><strong>Use this:</strong></p>
+        <p>“I noticed the public demo CTA may promise a booking-style next step while the first screen still reads like a follow-up handoff. Would it be okay if I sent a one-page public-only booking-path vs follow-up check?”</p>
+        <p><strong>Not this:</strong></p>
+        <p>“Your demo form is killing meetings / you need Chili Piper / you’re losing pipeline.”</p>
+      </div>
+      <div class="note">Source principles used as framing only: modern demo paths often reduce waiting friction with inline or same-session scheduling when self-serve is the real product; two-step “submit then wait for email/calendar” paths are common and valid when qualification is intentional — but CTA verbs should match the shape; journey-friction audits repeatedly flag unclear “what happens next” after high-intent clicks. This worksheet does not prove lost meetings, vendor ROI, accessibility compliance, or that any scheduler brand is required.</div>
+      <a class="print" href="javascript:window.print()">Print / save the booking vs follow-up worksheet</a>
+    </section>
+
+    <section>
       <h2>Safe outreach phrasing</h2>
       <div class="card">
         <p><strong>Use this:</strong></p>
         <p>“I noticed a possible demo/contact handoff issue that may be creating friction. Would it be okay if I sent a one-page public-only example with the checks I’d run?”</p>
         <p><strong>Routing variant:</strong></p>
         <p>“I noticed a few public CTAs that may send different buyer intents into a similar contact path. Would it be okay if I sent a one-page multi-intent routing map based only on public pages?”</p>
+        <p><strong>Booking-path variant:</strong></p>
+        <p>“I noticed the public demo CTA may promise a booking-style next step while the first screen still reads like a follow-up handoff. Would it be okay if I sent a one-page public-only booking-path vs follow-up check?”</p>
         <p><strong>Not this:</strong></p>
         <p>“Your site is leaking money and I found critical conversion failures.”</p>
       </div>
@@ -627,7 +746,7 @@
     </section>
 
     <div class="footer">
-      Built under SMIRK / smirkcalls.com as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v1.5 — mobile vs desktop path consistency worksheet; TOC links for $99 deliverable + mobile worksheet.</div>
+      Built under SMIRK / smirkcalls.com as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v1.6 — booking path vs follow-up worksheet; TOC link for booking module.</div>
   </main>
 </body>
 </html>
