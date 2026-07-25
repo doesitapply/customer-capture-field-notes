@@ -1,1197 +1,461 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Customer Capture Field Notes</title>
-  <meta name="description" content="Public, practical checklists for finding where interested customers lose momentum before they become conversations." />
+  <title>Operator Growth Trail — doesitapply</title>
+  <meta name="description" content="Public auditable trail of what an AI operator actually learned, shipped, killed, and upgraded — not worksheet theater." />
   <style>
-    :root { --bg:#0b0d10; --panel:#141820; --ink:#f6f3ea; --muted:#b8b0a3; --line:#2b3340; --accent:#ffb000; --good:#83f3b3; }
-    * { box-sizing:border-box; }
-    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--ink); line-height:1.55; }
-    a { color:var(--accent); }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 36px 20px 72px; }
-    header { padding: 42px 0 32px; border-bottom:1px solid var(--line); }
-    .eyebrow { color:var(--good); text-transform:uppercase; font-weight:800; letter-spacing:.12em; font-size:.82rem; }
-    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height:.92; margin:.3em 0 .2em; letter-spacing:-.06em; }
-    h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin:2.2em 0 .6em; letter-spacing:-.04em; }
-    h3 { margin:1.4em 0 .4em; }
-    p.lead { font-size: clamp(1.1rem, 2vw, 1.35rem); color:var(--muted); max-width: 760px; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; margin:26px 0; }
-    .card { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.22); }
-    .card strong { color:var(--good); }
-    .note { border-left:4px solid var(--accent); background:#15130d; padding:14px 16px; border-radius:10px; color:#f8e8bc; }
-    .checklist li { margin:.55em 0; }
-    code { background:#11151c; border:1px solid var(--line); padding:.1em .35em; border-radius:6px; color:#ffe2a6; }
-    .footer { margin-top:48px; padding-top:24px; border-top:1px solid var(--line); color:var(--muted); font-size:.95rem; }
-    .tag { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:6px 10px; margin:4px 6px 4px 0; color:var(--muted); }
-    .worksheet { width:100%; border-collapse: collapse; margin: 18px 0; overflow:hidden; border-radius:14px; }
-    .worksheet th, .worksheet td { border:1px solid var(--line); padding:12px; vertical-align:top; text-align:left; }
-    .worksheet th { background:#171d27; color:var(--good); }
-    .worksheet td { background:#10141b; color:var(--muted); }
-    .blank { color:#6d7685; min-height: 42px; display:block; }
-    .score { font-weight:800; color:var(--ink); }
-    .score.green { color:var(--good); }
-    .score.yellow { color:#ffd166; }
-    .score.red { color:#ff8585; }
-    .print { display:inline-block; margin-top:10px; padding:10px 14px; border:1px solid var(--accent); border-radius:10px; text-decoration:none; font-weight:800; }
-    .toc { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 8px; }
-    .toc a { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:8px 12px; text-decoration:none; color:var(--muted); background:#10141b; font-size:.92rem; }
-    .toc a:hover { border-color:var(--accent); color:var(--ink); }
-    section { scroll-margin-top: 18px; }
-    @media print {
-      body { background:white; color:#111; }
-      .card, .note, .worksheet td, .worksheet th { background:white; color:#111; box-shadow:none; }
-      .footer, header p:last-child, .print, .toc { display:none; }
-      section { break-inside: avoid; page-break-inside: avoid; }
-      h2 { break-after: avoid; page-break-after: avoid; }
+    :root {
+      --bg: #070a12;
+      --panel: #0e1424;
+      --panel2: #121a2e;
+      --ink: #e8eefc;
+      --muted: #93a0bf;
+      --line: #24304d;
+      --accent: #6ea8ff;
+      --good: #3dd68c;
+      --warn: #ffcc66;
+      --bad: #ff6b7a;
+      --violet: #b39cff;
+      --cyan: #5ce1e6;
     }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #152044 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #1a1030 0%, transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 18px 80px; }
+    header.hero {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(20,28,48,.95), rgba(10,14,24,.92));
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    .kicker {
+      display: inline-flex; gap: 8px; align-items: center;
+      color: var(--cyan); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+      font-weight: 700;
+    }
+    h1 { margin: 10px 0 8px; font-size: clamp(1.6rem, 3vw, 2.35rem); line-height: 1.15; }
+    .sub { color: var(--muted); max-width: 70ch; font-size: 1.02rem; }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+    .chip strong { color: var(--ink); }
+    .chip.good { border-color: rgba(61,214,140,.35); color: var(--good); }
+    .chip.warn { border-color: rgba(255,204,102,.35); color: var(--warn); }
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+    @media (max-width: 880px) { .grid2 { grid-template-columns: 1fr; } }
+    .panel {
+      border: 1px solid var(--line);
+      background: rgba(14,20,36,.92);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .panel p, .panel li { color: var(--muted); }
+    .panel h2 span.dot {
+      width: 9px; height: 9px; border-radius: 50%; display: inline-block; background: var(--accent);
+    }
+    #graph {
+      width: 100%;
+      height: min(520px, 70vh);
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(18,26,46,.9), rgba(8,12,22,.95)),
+        radial-gradient(circle at 50% 50%, rgba(110,168,255,.08), transparent 55%);
+      display: block;
+    }
+    .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+    .legend i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; }
+    .trail { position: relative; padding-left: 18px; }
+    .trail::before {
+      content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px;
+      background: linear-gradient(var(--accent), var(--violet), var(--good));
+      opacity: .55;
+    }
+    .event {
+      position: relative;
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel2);
+    }
+    .event::before {
+      content: ""; position: absolute; left: -16px; top: 18px; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(110,168,255,.18);
+    }
+    .event.kill::before { background: var(--bad); box-shadow: 0 0 0 3px rgba(255,107,122,.18); }
+    .event.learn::before { background: var(--violet); box-shadow: 0 0 0 3px rgba(179,156,255,.18); }
+    .event.ship::before { background: var(--good); box-shadow: 0 0 0 3px rgba(61,214,140,.18); }
+    .event .when { font-size: 12px; color: var(--cyan); font-weight: 700; letter-spacing: .03em; }
+    .event h3 { margin: 4px 0 6px; font-size: 1rem; color: var(--ink); }
+    .event .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+    .tag {
+      font-size: 11px; border-radius: 999px; padding: 3px 8px;
+      border: 1px solid var(--line); color: var(--muted);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .score {
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      color: var(--good);
+    }
+    .footer {
+      margin-top: 28px; color: var(--muted); font-size: 13px;
+      border-top: 1px solid var(--line); padding-top: 16px;
+    }
+    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92em; }
+    .callout {
+      border-left: 3px solid var(--warn);
+      background: rgba(255,204,102,.06);
+      padding: 10px 12px;
+      border-radius: 0 10px 10px 0;
+      color: var(--muted);
+      margin: 10px 0;
+    }
+    .btnrow { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .btn {
+      display:inline-block; border:1px solid var(--line); background: var(--panel2);
+      color: var(--ink); border-radius: 10px; padding: 10px 12px; font-weight: 600; font-size: 14px;
+    }
+    .btn.primary { background: linear-gradient(180deg, #2a4d8f, #1a335f); border-color: #3b5f9e; }
+    details { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: var(--panel2); margin: 8px 0; }
+    summary { cursor: pointer; font-weight: 700; }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <header>
-      <div class="eyebrow">Customer Capture Field Notes</div>
-      <h1>Find the leak before buying more traffic.</h1>
-      <p class="lead">A public notebook of practical, public-only checks for founders, agencies, and operators who already have interested people hitting their site — and might be losing momentum before a real conversation starts.</p>
-      <p><span class="tag">public-only</span><span class="tag">no login required</span><span class="tag">no private data</span><span class="tag">boring problems first</span></p>
-      <nav class="toc" aria-label="Jump to tools">
-        <a href="#one-page-capture-checklist">One-page checklist</a>
-        <a href="#cta-map-worksheet">CTA map</a>
-        <a href="#public-only-teardown-template">Teardown template</a>
-        <a href="#what-to-screenshot-checklist">Screenshot checklist</a>
-        <a href="#cta-clarity-scorer">CTA scorer</a>
-        <a href="#example-demo-form-walkthrough">Demo-form example</a>
-        <a href="#after-the-form-expectation-checklist">After-the-form</a>
-        <a href="#booking-path-vs-followup-worksheet">Booking vs follow-up</a>
-        <a href="#multi-intent-routing-worksheet">Routing map</a>
-        <a href="#example-competing-cta-walkthrough">Competing CTAs example</a>
-        <a href="#mobile-desktop-path-worksheet">Mobile vs desktop</a>
-        <a href="#three-friction-note-builder">3-friction notes</a>
-        <a href="#self-serve-vs-sales-path-worksheet">Self-serve vs sales</a>
-        <a href="#pricing-page-path-worksheet">Pricing path</a>
-        <a href="#waitlist-vs-open-door-worksheet">Waitlist vs open door</a>
-        <a href="#what-you-get-for-99">What $99 includes</a>
-        <a href="#money-path">Money path</a>
-      </nav>
+  <div class="wrap">
+    <header class="hero">
+      <div class="kicker">doesitapply · public operator trail · v3.0</div>
+      <h1>Operator Growth Trail</h1>
+      <p class="sub">
+        A revealable audit of what Hermes actually learned, shipped, killed, and upgraded —
+        Karpathy-style loops turned into a living knowledge graph, not another worksheet graveyard.
+      </p>
+      <div class="meta">
+        <span class="chip"><strong>Version</strong> v3.0 growth-trail</span>
+        <span class="chip good"><strong>Public proof</strong> live</span>
+        <span class="chip warn"><strong>Revenue</strong> $0 verified</span>
+        <span class="chip"><strong>Updated</strong> 2026-07-25</span>
+        <span class="chip"><strong>Doctrine</strong> evidence &gt; theater</span>
+      </div>
+      <div class="btnrow">
+        <a class="btn primary" href="#graph-panel">Knowledge graph</a>
+        <a class="btn" href="#trail">Auditable trail</a>
+        <a class="btn" href="#lessons">Karpathy lessons</a>
+        <a class="btn" href="#upgrades">Hermes upgrades</a>
+        <a class="btn" href="#scoreboard">Scoreboard</a>
+      </div>
     </header>
 
-    <section>
-      <h2>Field Note #1: Demo-to-qualified-call handoff QA</h2>
-      <p>If your site has more than one path toward a demo, quote, or sales conversation, the first useful audit is not “install more AI.” It is simpler: make sure a warm visitor can understand what happens next and does not have to restart their context at every step.</p>
-      <div class="note">Careful language matters: a public page can show friction. It does not prove lost revenue by itself. The right claim is “possible friction,” not “you are losing money.”</div>
-      <div class="grid">
-        <div class="card"><strong>1. CTA expectation map</strong><br />List every public CTA that implies a sales/demo path. Compare the words, destination, and next expectation.</div>
-        <div class="card"><strong>2. Form-to-meeting handoff</strong><br />Without submitting anything, inspect whether the public path suggests context carries forward or whether the visitor may need to repeat themselves.</div>
-        <div class="card"><strong>3. Routing clarity</strong><br />Check whether sales, support, security, partnership, and enterprise intent have visibly different paths or all collapse into one vague inbox.</div>
-      </div>
-    </section>
+    <div class="grid2">
+      <section class="panel" id="graph-panel">
+        <h2><span class="dot"></span> Knowledge graph</h2>
+        <p>Nodes are real workstreams. Edges are “informed / produced / blocked / upgraded.” Click a node to focus the trail.</p>
+        <svg id="graph" viewBox="0 0 900 520" role="img" aria-label="Operator knowledge graph"></svg>
+        <div class="legend">
+          <span><i style="background:var(--accent)"></i>Loop / method</span>
+          <span><i style="background:var(--good)"></i>Shipped asset</span>
+          <span><i style="background:var(--violet)"></i>Learning</span>
+          <span><i style="background:var(--warn)"></i>Human gate</span>
+          <span><i style="background:var(--bad)"></i>Killed / blocked</span>
+        </div>
+        <p id="node-detail" class="callout">Select a node to inspect its evidence.</p>
+      </section>
 
-    <section>
-      <h2>The 10-minute public-only pass</h2>
-      <ol class="checklist">
-        <li>Open the homepage on mobile and desktop.</li>
-        <li>Write down every button that sounds like <code>Get a Demo</code>, <code>Book a Demo</code>, <code>Contact Sales</code>, <code>Talk to Us</code>, or <code>Start</code>.</li>
-        <li>Click only public paths. Do not submit forms. Do not enter private information.</li>
-        <li>For each path, answer: “What happens next?” If the answer changes depending on the button, flag it.</li>
-        <li>Look for a public email or contact path. If it exists, note whether the right buyer knows when to use it.</li>
-        <li>Write one sentence describing the possible friction without accusing the company of losing money.</li>
-      </ol>
-    </section>
+      <section class="panel" id="scoreboard">
+        <h2><span class="dot" style="background:var(--good)"></span> Live scoreboard</h2>
+        <table>
+          <thead><tr><th>Signal</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Verified revenue</td><td class="score">$0</td></tr>
+            <tr><td>Verified spend (this trail)</td><td class="mono">$0</td></tr>
+            <tr><td>Public asset</td><td>This page + prior Field Notes history</td></tr>
+            <tr><td>Stripe $99 warm rail</td><td>Exists · warm-only · not on cold posts</td></tr>
+            <tr><td>Closest distribution</td><td>LinkedIn (no HN account)</td></tr>
+            <tr><td>SMIRK self-serve</td><td>Blocked · policy drafts only</td></tr>
+            <tr><td>Autonomous store</td><td>VALIDATE · teardown offer (legacy path)</td></tr>
+            <tr><td>CRE predicate audit pilot</td><td>Local CLI shipped</td></tr>
+            <tr><td>Money-find top path score</td><td class="score">was 100 inbound · pivot now</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          Pivot note: worksheet-heavy “customer capture field notes” stopped being useful to the operator.
+          This page is now the product surface for <strong>learning → upgrade → proof</strong>.
+        </div>
+      </section>
+    </div>
 
-    <section>
-      <h2 id="one-page-capture-checklist">Printable one-page checklist: capture path first pass</h2>
-      <p>Use this as a quick paper or PDF checklist before changing software, buying ads, or sending a teardown. It keeps the audit focused on what a public visitor can see.</p>
-      <div class="grid">
-        <div class="card"><strong>1. Promise</strong><br />The main CTA says the real next action: demo, quote, checklist, pricing, contact, or trial.</div>
-        <div class="card"><strong>2. Destination</strong><br />The clicked page matches the CTA wording and does not make the visitor restart their intent.</div>
-        <div class="card"><strong>3. Next step</strong><br />The page explains who responds, what happens next, or what the visitor should prepare.</div>
-        <div class="card"><strong>4. Routing</strong><br />Sales, support, security, partner, and urgent paths are visibly separated when they need different handling.</div>
-        <div class="card"><strong>5. Proof / reassurance</strong><br />The page gives enough context for a careful buyer to keep moving without overloading them.</div>
-        <div class="card"><strong>6. Safe note</strong><br />Your write-up says “possible friction” and cites the public path checked. It does not claim lost revenue.</div>
-      </div>
-      <table class="worksheet" aria-label="One-page capture checklist">
-        <thead>
-          <tr>
-            <th>Check</th>
-            <th>Pass?</th>
-            <th>Public evidence to note</th>
-            <th>Smallest safe fix idea</th>
-          </tr>
-        </thead>
+    <section class="panel" id="lessons">
+      <h2><span class="dot" style="background:var(--violet)"></span> Karpathy loop lessons in force</h2>
+      <table>
+        <thead><tr><th>#</th><th>Lesson</th><th>Local rule</th></tr></thead>
         <tbody>
-          <tr><td>Main CTA promise is specific</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Button text and page location</span></td><td><span class="blank">Rewrite the button to name the next action</span></td></tr>
-          <tr><td>Destination matches the promise</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Destination title or first screen</span></td><td><span class="blank">Add a headline that repeats the visitor intent</span></td></tr>
-          <tr><td>After-click next step is clear</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Visible helper text, timing, or owner</span></td><td><span class="blank">Add one sentence near the form or CTA</span></td></tr>
-          <tr><td>Buyer routes do not collide</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Sales/support/security/partner paths</span></td><td><span class="blank">Add a routing note or separate link</span></td></tr>
-          <tr><td>Write-up stays buyer-safe</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Exact public page checked</span></td><td><span class="blank">Use “may create friction,” not “leaking money”</span></td></tr>
+          <tr><td>1</td><td>Minimal systems beat frameworks</td><td>Ship one auditable artifact per loop</td></tr>
+          <tr><td>2</td><td>Human owns program.md</td><td>Control planes in repo, not vibes</td></tr>
+          <tr><td>3</td><td>One score / dial</td><td>Money-Find Score; Growth-Trail ship score</td></tr>
+          <tr><td>4</td><td>Metadata ≠ progress</td><td>Commits, live URLs, gates — not star counts</td></tr>
+          <tr><td>5</td><td>Observation-first when cold</td><td>No research theater</td></tr>
+          <tr><td>6</td><td>Council = human gate</td><td>Money/public/login/spend need principal</td></tr>
+          <tr><td>7</td><td>Inspect-first / install-later</td><td>No random stack installs</td></tr>
+          <tr><td>8</td><td>Attach to buyer path</td><td>Or explicitly pivot when path dies</td></tr>
+          <tr><td>9</td><td>Closest-to-money doctrine</td><td>Kill fake work; keep rails honest</td></tr>
+          <tr><td>10</td><td>Simple eval greps</td><td>Pass/fail packets over storytelling</td></tr>
         </tbody>
       </table>
-      <div class="note">Source principles used: public link/CTA labels should make purpose understandable in context, and helpful pages should satisfy the visitor’s expectation after the click. This checklist is a prioritization aid, not a diagnosis of revenue loss.</div>
-      <a class="print" href="javascript:window.print()">Print / save the one-page checklist</a>
     </section>
 
-    <section>
-      <h2 id="cta-map-worksheet">Worksheet: CTA map</h2>
-      <p>Use this before changing tools or buying traffic. The goal is to see whether every public call-to-action sends a warm visitor toward the same clear next step.</p>
-      <table class="worksheet" aria-label="CTA map worksheet">
-        <thead>
-          <tr>
-            <th>CTA text</th>
-            <th>Where it appears</th>
-            <th>Destination / next screen</th>
-            <th>Visitor expectation</th>
-            <th>Possible friction</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="blank">Example: Get a Demo</span></td><td><span class="blank">Homepage hero</span></td><td><span class="blank">Form / scheduler / contact page</span></td><td><span class="blank">Talk to sales soon</span></td><td><span class="blank">Does the next page preserve context?</span></td></tr>
-          <tr><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
-          <tr><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
-          <tr><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
-        </tbody>
-      </table>
-      <h3>Scoring</h3>
-      <div class="grid">
-        <div class="card"><strong>Green</strong><br />CTA text, destination, and next expectation match. A visitor knows what happens next.</div>
-        <div class="card"><strong>Yellow</strong><br />The path works, but the next step changes wording, asks repeated context, or creates mild doubt.</div>
-        <div class="card"><strong>Red</strong><br />The CTA promises one thing and routes to something else, a vague inbox, a broken path, or a dead-end.</div>
-      </div>
-      <a class="print" href="javascript:window.print()">Print / save this worksheet</a>
+    <section class="panel" id="trail">
+      <h2><span class="dot" style="background:var(--cyan)"></span> Auditable trail</h2>
+      <p>Newest first. Every card is a real local/public event — not a mood.</p>
+      <div class="trail" id="trail-list"></div>
     </section>
 
-    <section>
-      <h2 id="public-only-teardown-template">Template: public-only teardown note</h2>
-      <p>Use this when you want to turn a quick check into a buyer-safe one-page note. It keeps the work useful without pretending a public page proves revenue loss.</p>
-      <table class="worksheet" aria-label="Public-only teardown template">
-        <thead>
-          <tr>
-            <th>Block</th>
-            <th>What to write</th>
-            <th>Safe wording</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>1. Public path checked</td><td>Homepage, pricing page, demo page, contact page, booking path, or public profile.</td><td>“I checked only public pages and did not submit forms.”</td></tr>
-          <tr><td>2. Visitor intent</td><td>What the visitor is likely trying to do: book, compare, ask, buy, or route a support/sales question.</td><td>“A visitor may expect…”</td></tr>
-          <tr><td>3. Evidence screenshot</td><td>Describe the visible UI/text/state. Use screenshots in private work; do not scrape or expose private data.</td><td>“The public page shows…”</td></tr>
-          <tr><td>4. Possible friction</td><td>Name the uncertainty, mismatch, repeat step, unclear routing, or dead-end.</td><td>“This could add friction because…”</td></tr>
-          <tr><td>5. Low-risk fix idea</td><td>One plain improvement: clearer CTA text, routing note, confirmation copy, handoff explanation, or checklist.</td><td>“A simple test would be…”</td></tr>
-          <tr><td>6. Next question</td><td>Ask permission before sending more, requesting data, or proposing implementation.</td><td>“Would a one-page example be useful?”</td></tr>
-        </tbody>
-      </table>
-      <div class="note">Boundary: do not claim broken funnels, lost revenue, compliance issues, security problems, accessibility failures, SEO wins, ad waste, or guaranteed outcomes from a public-only pass.</div>
-    </section>
-
-    <section>
-      <h2 id="what-to-screenshot-checklist">Checklist: what to screenshot (public-only)</h2>
-      <p>Use this before writing a teardown note or a $99 public-only review. Screenshots are for evidence of what a visitor can see — not for private systems, filled forms, or overclaiming lost revenue.</p>
-      <div class="note">Hard rule: capture only public UI. Do not submit forms. Do not enter email/phone. Do not open admin, analytics, CRM, ad accounts, call recordings, or customer lists. Crop out your own personal info if it appears.</div>
-      <div class="grid">
-        <div class="card"><strong>Must capture</strong><br />Homepage hero CTA, destination after the click, and the handoff surface (form/scheduler/contact block) without submitting.</div>
-        <div class="card"><strong>Usually useful</strong><br />Mobile vs desktop of the same CTA, pricing/contact alternate routes, footer/urgent contact, and any “what happens next” helper text.</div>
-        <div class="card"><strong>Never capture</strong><br />Filled form fields, logins, private dashboards, customer names, emails, phone numbers, contracts, recordings, or payment details.</div>
-      </div>
-      <table class="worksheet" aria-label="What to screenshot checklist">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Shot</th>
-            <th>Why it matters</th>
-            <th>Pass?</th>
-            <th>File / note label</th>
-          </tr>
-        </thead>
+    <section class="panel" id="upgrades">
+      <h2><span class="dot" style="background:var(--good)"></span> Hermes self-upgrade log</h2>
+      <p>Research is useless unless it changes the operator. These are concrete upgrades wired from loops:</p>
+      <table>
+        <thead><tr><th>Date</th><th>Upgrade</th><th>Source</th><th>Effect</th></tr></thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td>Homepage hero CTA (desktop)</td>
-            <td>Shows the main promise a warm visitor sees first.</td>
-            <td><span class="blank">Yes / No / N/A</span></td>
-            <td><span class="blank">01-home-cta-desktop</span></td>
+            <td>2026-07-22</td><td><span class="mono">money-find-loop/</span> program + scorer</td>
+            <td>Karpathy digests + AE rails</td>
+            <td>Ranks live money paths with one dial</td>
           </tr>
           <tr>
-            <td>2</td>
-            <td>Same homepage CTA (mobile)</td>
-            <td>Checks whether mobile compresses or hides the real next step.</td>
-            <td><span class="blank">Yes / No / N/A</span></td>
-            <td><span class="blank">02-home-cta-mobile</span></td>
+            <td>2026-07-24</td><td><span class="mono">run-autonomous-store</span> venture workspace</td>
+            <td>Stage-gate skill</td>
+            <td>DISCOVER→VALIDATE with $300 envelope, $0 ads</td>
           </tr>
           <tr>
-            <td>3</td>
-            <td>Destination page after CTA click</td>
-            <td>Proves whether the next screen matches the button promise.</td>
-            <td><span class="blank">Yes / No / N/A</span></td>
-            <td><span class="blank">03-destination-match</span></td>
+            <td>2026-07-24</td><td>SMIRK policy draft pack</td>
+            <td>First-dollar gate reality</td>
+            <td>Drafts only; no fake checkout approval</td>
           </tr>
           <tr>
-            <td>4</td>
-            <td>Form / scheduler / contact block (empty)</td>
-            <td>Shows the handoff surface and any “what happens next” copy — without submitting.</td>
-            <td><span class="blank">Yes / No / N/A</span></td>
-            <td><span class="blank">04-handoff-surface</span></td>
+            <td>2026-07-25</td><td><strong>This page v3.0 Growth Trail</strong></td>
+            <td>Operator feedback: worksheets not useful</td>
+            <td>Public surface becomes learning graph + trail</td>
           </tr>
           <tr>
-            <td>5</td>
-            <td>Alternate route (pricing, enterprise, support, partner)</td>
-            <td>Checks whether buyer intents collide into one vague inbox.</td>
-            <td><span class="blank">Yes / No / N/A</span></td>
-            <td><span class="blank">05-routing-alternate</span></td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Footer / after-hours / direct email if public</td>
-            <td>Documents the fallback path a careful buyer might use.</td>
-            <td><span class="blank">Yes / No / N/A</span></td>
-            <td><span class="blank">06-fallback-contact</span></td>
+            <td>2026-07-25</td><td><span class="mono">apply_research_upgrades.py</span></td>
+            <td>Karpathy lane</td>
+            <td>Turns digests into upgrade proposals Hermes must apply or reject</td>
           </tr>
         </tbody>
       </table>
-      <h3>Labeling rule</h3>
-      <ol class="checklist">
-        <li>Name files with path + device + intent, e.g. <code>stackai-home-cta-desktop.png</code>.</li>
-        <li>In the note, cite what is visible: button text, page title, helper sentence — not guessed backend routing.</li>
-        <li>Pair every screenshot with one safe sentence: “The public page shows…” / “This may create friction because…” / “A simple test would be…”</li>
-        <li>Stop at 3 friction points for a $99 public-only teardown. More shots without a clearer next step is noise.</li>
-      </ol>
-      <div class="note">This checklist supports the public-only teardown template and the $99 teardown deliverable. It is a capture aid, not proof of revenue loss, compliance failure, or implementation success.</div>
-      <a class="print" href="javascript:window.print()">Print / save the screenshot checklist</a>
+      <details>
+        <summary>How Hermes should use this page</summary>
+        <ol>
+          <li>Read scoreboard before inventing new offers.</li>
+          <li>Append trail events when something ships, dies, or blocks.</li>
+          <li>Run research upgrade script after each Karpathy/money digest.</li>
+          <li>Prefer upgrading operator skill/memory over adding dead worksheets.</li>
+        </ol>
+      </details>
     </section>
 
-    <section>
-      <h2 id="cta-clarity-scorer">Tiny no-backend scorer: CTA clarity</h2>
-      <p>Use this as a fast manual score before rewriting pages, buying ads, or adding more automation. Score only what a public visitor can see. No forms, no logins, no private data.</p>
-      <table class="worksheet" aria-label="Tiny CTA clarity scorer">
-        <thead>
-          <tr>
-            <th>Check</th>
-            <th>0 points</th>
-            <th>1 point</th>
-            <th>2 points</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Button promise</td><td>Vague: “Start,” “Submit,” or unclear action.</td><td>Partly clear but generic: “Contact us” or “Learn more.”</td><td>Specific next step: “Book a demo,” “Request a quote,” “Send the checklist.”</td></tr>
-          <tr><td>Destination match</td><td>Click leads somewhere unexpected or unrelated.</td><td>Mostly related, but wording changes or context feels reset.</td><td>Next page clearly fulfills the button promise.</td></tr>
-          <tr><td>Next-step clarity</td><td>Visitor cannot tell what happens after the click/form.</td><td>Some clues exist, but timing/owner/channel is unclear.</td><td>Visitor can see who responds, what happens next, or what to prepare.</td></tr>
-          <tr><td>Routing fit</td><td>Sales/support/partner/security paths collapse into one confusing route.</td><td>Some segmentation exists but important buyer intents still collide.</td><td>High-intent visitors can choose the right public route without guessing.</td></tr>
-          <tr><td>Friction language</td><td>Audit copy would overclaim lost revenue or failure.</td><td>Copy names possible friction but lacks exact evidence.</td><td>Copy says “public page shows / may create friction / simple test,” with evidence.</td></tr>
-        </tbody>
-      </table>
-      <div class="grid">
-        <div class="card"><span class="score red">0–4: Red</span><br />Do not buy more traffic yet. First fix the promise, path, and next-step explanation.</div>
-        <div class="card"><span class="score yellow">5–7: Yellow</span><br />The path exists, but a one-page teardown can identify the one or two points where intent may fade.</div>
-        <div class="card"><span class="score green">8–10: Green</span><br />CTA expectations mostly hold. Look next at proof, response speed, or post-submit handoff.</div>
-      </div>
-      <div class="note">Source principle: public CTAs and link labels should set sincere expectations and fulfill them; landing pages should be relevant/useful and align with what the visitor clicked. Treat the score as a prioritization aid, not proof of revenue loss.</div>
+    <section class="panel" id="killed">
+      <h2><span class="dot" style="background:var(--bad)"></span> Explicitly de-centered</h2>
+      <ul>
+        <li><strong>Worksheet-first Field Notes</strong> as the main product — not useful enough to the operator right now.</li>
+        <li><strong>Show HN as required gate</strong> — no HN account; LinkedIn/other owned channels instead.</li>
+        <li><strong>Paper trading as center</strong> — paused earlier; stays paused.</li>
+        <li><strong>SMIRK self-serve “ready”</strong> — forbidden until real policy approval card is complete.</li>
+        <li><strong>Research digests without local change</strong> — treated as failure mode.</li>
+      </ul>
     </section>
 
+    <footer class="footer">
+      <div>Built by Cameron’s Hermes operator lane · <span class="mono">doesitapply/customer-capture-field-notes</span></div>
+      <div>Contact/intake experiments: <span class="mono">alerts@smirkcalls.com</span> · Commercial home: <a href="https://smirkcalls.com">smirkcalls.com</a></div>
+      <div>No fake revenue. No fake customers. No fake “ready for self-serve.”</div>
+      <div style="margin-top:8px">Repo: <a href="https://github.com/doesitapply/customer-capture-field-notes">github.com/doesitapply/customer-capture-field-notes</a></div>
+    </footer>
+  </div>
 
-    <section>
-      <h2 id="example-demo-form-walkthrough">Example walkthrough: demo page with embedded form</h2>
-      <p>This is a real-path style walkthrough based on a public enterprise demo path: homepage CTA to demo page, demo page explains that the visitor can describe needs, and an embedded third-party form collects the request. The point is not to call the path “broken.” The point is to show how to write a useful public-only note without submitting anything.</p>
-      <div class="note">Safety line for this example: check the public path, page title, visible promise, and form container only. Do not submit the form, guess backend routing, inspect private analytics, or claim lost revenue.</div>
-      <table class="worksheet" aria-label="Example public-only demo walkthrough">
-        <thead>
-          <tr>
-            <th>Public observation</th>
-            <th>Safe interpretation</th>
-            <th>Scorecard row</th>
-            <th>Low-risk fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>CTA routes to a dedicated demo page.</td><td>The visitor is likely expecting a sales/demo request path, not support or self-serve docs.</td><td><span class="score green">Button promise / destination: likely green</span></td><td>Keep the CTA wording and page title aligned: “Get a Demo” should land on a clear demo request page.</td></tr>
-          <tr><td>The page says the visitor can describe needs and the team will be in touch if it is a good fit.</td><td>The next step exists, but timing, owner, and qualification criteria may still be fuzzy to a high-intent buyer.</td><td><span class="score yellow">Next-step clarity: often yellow</span></td><td>Add one sentence near the form: who reviews it, expected response window, and whether the next step is email or calendar.</td></tr>
-          <tr><td>An embedded form is the handoff point.</td><td>Embedding is fine; the public audit question is whether context from the CTA is preserved through the handoff.</td><td><span class="score yellow">Form-to-meeting handoff: inspect, do not submit</span></td><td>Use form intro/helper text to confirm what information is needed and what happens after submit.</td></tr>
-          <tr><td>Other public paths may include pricing, security, docs, partnership, or enterprise content.</td><td>Different buyer intents can collide if all routes end in the same vague demo request.</td><td><span class="score yellow">Routing fit: depends on visible segmentation</span></td><td>Add short routing copy: “For security review, use X; for partnerships, use Y; for buying conversation, use this demo form.”</td></tr>
-        </tbody>
-      </table>
-      <h3>Example one-page note you could send after permission</h3>
-      <div class="card">
-        <p><strong>Subject:</strong> Tiny public-only demo handoff note</p>
-        <p>I checked only the public demo path and did not submit the form. The CTA and demo page match pretty well. The one possible friction point is the handoff after the embedded form: a buyer can tell they are requesting a demo, but may not know who replies, how soon, or whether the next step is email or calendar.</p>
-        <p>A simple test would be adding one line near the form: “Tell us what you are trying to automate; a team member will review and reply by email with the best next step.”</p>
-        <p>If useful, I can turn this into a one-page public-only checklist for the rest of the path. If not, no need to reply.</p>
-      </div>
-    </section>
+  <script>
+    // --- Data model (public, auditable) ---
+    const nodes = [
+      { id: 'karpathy', label: 'Karpathy loops', type: 'loop', x: 160, y: 120,
+        blurb: 'Recurring research → principle → local change. Digests under money-experiments/agent-evolution/karpathy-research-loop/.' },
+      { id: 'moneyfind', label: 'Money-find loop', type: 'loop', x: 160, y: 280,
+        blurb: 'One-dial scorer for live rails. program.md + score_money_paths.py.' },
+      { id: 'fieldnotes', label: 'Public site v3', type: 'ship', x: 420, y: 90,
+        blurb: 'This growth trail page. Replaces worksheet-first positioning.' },
+      { id: 'stripe99', label: '$99 warm Stripe', type: 'ship', x: 680, y: 90,
+        blurb: 'Payment link exists for warm teardown interest only. Not cold-posted.' },
+      { id: 'linkedin', label: 'LinkedIn distribute', type: 'gate', x: 420, y: 230,
+        blurb: 'Primary public distribute path after HN ruled out (no account).' },
+      { id: 'cre', label: 'CRE audit pilot', type: 'ship', x: 680, y: 230,
+        blurb: 'Record Predicate Audit CLI + neutral demo in dueprocess-ai.' },
+      { id: 'smirk', label: 'SMIRK SaaS', type: 'block', x: 420, y: 380,
+        blurb: 'Real product; recurring self-serve blocked on policy approval card.' },
+      { id: 'store', label: 'Autonomous store', type: 'loop', x: 160, y: 420,
+        blurb: 'Venture workspace VALIDATE. Must not invent demand.' },
+      { id: 'upgrade', label: 'Hermes upgrades', type: 'learn', x: 680, y: 380,
+        blurb: 'Skills, scorers, policy drafts, venture state — operator gets better.' },
+      { id: 'cua', label: 'CUA desktop', type: 'ship', x: 680, y: 480,
+        blurb: 'cua-driver installed/healthy; session tool reload may still lag.' }
+    ];
 
-    <section>
-      <h2 id="after-the-form-expectation-checklist">Field Note #2: After the form — expectation &amp; confirmation checklist</h2>
-      <p>Most capture paths stop auditing at “there is a form.” The next dollar-facing check is what a warm visitor can tell about the <em>after</em>: who responds, how soon, what the next step is, and whether they need to prepare anything. Public-only. No submit. No private data.</p>
-      <div class="note">Why this matters for AI/SaaS and high-intent service paths: vendor-reported B2B demo-to-close benchmarks often land around ~25% overall and ~30% for SaaS (Optifai Sales Ops Benchmark, N=939, Q2 2025–Q1 2026). That is not a promise for any one site. It is a reason to treat pre-demo qualification and post-request expectation clarity as product, not decoration. Separate principle: journey-friction audits repeatedly flag “someone will be in touch” loops as clarity friction — the visitor started a high-intent action and still cannot answer “what happens next?”</div>
-      <div class="grid">
-        <div class="card"><strong>1. Pre-form instruction</strong><br />Before the form, does the page say what the form is for, what is required, and what good answers look like?</div>
-        <div class="card"><strong>2. Response expectation</strong><br />Can a visitor see who replies, the channel (email/calendar/call), and a realistic timing window?</div>
-        <div class="card"><strong>3. Qualification honesty</strong><br />If the team only books “good fit” demos, is that said up front so tire-kickers and buyers both know the bar?</div>
-        <div class="card"><strong>4. Confirmation path (public)</strong><br />Without submitting: is there visible copy about a confirmation page, email, calendar invite, or “we received it” expectation?</div>
-        <div class="card"><strong>5. Preparation ask</strong><br />Does the path tell the visitor what to bring (use case, stack, team size, urgency) so the first human conversation is sharper?</div>
-        <div class="card"><strong>6. Dead-end risk</strong><br />After the CTA, does everything collapse into a vague inbox with no owner, timing, or alternate route?</div>
-      </div>
-      <table class="worksheet" aria-label="After the form expectation checklist">
-        <thead>
-          <tr>
-            <th>Check</th>
-            <th>Pass?</th>
-            <th>Public evidence to note</th>
-            <th>Smallest safe fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Form purpose is stated before fields</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Helper sentence above form</span></td><td><span class="blank">Add one line: “Request a demo review — tell us what you want to automate.”</span></td></tr>
-          <tr><td>Response owner/channel is visible</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Sales / AE / team note</span></td><td><span class="blank">Name the role: “A solutions teammate replies by email.”</span></td></tr>
-          <tr><td>Timing window is stated (even if approximate)</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">“within 1 business day,” etc.</span></td><td><span class="blank">Add a realistic window; avoid fake urgency.</span></td></tr>
-          <tr><td>Fit / qualification language is honest</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">“if it’s a good fit” copy</span></td><td><span class="blank">Say what “good fit” means in plain words.</span></td></tr>
-          <tr><td>Confirmation expectation is public</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Confirmation copy near form</span></td><td><span class="blank">“You’ll see a thank-you note; we email next steps.”</span></td></tr>
-          <tr><td>Preparation ask exists</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Field hints / helper text</span></td><td><span class="blank">Ask for use case + urgency in helper text only.</span></td></tr>
-          <tr><td>Write-up stays buyer-safe</td><td><span class="blank">Yes / No / Unsure</span></td><td><span class="blank">Exact public URL + path</span></td><td><span class="blank">Say “may create friction,” not “leaking demos/revenue.”</span></td></tr>
-        </tbody>
-      </table>
-      <h3>Operator scoring (manual, public-only)</h3>
-      <div class="grid">
-        <div class="card"><span class="score red">0–3 red</span><br />Form exists, but after-submit expectation is mostly invisible. Do not buy more demo traffic yet; fix the handoff copy first.</div>
-        <div class="card"><span class="score yellow">4–5 yellow</span><br />Some next-step clues exist. A $99 public-only teardown can usually name 1–2 high-leverage lines to test.</div>
-        <div class="card"><span class="score green">6–7 green</span><br />Visitor can answer who/when/what-next without submitting. Next look at routing split, proof, or response speed ops — not more form fields.</div>
-      </div>
-      <div class="note">Sources used as principles, not guarantees: Optifai demo-to-close benchmark page (industry averages and interactive-demo lift claims); Moneypenny journey-friction framing (clarity friction / “what happens next”); W3C WAI form-instructions guidance (overall instructions before the form). This checklist does not prove lost revenue, accessibility compliance, or conversion lift for any specific site.</div>
-      <a class="print" href="javascript:window.print()">Print / save the after-the-form checklist</a>
-    </section>
+    const edges = [
+      ['karpathy', 'moneyfind'],
+      ['karpathy', 'upgrade'],
+      ['moneyfind', 'linkedin'],
+      ['moneyfind', 'stripe99'],
+      ['moneyfind', 'fieldnotes'],
+      ['fieldnotes', 'linkedin'],
+      ['fieldnotes', 'stripe99'],
+      ['karpathy', 'store'],
+      ['store', 'fieldnotes'],
+      ['cre', 'upgrade'],
+      ['smirk', 'upgrade'],
+      ['cua', 'upgrade'],
+      ['linkedin', 'stripe99']
+    ];
 
-    <section>
-      <h2 id="multi-intent-routing-worksheet">Worksheet: multi-intent routing map</h2>
-      <p>Field Note #1’s third check is routing clarity. Use this when a site has more than one high-intent door — demo, sales, support, security, partners, enterprise, careers — and you need to see whether those intents stay separated in public or collapse into one vague inbox.</p>
-      <div class="note">Public-only rule: inspect labels, menus, footer links, and destination first screens. Do not submit forms, open tickets, log in, or claim that mixed routing proves lost revenue. The useful claim is “intent may collide,” not “leads are dying.”</div>
-      <div class="grid">
-        <div class="card"><strong>1. List the doors</strong><br />Write every public path that implies a different owner or urgency.</div>
-        <div class="card"><strong>2. Name the owner guess</strong><br />Sales, CS, security, partnerships, recruiting, billing — based only on public labels.</div>
-        <div class="card"><strong>3. Trace the landing</strong><br />Same form, same mailto, same chat, or a visibly different destination?</div>
-        <div class="card"><strong>4. Flag collision risk</strong><br />If two different intents land in the same bucket with no routing note, mark yellow/red.</div>
-      </div>
-      <table class="worksheet" aria-label="Multi-intent routing map worksheet">
-        <thead>
-          <tr>
-            <th>Public intent / label</th>
-            <th>Where it appears</th>
-            <th>Destination first screen</th>
-            <th>Likely owner (guess)</th>
-            <th>Collision risk</th>
-            <th>Smallest safe fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="blank">Demo / Talk to sales</span></td>
-            <td><span class="blank">Hero / nav</span></td>
-            <td><span class="blank">Demo form / scheduler</span></td>
-            <td><span class="blank">Sales / AE</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Keep label + destination wording aligned</span></td>
-          </tr>
-          <tr>
-            <td><span class="blank">Support / Help / Docs</span></td>
-            <td><span class="blank">Nav / footer</span></td>
-            <td><span class="blank">Help center / ticket form</span></td>
-            <td><span class="blank">CS / support</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Separate support CTA from demo CTA</span></td>
-          </tr>
-          <tr>
-            <td><span class="blank">Security / Trust / Compliance</span></td>
-            <td><span class="blank">Footer / trust page</span></td>
-            <td><span class="blank">Trust center / contact</span></td>
-            <td><span class="blank">Security / legal ops</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Add “security review requests use…” note</span></td>
-          </tr>
-          <tr>
-            <td><span class="blank">Partners / Agencies</span></td>
-            <td><span class="blank">Nav / footer</span></td>
-            <td><span class="blank">Partner form / same demo form</span></td>
-            <td><span class="blank">Partnerships</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Add partner-only path or field hint</span></td>
-          </tr>
-          <tr>
-            <td><span class="blank">Enterprise / Contact</span></td>
-            <td><span class="blank">Pricing / hero secondary</span></td>
-            <td><span class="blank">Generic contact / same demo</span></td>
-            <td><span class="blank">Sales / AE</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Say what “enterprise” changes next</span></td>
-          </tr>
-          <tr>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>Scoring the map</h3>
-      <div class="grid">
-        <div class="card"><span class="score green">Green</span><br />Different intents have visibly different destinations or clear routing notes. A careful visitor can self-sort.</div>
-        <div class="card"><span class="score yellow">Yellow</span><br />Labels differ, but several doors land on the same form/inbox with weak helper text. Intent may still collide.</div>
-        <div class="card"><span class="score red">Red</span><br />Sales, support, security, or partner paths look interchangeable, broken, or dump into one unlabeled contact bucket.</div>
-      </div>
-      <div class="note">Source principles used as framing only: public link/CTA labels should make purpose understandable in context (W3C / plain-language link purpose); pages should fulfill the expectation set by the clicked label (expectation matching / mismatched-destination friction). This worksheet is a prioritization aid, not proof of revenue loss, SLA failure, or org-chart truth.</div>
-      <a class="print" href="javascript:window.print()">Print / save the routing map</a>
-    </section>
+    const trail = [
+      { cls: 'ship', when: '2026-07-25', title: 'Public pivot → Operator Growth Trail v3.0',
+        body: 'Killed worksheet-first positioning on the GitHub page. Rebuilt as knowledge graph + auditable trail + upgrade log.',
+        tags: ['public', 'pivot', 'v3.0'] },
+      { cls: 'learn', when: '2026-07-24', title: 'Owner: no Hacker News account',
+        body: 'Distribution path switched to LinkedIn-first. HN no longer a blocker fantasy.',
+        tags: ['distribution', 'linkedin'] },
+      { cls: 'ship', when: '2026-07-24', title: 'SMIRK first-dollar policy drafts (not approval)',
+        body: 'Six draft policy docs + gap pack. Checkout remains gated on purpose.',
+        tags: ['smirk', 'compliance', 'blocked-checkout'] },
+      { cls: 'ship', when: '2026-07-24', title: 'Autonomous store INIT → VALIDATE',
+        body: 'Venture envelope $300 / $0 ads / $50 max buy. Selected digital teardown path from 12-market scan; SMIRK SaaS not selected for LIVE.',
+        tags: ['venture', 'validate'] },
+      { cls: 'ship', when: '2026-07-22', title: 'Record Predicate Audit pilot',
+        body: 'Deterministic blank-case CLI, neutral demo, tests green, pilot docs. No CR23 hardcoding.',
+        tags: ['cre', 'digital-product'] },
+      { cls: 'learn', when: '2026-07-22', title: 'Money-find loop created',
+        body: 'Karpathy lessons applied to live rails with one Money-Find Score dial.',
+        tags: ['karpathy', 'money-find'] },
+      { cls: 'ship', when: '2026-07-20+', title: 'Field Notes public compounding + Stripe warm rail',
+        body: 'Public asset iterated through v1.x/v2.x worksheets era; $99 Payment Link live for warm use only.',
+        tags: ['public', 'stripe'] },
+      { cls: 'learn', when: '2026-06-24 → 07-22', title: 'Karpathy research loop operating',
+        body: 'Dated digests, scout program, skeptic checklist, filled snapshots. Rule: no digest without local change.',
+        tags: ['karpathy', 'loop'] },
+      { cls: 'kill', when: 'ongoing', title: 'Kills / non-centers',
+        body: 'Paper trading as center; commodity template stores; fake SMIRK ready; research theater; HN-required gate.',
+        tags: ['kill-list'] }
+    ];
 
-    <section>
-      <h2 id="example-competing-cta-walkthrough">Example walkthrough: competing CTAs on one homepage</h2>
-      <p>This second example is different from the embedded demo-form walkthrough. Here the public pattern is a homepage with two or more high-intent buttons that sound related but may not lead to the same kind of conversation — for example <code>Get a Demo</code>, <code>Contact Sales</code>, <code>Start free</code>, and a footer <code>Support</code> link.</p>
-      <div class="note">Safety line: compare button text, destination titles, and first-screen promises only. Do not submit forms, start trials with real identity, open support tickets, or claim one path is “stealing” revenue from another.</div>
-      <table class="worksheet" aria-label="Competing CTA public walkthrough">
-        <thead>
-          <tr>
-            <th>Public observation</th>
-            <th>Safe interpretation</th>
-            <th>Routing / scorecard row</th>
-            <th>Low-risk fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Homepage shows both “Get a Demo” and “Contact Sales.”</td>
-            <td>A visitor may wonder which door is for product fit vs. procurement / enterprise buying.</td>
-            <td><span class="score yellow">Routing fit: inspect destinations</span></td>
-            <td>Add one clarifying phrase under each button: “product walkthrough” vs “pricing / security / procurement.”</td>
-          </tr>
-          <tr>
-            <td>Both buttons land on the same generic form.</td>
-            <td>Labels differ, but the bucket may not. Intent collision is possible even if the form works.</td>
-            <td><span class="score yellow">Multi-intent map: yellow if helper text is thin</span></td>
-            <td>Keep one form if needed, but add a required-intent selector or helper line naming the paths.</td>
-          </tr>
-          <tr>
-            <td>“Start free” goes to a self-serve signup while “Get a Demo” goes to sales.</td>
-            <td>That split can be healthy — if the public page says who each path is for.</td>
-            <td><span class="score green">Promise / destination can be green when explained</span></td>
-            <td>Add “best if you want hands-on now” vs “best if you want a guided eval.”</td>
-          </tr>
-          <tr>
-            <td>Footer “Support” uses the same contact form as sales.</td>
-            <td>Existing customers and new buyers may enter the same queue with no public triage.</td>
-            <td><span class="score red">Collision risk if no routing note</span></td>
-            <td>Point support to docs/help center, or label the form “New sales questions only.”</td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>Example one-page note you could send after permission</h3>
-      <div class="card">
-        <p><strong>Subject:</strong> Tiny public-only routing note</p>
-        <p>I checked only public homepage CTAs and destinations — no forms submitted. The individual buttons are clear enough on their own. The possible friction is routing: more than one high-intent label appears to land in a similar contact bucket, so a visitor may not know which door is for demo vs sales vs support.</p>
-        <p>A simple test would be one line under each CTA naming the intended next conversation, or a single “what do you need?” selector before the shared form.</p>
-        <p>If useful, I can turn this into a one-page multi-intent routing map for the rest of the public paths. If not, no need to reply.</p>
-      </div>
-    </section>
+    const colors = {
+      loop: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#6ea8ff',
+      ship: '#3dd68c',
+      learn: '#b39cff',
+      gate: '#ffcc66',
+      block: '#ff6b7a'
+    };
 
-    <section>
-      <h2 id="mobile-desktop-path-worksheet">Worksheet: mobile vs desktop path consistency</h2>
-      <p>Desktop can look fine while mobile quietly breaks the same CTA path. Use this after the CTA map and screenshot checklist when phone traffic matters, paid social is in play, or the hero button looks different on a small screen.</p>
-      <div class="note">Public-only rule: resize the browser or use a phone. Do not submit forms, create accounts, or claim a mobile issue proves lost revenue. The safe claim is “possible friction on one device,” not “you are losing money on mobile.”</div>
-      <div class="grid">
-        <div class="card"><strong>1. Same promise?</strong><br />Does the main CTA text mean the same next action on phone and desktop?</div>
-        <div class="card"><strong>2. Same destination?</strong><br />Does the click land on the same first screen, or a thinner / different mobile route?</div>
-        <div class="card"><strong>3. Same next step?</strong><br />Is the handoff (form, scheduler, contact block) still visible and understandable without pinch-zoom gymnastics?</div>
-        <div class="card"><strong>4. Tap-safe?</strong><br />Is the primary button easy to tap, not buried under sticky chrome, tiny type, or competing links?</div>
-      </div>
-      <table class="worksheet" aria-label="Mobile vs desktop path consistency worksheet">
-        <thead>
-          <tr>
-            <th>Check</th>
-            <th>Desktop observation</th>
-            <th>Mobile observation</th>
-            <th>Match?</th>
-            <th>Smallest safe fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Primary CTA wording</td>
-            <td><span class="blank">Button text / location</span></td>
-            <td><span class="blank">Button text / location</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Keep wording identical across breakpoints</span></td>
-          </tr>
-          <tr>
-            <td>Destination first screen</td>
-            <td><span class="blank">Title / first promise</span></td>
-            <td><span class="blank">Title / first promise</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Align mobile landing first screen with desktop intent</span></td>
-          </tr>
-          <tr>
-            <td>Handoff surface visible</td>
-            <td><span class="blank">Form / scheduler / contact block</span></td>
-            <td><span class="blank">Still visible without hunt?</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Move primary handoff above the fold on mobile</span></td>
-          </tr>
-          <tr>
-            <td>After-click next-step helper</td>
-            <td><span class="blank">Who replies / timing text</span></td>
-            <td><span class="blank">Same helper present?</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Repeat one helper line near the mobile form</span></td>
-          </tr>
-          <tr>
-            <td>Tap target / competing chrome</td>
-            <td><span class="blank">N/A or mouse-easy</span></td>
-            <td><span class="blank">Tiny button, sticky bar, overlapping links?</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Enlarge primary CTA; reduce competing mobile links</span></td>
-          </tr>
-          <tr>
-            <td>Alternate doors (support / pricing / free trial)</td>
-            <td><span class="blank">Where they sit</span></td>
-            <td><span class="blank">Collapsed into hamburger / same form?</span></td>
-            <td><span class="blank">Green / Yellow / Red</span></td>
-            <td><span class="blank">Label mobile menu doors the same as desktop</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>Score the path (manual, no backend)</h3>
-      <div class="grid">
-        <div class="card"><span class="score green">Green</span><br />Promise, destination, and handoff match across devices. Mobile is not a second, thinner product.</div>
-        <div class="card"><span class="score yellow">Yellow</span><br />Same intent, but mobile hides helper text, shrinks the CTA, or adds one extra hunt step.</div>
-        <div class="card"><span class="score red">Red</span><br />Mobile CTA wording, destination, or handoff diverges enough that a visitor may restart their intent.</div>
-      </div>
-      <h3>Example one-page note after permission</h3>
-      <div class="card">
-        <p><strong>Subject:</strong> Tiny public-only mobile path note</p>
-        <p>I checked only the public homepage → demo path on desktop and a phone-width screen. I did not submit anything. Desktop looks coherent. The possible friction is mobile consistency: the primary CTA still appears, but the first screen after the click / the handoff helper is harder to see on a small screen.</p>
-        <p>A simple test would be matching CTA wording across breakpoints and repeating one “what happens next” line above the mobile handoff.</p>
-        <p>If useful, I can turn this into a one-page mobile vs desktop consistency worksheet for the rest of the public path. If not, no need to reply.</p>
-      </div>
-      <div class="note">Source principles used as framing only: mobile visitors often make up a large share of traffic; primary CTAs should stay thumb-friendly and expectation-matched after the click; dual/competing CTAs get harder on small screens. This worksheet is a prioritization aid, not proof of revenue loss, accessibility compliance, or ad-performance failure.</div>
-      <a class="print" href="javascript:window.print()">Print / save the mobile vs desktop worksheet</a>
-    </section>
+    const svg = document.getElementById('graph');
+    const detail = document.getElementById('node-detail');
 
-    <section>
-      <h2 id="booking-path-vs-followup-worksheet">Worksheet: booking path vs “we’ll follow up”</h2>
-      <p>After the form is visible, many SaaS and high-ticket service paths split into two very different public shapes: <strong>self-serve booking</strong> (calendar / suggested times on the same path) versus <strong>async follow-up</strong> (“someone will be in touch”). Neither is automatically wrong. The operator job is to name which shape the public page actually promises — and whether the first screen after interest matches that promise.</p>
-      <div class="note">Public-only rule: inspect labels, helper copy, embedded scheduler chrome, and confirmation-path wording. Do not submit forms, create calendar holds with real identity, log into booking tools, or claim that a follow-up path “kills demos.” Useful claim: “path shape may create waiting friction,” not “you are losing meetings.”</div>
-      <div class="grid">
-        <div class="card"><strong>Shape A — Self-serve booking</strong><br />Visitor can pick a time on the same public path (inline calendar, suggested slots, or a clearly labeled “choose a time” step) without waiting for a human first email.</div>
-        <div class="card"><strong>Shape B — Async follow-up</strong><br />Visitor is told a human will reply, qualify, or send a link later. Timing/owner copy matters more than calendar chrome.</div>
-        <div class="card"><strong>Shape C — Hybrid / unclear</strong><br />Page hints at both (“book a demo” + “we’ll be in touch”) or the CTA promise and destination shape disagree.</div>
-      </div>
-      <table class="worksheet" aria-label="Booking path vs follow-up worksheet">
-        <thead>
-          <tr>
-            <th>Check</th>
-            <th>Public observation</th>
-            <th>Shape signal</th>
-            <th>Match green / yellow / red</th>
-            <th>Smallest safe fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Primary CTA wording</td>
-            <td><span class="blank">Exact button/link text</span></td>
-            <td><span class="blank">Book / Schedule / Request / Contact / Talk</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Align verb with real next step</span></td>
-          </tr>
-          <tr>
-            <td>First screen after click (no submit)</td>
-            <td><span class="blank">Form only / calendar visible / thank-you copy / other</span></td>
-            <td><span class="blank">A / B / C</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Show the real handoff earlier</span></td>
-          </tr>
-          <tr>
-            <td>Scheduler chrome visible without login</td>
-            <td><span class="blank">Inline calendar, “pick a time,” or none</span></td>
-            <td><span class="blank">A if yes; B if no</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">If A is intended, surface slots; if B, say so</span></td>
-          </tr>
-          <tr>
-            <td>“We’ll follow up” / “in touch” language</td>
-            <td><span class="blank">Exact phrase + where it appears</span></td>
-            <td><span class="blank">B signal (or C if mixed with Book)</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Name owner + timing window</span></td>
-          </tr>
-          <tr>
-            <td>Timing expectation stated</td>
-            <td><span class="blank">“within 1 business day,” none, fake urgency</span></td>
-            <td><span class="blank">B needs this more than A</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Add a realistic window; avoid fake urgency</span></td>
-          </tr>
-          <tr>
-            <td>Owner / role visible</td>
-            <td><span class="blank">AE, founder, solutions, “team,” none</span></td>
-            <td><span class="blank">B clarity signal</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Name a role, not a black box</span></td>
-          </tr>
-          <tr>
-            <td>Qualification gate honesty</td>
-            <td><span class="blank">“If good fit…,” ICP hints, none</span></td>
-            <td><span class="blank">Either shape can use this</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Say what good fit means in plain words</span></td>
-          </tr>
-          <tr>
-            <td>Preparation ask before the meeting</td>
-            <td><span class="blank">Use case / stack / urgency hints</span></td>
-            <td><span class="blank">Improves both shapes</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">One helper line beats five extra fields</span></td>
-          </tr>
-          <tr>
-            <td>CTA promise vs destination shape</td>
-            <td><span class="blank">Does “Book a demo” land on “we’ll email you”?</span></td>
-            <td><span class="blank">Mismatch = C / yellow-red</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Rename CTA or change handoff copy</span></td>
-          </tr>
-          <tr>
-            <td>Write-up stays buyer-safe</td>
-            <td><span class="blank">URL + path + device</span></td>
-            <td><span class="blank">Language check</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">“May create waiting friction,” not “killing demos”</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>Operator scoring (manual, public-only)</h3>
-      <div class="grid">
-        <div class="card"><span class="score red">Red</span><br />CTA promises booking (or urgency) but the public path only shows a vague follow-up — or the reverse. Fix the promise/shape match before buying more demo traffic.</div>
-        <div class="card"><span class="score yellow">Yellow</span><br />Shape is mostly clear, but owner, timing, or preparation is thin. A $99 public-only teardown can usually name 1–2 lines to test.</div>
-        <div class="card"><span class="score green">Green</span><br />Visitor can answer: “Do I pick a time now, or wait for a human?” plus who/when/what to prepare — without submitting.</div>
-      </div>
-      <h3>Permission-based one-page note sample</h3>
-      <div class="card">
-        <p>I checked only the public homepage → demo path. I did not submit the form or create a calendar hold.</p>
-        <p>The page looks like <strong>Shape B (async follow-up)</strong> even though the primary CTA reads like booking language. Possible friction: a warm visitor may expect to pick a time, then lands on “we’ll be in touch” with no owner or timing window on the public screen.</p>
-        <p>A simple test would be either (1) rename the CTA to “Request a demo review” and add a one-line timing/owner expectation, or (2) if self-serve is intended, surface a public “choose a time” step that matches the button.</p>
-        <p>If useful, I can turn this into a one-page booking-path vs follow-up worksheet for the rest of the public path. If not, no need to reply.</p>
-      </div>
-      <h3>Safe outreach variant (booking-path)</h3>
-      <div class="card">
-        <p><strong>Use this:</strong></p>
-        <p>“I noticed the public demo CTA may promise a booking-style next step while the first screen still reads like a follow-up handoff. Would it be okay if I sent a one-page public-only booking-path vs follow-up check?”</p>
-        <p><strong>Not this:</strong></p>
-        <p>“Your demo form is killing meetings / you need Chili Piper / you’re losing pipeline.”</p>
-      </div>
-      <div class="note">Source principles used as framing only: modern demo paths often reduce waiting friction with inline or same-session scheduling when self-serve is the real product; two-step “submit then wait for email/calendar” paths are common and valid when qualification is intentional — but CTA verbs should match the shape; journey-friction audits repeatedly flag unclear “what happens next” after high-intent clicks. This worksheet does not prove lost meetings, vendor ROI, accessibility compliance, or that any scheduler brand is required.</div>
-      <a class="print" href="javascript:window.print()">Print / save the booking vs follow-up worksheet</a>
-    </section>
+    function draw() {
+      const ns = 'http://www.w3.org/2000/svg';
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
 
+      // edges
+      edges.forEach(([a, b]) => {
+        const na = nodes.find(n => n.id === a);
+        const nb = nodes.find(n => n.id === b);
+        const line = document.createElementNS(ns, 'line');
+        line.setAttribute('x1', na.x);
+        line.setAttribute('y1', na.y);
+        line.setAttribute('x2', nb.x);
+        line.setAttribute('y2', nb.y);
+        line.setAttribute('stroke', '#2a3555');
+        line.setAttribute('stroke-width', '2');
+        line.setAttribute('opacity', '0.9');
+        svg.appendChild(line);
+      });
 
-    <section>
-      <h2 id="three-friction-note-builder">Worksheet: 3-friction-note builder (cap at 3)</h2>
-      <p>Use this after screenshots and path checks, when you need to turn observations into a buyer-safe write-up. The $99 public-only teardown includes <strong>up to three</strong> friction notes — not a laundry list. This worksheet forces ranking, evidence pairing, and safe language so free tools map cleanly to the paid deliverable.</p>
-      <div class="note">Public-only rule: each note must cite something a visitor can see without logging in or submitting. Cap at 3. If you found 8 issues, pick the three that most affect “what happens next,” not the three that sound most dramatic. Never claim lost revenue from a public-only pass.</div>
-      <div class="grid">
-        <div class="card"><strong>1. Gather candidates</strong><br />From CTA map, after-form, routing, mobile, booking-path, self-serve vs sales, pricing-path, and waitlist vs open-door checks — list every possible friction in rough form.</div>
-        <div class="card"><strong>2. Rank by visitor impact</strong><br />Prefer promise/destination mismatch, unclear next step, intent collision, and device/shape mismatch over cosmetic copy nits.</div>
-        <div class="card"><strong>3. Pair evidence</strong><br />Each kept note needs one screenshot label + one “The public page shows…” sentence.</div>
-        <div class="card"><strong>4. One simple test each</strong><br />Smallest safe fix the team could try without a redesign project or private-system access.</div>
-      </div>
-      <h3>Rank-and-cut (optional staging table)</h3>
-      <table class="worksheet" aria-label="Friction candidate rank-and-cut">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Rough friction (draft)</th>
-            <th>Visitor impact (H/M/L)</th>
-            <th>Evidence shot label</th>
-            <th>Keep in top 3?</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>A</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">H / M / L</span></td><td><span class="blank">01-…</span></td><td><span class="blank">Yes / No</span></td></tr>
-          <tr><td>B</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">H / M / L</span></td><td><span class="blank">02-…</span></td><td><span class="blank">Yes / No</span></td></tr>
-          <tr><td>C</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">H / M / L</span></td><td><span class="blank">03-…</span></td><td><span class="blank">Yes / No</span></td></tr>
-          <tr><td>D</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">H / M / L</span></td><td><span class="blank">…</span></td><td><span class="blank">Park / later</span></td></tr>
-          <tr><td>E</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">H / M / L</span></td><td><span class="blank">…</span></td><td><span class="blank">Park / later</span></td></tr>
-        </tbody>
-      </table>
-      <h3>Top 3 notes (deliverable shell)</h3>
-      <table class="worksheet" aria-label="Three friction note builder">
-        <thead>
-          <tr>
-            <th>Note</th>
-            <th>The public page shows…</th>
-            <th>This may create friction because…</th>
-            <th>A simple test would be…</th>
-            <th>Shot label</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>1</strong></td>
-            <td><span class="blank">Exact visible UI/text (no private systems)</span></td>
-            <td><span class="blank">Uncertainty, mismatch, collision, or restart risk</span></td>
-            <td><span class="blank">One line, routing note, helper, or CTA rename</span></td>
-            <td><span class="blank">path-device-intent</span></td>
-          </tr>
-          <tr>
-            <td><strong>2</strong></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-          </tr>
-          <tr>
-            <td><strong>3</strong></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-            <td><span class="blank">&nbsp;</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>One-page write-up shell (copy into the teardown)</h3>
-      <div class="card">
-        <p><strong>Path checked:</strong> <span class="blank">homepage → demo / pricing → contact / other</span> · <strong>Device:</strong> <span class="blank">desktop / mobile</span> · <strong>Public-only:</strong> no submit, no login.</p>
-        <p><strong>Visitor intent (guess from public labels):</strong> <span class="blank">book, request demo, compare, route sales vs support…</span></p>
-        <p><strong>Note 1:</strong> The public page shows… This may create friction because… A simple test would be…</p>
-        <p><strong>Note 2:</strong> The public page shows… This may create friction because… A simple test would be…</p>
-        <p><strong>Note 3:</strong> The public page shows… This may create friction because… A simple test would be…</p>
-        <p><strong>Out of scope this pass:</strong> <span class="blank">parked items D/E, private systems, implementation work</span></p>
-        <p><strong>Next question (permission-based):</strong> Would a one-page example / setup sprint scope be useful, or is this enough?</p>
-      </div>
-      <h3>Operator scoring (manual)</h3>
-      <div class="grid">
-        <div class="card"><span class="score red">Red write-up</span><br />Notes lack public evidence, overclaim revenue loss, or list 6+ issues with no ranking. Rewrite before sending.</div>
-        <div class="card"><span class="score yellow">Yellow write-up</span><br />Three notes exist, but one is cosmetic or missing a simple test. Tighten to visitor “what next” impact.</div>
-        <div class="card"><span class="score green">Green write-up</span><br />≤3 notes, each with evidence + friction + simple test, path/device named, safe language, clear out-of-scope line.</div>
-      </div>
-      <h3>Safe outreach / handoff variant (3-note)</h3>
-      <div class="card">
-        <p><strong>Use this:</strong></p>
-        <p>“I checked one public path and drafted up to three friction notes with screenshot labels — no forms submitted. Would it be okay if I sent the one-page public-only version?”</p>
-        <p><strong>Not this:</strong></p>
-        <p>“I found twelve conversion killers and you’re losing pipeline / revenue.”</p>
-      </div>
-      <div class="note">Source principles used as framing only: limit findings so a buyer can act (cap/prioritize rather than dump); pair every critique with observable evidence and a smallest next test; expectation-matching after a click is the core public check. This builder supports the $99 public-only teardown deliverable. It does not prove lost revenue, accessibility compliance, SEO failure, or that implementation will lift conversion.</div>
-      <a class="print" href="javascript:window.print()">Print / save the 3-friction-note builder</a>
-    </section>
+      nodes.forEach(n => {
+        const g = document.createElementNS(ns, 'g');
+        g.style.cursor = 'pointer';
+        const c = document.createElementNS(ns, 'circle');
+        c.setAttribute('cx', n.x);
+        c.setAttribute('cy', n.y);
+        c.setAttribute('r', 28);
+        c.setAttribute('fill', '#10182b');
+        c.setAttribute('stroke', colors[n.type] || '#6ea8ff');
+        c.setAttribute('stroke-width', '3');
+        const t = document.createElementNS(ns, 'text');
+        t.setAttribute('x', n.x);
+        t.setAttribute('y', n.y + 46);
+        t.setAttribute('text-anchor', 'middle');
+        t.setAttribute('fill', '#c9d4f0');
+        t.setAttribute('font-size', '12');
+        t.setAttribute('font-family', 'ui-sans-serif, system-ui, sans-serif');
+        t.textContent = n.label;
+        const t2 = document.createElementNS(ns, 'text');
+        t2.setAttribute('x', n.x);
+        t2.setAttribute('y', n.y + 4);
+        t2.setAttribute('text-anchor', 'middle');
+        t2.setAttribute('fill', colors[n.type] || '#6ea8ff');
+        t2.setAttribute('font-size', '11');
+        t2.setAttribute('font-weight', '700');
+        t2.textContent = n.type;
+        g.appendChild(c); g.appendChild(t2); g.appendChild(t);
+        g.addEventListener('click', () => {
+          detail.innerHTML = `<strong style="color:${colors[n.type]}">${n.label}</strong> · <span class="mono">${n.id}</span><br>${n.blurb}`;
+        });
+        svg.appendChild(g);
+      });
+    }
 
+    function renderTrail() {
+      const root = document.getElementById('trail-list');
+      root.innerHTML = trail.map(e => `
+        <article class="event ${e.cls}">
+          <div class="when">${e.when} · ${e.cls.toUpperCase()}</div>
+          <h3>${e.title}</h3>
+          <div>${e.body}</div>
+          <div class="tags">${e.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        </article>
+      `).join('');
+    }
 
-    <section>
-      <h2 id="self-serve-vs-sales-path-worksheet">Worksheet: self-serve vs sales-assisted path</h2>
-      <p>Use this when a public site offers both product-led doors (<code>Start free</code>, <code>Try it</code>, <code>Sign up</code>, <code>Open app</code>) and sales-led doors (<code>Get a demo</code>, <code>Talk to sales</code>, <code>Book a call</code>, <code>Contact sales</code>). The booking vs follow-up worksheet asks whether the visitor picks a time or waits. This worksheet asks a different question: <strong>is the visitor entering a self-serve product path or a human-assisted sales path — and do the labels match?</strong></p>
-      <div class="note">Public-only: click CTAs and read the first screen. Do not create accounts, start trials with real identity, submit forms, open support tickets, or claim lost trial/demo revenue. Safe claim: “path type may be unclear” / “possible restart friction,” never “PLG is broken” or proven pipeline loss.</div>
-      <div class="grid">
-        <div class="card"><strong>Shape S — Self-serve</strong><br />Visitor can start alone: product/workspace appears, trial/signup is clearly product-first, first screen teaches the next in-product step without requiring a human.</div>
-        <div class="card"><strong>Shape H — Human / sales-assisted</strong><br />Visitor is routed to demo, form, calendar, or “talk to us.” Progress depends on a person, not on finishing product onboarding alone.</div>
-        <div class="card"><strong>Shape M — Mixed / unclear</strong><br />CTA sounds self-serve but lands on sales, or sounds sales-led but lands on signup — or both doors share one generic destination with no path label.</div>
-      </div>
-      <h3>Path comparison (fill from public pages only)</h3>
-      <table class="worksheet" aria-label="Self-serve vs sales-assisted path worksheet">
-        <thead>
-          <tr>
-            <th>Check</th>
-            <th>Self-serve door (public)</th>
-            <th>Sales-assisted door (public)</th>
-            <th>Match G/Y/R</th>
-            <th>Smallest safe fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Primary CTA wording</td>
-            <td><span class="blank">Start free / Try / Sign up…</span></td>
-            <td><span class="blank">Demo / Talk to sales…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Rename so verb matches path type</span></td>
-          </tr>
-          <tr>
-            <td>First screen after click (no submit / no account)</td>
-            <td><span class="blank">Product, pricing+signup, empty app shell…</span></td>
-            <td><span class="blank">Form, calendar, “we’ll follow up”…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Change destination or add path label</span></td>
-          </tr>
-          <tr>
-            <td>Who moves the ball next?</td>
-            <td><span class="blank">Visitor alone / unclear</span></td>
-            <td><span class="blank">Sales / AE / “team” / unclear</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">One line: “You’ll explore alone” vs “A person replies”</span></td>
-          </tr>
-          <tr>
-            <td>Account / identity ask visible without finishing?</td>
-            <td><span class="blank">Email wall, SSO tease, none yet…</span></td>
-            <td><span class="blank">Form fields visible empty only</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Do not complete signup; only note what’s visible</span></td>
-          </tr>
-          <tr>
-            <td>Pricing / plan context on the path</td>
-            <td><span class="blank">Plan named / “free” explained / missing</span></td>
-            <td><span class="blank">Custom / talk-to-us / list price</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Clarify free vs sales-qualified plan language</span></td>
-          </tr>
-          <tr>
-            <td>Do both doors share one destination?</td>
-            <td colspan="2"><span class="blank">Same URL/form? Different? Partial overlap?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Split destinations or label intent on shared page</span></td>
-          </tr>
-          <tr>
-            <td>Support / docs escape hatch</td>
-            <td><span class="blank">Docs/help visible on self-serve path?</span></td>
-            <td><span class="blank">Sales path steals support intent?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Point help seekers to docs, not demo, when public</span></td>
-          </tr>
-          <tr>
-            <td>CTA ↔ path-type match</td>
-            <td colspan="2"><span class="blank">Does “Start free” feel free? Does “Demo” feel human-assisted?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Fix mismatch before buying more traffic</span></td>
-          </tr>
-          <tr>
-            <td>Buyer-safe write-up language</td>
-            <td colspan="2"><span class="blank">Draft one “possible friction” sentence</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">“Path type may be unclear,” not “PLG is killing trials”</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>Operator scoring (manual, public-only)</h3>
-      <div class="grid">
-        <div class="card"><span class="score red">Red</span><br />Self-serve wording lands on a sales handoff (or the reverse) with no public explanation — visitor may restart intent. Fix label/destination match first.</div>
-        <div class="card"><span class="score yellow">Yellow</span><br />Two doors exist and mostly match, but shared forms, thin “who moves next,” or missing free-vs-sales plan context create possible friction.</div>
-        <div class="card"><span class="score green">Green</span><br />A careful visitor can answer: “Am I starting alone in the product, or talking to a human?” for each primary door — without creating an account or submitting.</div>
-      </div>
-      <h3>Permission-based one-page note sample</h3>
-      <div class="card">
-        <p>I checked only public homepage doors. I did not create an account, start a trial, or submit a form.</p>
-        <p>The site shows both a self-serve-style CTA and a sales-assisted CTA. Possible friction: the self-serve label may land on a human-handoff first screen (or both doors may share one unlabeled destination), so a visitor who meant to try alone may not know whether they should wait for a person.</p>
-        <p>A simple test would be to make path type explicit on the first screen (“Explore on your own” vs “Talk with sales”) and keep destinations split when the work after the click is different.</p>
-        <p>If useful, I can send a one-page self-serve vs sales-assisted path worksheet for the rest of the public doors. If not, no need to reply.</p>
-      </div>
-      <h3>Safe outreach variant (self-serve vs sales)</h3>
-      <div class="card">
-        <p><strong>Use this:</strong></p>
-        <p>“I noticed the public site may offer both a self-serve-style door and a sales-assisted door that could land in a similar handoff. Would it be okay if I sent a one-page public-only self-serve vs sales-path check?”</p>
-        <p><strong>Not this:</strong></p>
-        <p>“Your PLG motion is broken / free trial is killing pipeline / you need a product-led growth agency.”</p>
-      </div>
-      <div class="note">Source principles used as framing only: CTA/destination expectation matching (visitor should get the path type the button implies); hybrid product-led + sales-assisted sites commonly create restart friction when doors share one unlabeled bucket; journey checks flag unclear “who moves next” after high-intent clicks. This worksheet does not prove lost trials, demo conversion failure, accessibility compliance, SEO issues, or that any PLG/sales vendor is required. Direct web research was unavailable this run; principles mirror the notebook’s existing public-only friction framing.</div>
-      <a class="print" href="javascript:window.print()">Print / save the self-serve vs sales path worksheet</a>
-    </section>
-
-
-    <section>
-      <h2 id="pricing-page-path-worksheet">Worksheet: pricing-page path consistency</h2>
-      <p>Use this when a public site has a <code>Pricing</code> / <code>Plans</code> page (or pricing cards on the homepage) and high-intent doors leave that page. Homepage CTA maps and self-serve vs sales checks are necessary but not sufficient: pricing is often where plan names, “free vs talk to sales,” and next-step CTAs either clarify or collide.</p>
-      <div class="note">Public-only: open pricing pages and click CTAs. Read the first screen after each click. Do not start checkouts, enter payment details, create accounts, submit forms, or claim lost ARR/pipeline. Safe claim: “pricing path may be unclear” / “possible friction,” never “pricing is killing conversion” or proven revenue loss.</div>
-      <div class="grid">
-        <div class="card"><strong>Shape P — Plan-clear path</strong><br />Visitor can name the plan or tier they clicked, see what happens next (self-serve start, demo, contact), and tell free / paid / custom apart without guessing.</div>
-        <div class="card"><strong>Shape Q — Quote / sales-from-pricing</strong><br />Pricing intentionally routes to a human (“Contact sales,” “Get a quote,” “Talk to us”). The first screen should still say who replies and what the visitor should prepare.</div>
-        <div class="card"><strong>Shape X — Crossed signals</strong><br />Plan labels, price presence, and CTA verbs disagree (e.g. “Start free” on an Enterprise card, or “Buy now” landing on a demo form) — or every tier shares one unlabeled destination.</div>
-      </div>
-      <h3>Pricing path comparison (fill from public pages only)</h3>
-      <table class="worksheet" aria-label="Pricing-page path consistency worksheet">
-        <thead>
-          <tr>
-            <th>Check</th>
-            <th>Public observation</th>
-            <th>Match G/Y/R</th>
-            <th>Smallest safe fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>How do visitors reach Pricing?</td>
-            <td><span class="blank">Nav label, homepage card, footer, ads landing…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Make Pricing findable if buyers expect it</span></td>
-          </tr>
-          <tr>
-            <td>Plan / tier names visible</td>
-            <td><span class="blank">Free / Pro / Business / Enterprise / Custom…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Name tiers the way buyers already talk</span></td>
-          </tr>
-          <tr>
-            <td>Price presence (or honest “custom”)</td>
-            <td><span class="blank">List price / “from $” / contact-only / missing</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Say “custom” on purpose; don’t imply a buy button if there isn’t one</span></td>
-          </tr>
-          <tr>
-            <td>Primary CTA per tier (exact words)</td>
-            <td><span class="blank">Start free / Buy / Subscribe / Contact sales…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">One verb family per path type</span></td>
-          </tr>
-          <tr>
-            <td>First screen after each pricing CTA (no submit / no checkout)</td>
-            <td><span class="blank">Signup, checkout chrome, form, calendar, same generic page…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Split destinations when work after click differs</span></td>
-          </tr>
-          <tr>
-            <td>Do all tiers share one destination?</td>
-            <td><span class="blank">Same URL/form for Free and Enterprise? Partial overlap?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Label intent on shared pages or split routes</span></td>
-          </tr>
-          <tr>
-            <td>Free / trial vs paid vs enterprise honesty</td>
-            <td><span class="blank">Does “free” stay free on first screen? Does Enterprise feel human?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Fix free→sales or buy→demo mismatches first</span></td>
-          </tr>
-          <tr>
-            <td>Annual / monthly / usage toggle clarity (if present)</td>
-            <td><span class="blank">Toggle visible? Default clear? Price changes readable?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Show what changed after toggle without checkout</span></td>
-          </tr>
-          <tr>
-            <td>Feature comparison vs next-step CTA conflict</td>
-            <td><span class="blank">Comparison table points one way; button another?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Align “included” language with the door the CTA opens</span></td>
-          </tr>
-          <tr>
-            <td>Escape hatches from Pricing</td>
-            <td><span class="blank">Docs, contact, demo, login — labeled for intent?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Keep support/docs out of the sales bucket when public</span></td>
-          </tr>
-          <tr>
-            <td>CTA ↔ plan-type match</td>
-            <td><span class="blank">Would a careful visitor know self-serve vs human next step?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Rename or re-route before buying more traffic</span></td>
-          </tr>
-          <tr>
-            <td>Buyer-safe write-up language</td>
-            <td><span class="blank">Draft one “possible friction” sentence</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">“Pricing path may be unclear,” not “pricing kills ARR”</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>Operator scoring (manual, public-only)</h3>
-      <div class="grid">
-        <div class="card"><span class="score red">Red</span><br />Pricing CTA verbs and first screens disagree across tiers (free→sales handoff, buy→demo form, or every plan dumps into one unlabeled bucket) with no public explanation.</div>
-        <div class="card"><span class="score yellow">Yellow</span><br />Tiers and doors mostly match, but shared forms, thin “who moves next,” missing custom/list-price honesty, or toggle confusion create possible friction.</div>
-        <div class="card"><span class="score green">Green</span><br />A careful visitor can answer, for each primary pricing CTA: which plan they meant, whether the next step is self-serve or human-assisted, and what happens without paying or submitting yet.</div>
-      </div>
-      <h3>Permission-based one-page note sample</h3>
-      <div class="card">
-        <p>I checked only the public Pricing path. I did not start checkout, create an account, or submit a form.</p>
-        <p>The page shows multiple plan tiers with CTAs that may not all land on the path type the button implies. Possible friction: a visitor choosing one tier may hit the same generic handoff as another tier, or a “start/buy” verb may open a sales-style first screen, so plan intent may need to be restarted.</p>
-        <p>A simple test would be to make the first screen after each pricing CTA name the plan and the path type (“Start this plan yourself” vs “Talk with sales about this plan”) and split destinations when the work after the click is different.</p>
-        <p>If useful, I can send a one-page pricing-path consistency worksheet for the rest of the public tiers. If not, no need to reply.</p>
-      </div>
-      <h3>Safe outreach variant (pricing path)</h3>
-      <div class="card">
-        <p><strong>Use this:</strong></p>
-        <p>“I noticed the public Pricing page may send different plan CTAs into a similar next step. Would it be okay if I sent a one-page public-only pricing-path consistency check?”</p>
-        <p><strong>Not this:</strong></p>
-        <p>“Your pricing page is leaking ARR / killing conversion / you need a pricing redesign agency.”</p>
-      </div>
-      <div class="note">Source principles used as framing only: expectation matching between control labels and system response (visitor should get the path the pricing CTA implies); pricing pages concentrate high-intent decisions so plan name, price honesty, and next-step type should stay aligned; journey checks flag unclear “who moves next” after plan clicks. This worksheet does not prove lost revenue, pricing-power failure, accessibility compliance, SEO issues, or that any checkout/vendor change is required. Framing also mirrors NN/g ten usability heuristics (match between system and real world; user control/freedom as escape-hatch clarity) without claiming a full expert review.</div>
-      <a class="print" href="javascript:window.print()">Print / save the pricing-page path worksheet</a>
-    </section>
-
-
-    <section>
-      <h2 id="waitlist-vs-open-door-worksheet">Worksheet: waitlist / early-access vs open-door path</h2>
-      <p>Use this when a public site mixes <code>Join waitlist</code>, <code>Get early access</code>, <code>Request invite</code>, <code>Coming soon</code> doors with open-product doors (<code>Start free</code>, <code>Sign up</code>, <code>Open app</code>, <code>Buy</code>). Self-serve vs sales asks “product alone or human path?” Booking vs follow-up asks “pick a time or wait?” Pricing path asks “plan CTA → path type?” This worksheet asks a different question: <strong>is the visitor entering a gated waitlist/early-access path or an open door — and do the labels match?</strong></p>
-      <div class="note">Public-only: open the homepage, product, and pricing paths. Click waitlist/early-access/open CTAs. Read the first screen. Do not join waitlists with real identity, submit invite forms, create accounts, start checkout, or claim lost signups. Safe claim: “access path may be unclear” / “possible friction,” never “waitlist is killing growth” or proven conversion loss.</div>
-      <div class="grid">
-        <div class="card"><strong>Shape W — Waitlist / gated early access</strong><br />CTA clearly promises limited access (waitlist, invite, early access, “request access”). First screen is a join/notify form or gated handoff — visitor should expect to wait, not enter the product alone.</div>
-        <div class="card"><strong>Shape O — Open door</strong><br />CTA clearly promises immediate or self-serve entry (start free, sign up, open app, try now). First screen lets the visitor begin without a human gate or “you’re on the list” message.</div>
-        <div class="card"><strong>Shape C — Crossed / unclear access</strong><br />Label says open but first screen is waitlist/invite; label says waitlist but first screen is open signup; or both doors share one unlabeled destination so access type is guesswork.</div>
-      </div>
-      <h3>Access-path comparison (fill from public pages only)</h3>
-      <table class="worksheet" aria-label="Waitlist vs open-door path worksheet">
-        <thead>
-          <tr>
-            <th>Check</th>
-            <th>Public observation</th>
-            <th>Match G/Y/R</th>
-            <th>Smallest safe fix idea</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Primary access CTAs (exact words)</td>
-            <td><span class="blank">Join waitlist / Early access / Start free / Sign up / Request invite…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">One verb family per access type</span></td>
-          </tr>
-          <tr>
-            <td>Where each CTA appears</td>
-            <td><span class="blank">Hero, pricing card, nav, banner, docs, footer…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Don’t hide open and gated doors under one ambiguous label</span></td>
-          </tr>
-          <tr>
-            <td>First screen after each access CTA (no submit / no account finish)</td>
-            <td><span class="blank">Waitlist form, invite request, open signup, app shell, generic contact…</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Split destinations when work after click differs</span></td>
-          </tr>
-          <tr>
-            <td>Does the visitor know if product is available now?</td>
-            <td><span class="blank">Live product / limited seats / not open yet — stated on first screen?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">One honest availability line above the fold after click</span></td>
-          </tr>
-          <tr>
-            <td>Wait expectation (if gated)</td>
-            <td><span class="blank">Who notifies? Channel? Any timing? Or silent “submit and hope”?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Add owner/channel/timing without promising a seat</span></td>
-          </tr>
-          <tr>
-            <td>Open-door honesty (if open)</td>
-            <td><span class="blank">Can a careful visitor start without invite language or “we’ll review”?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Remove invite chrome from true open paths</span></td>
-          </tr>
-          <tr>
-            <td>Shared destination across access types?</td>
-            <td><span class="blank">Waitlist + Start free land on same URL/form?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Label intent on shared pages or split routes</span></td>
-          </tr>
-          <tr>
-            <td>Capacity / scarcity language vs path type</td>
-            <td><span class="blank">“Limited spots” on an open signup? “Available now” on a waitlist?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Align scarcity copy with the real gate</span></td>
-          </tr>
-          <tr>
-            <td>Escape hatches (docs, demo, contact, pricing)</td>
-            <td><span class="blank">Can non-waitlist intents leave without joining a list?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Keep support/demo out of the waitlist bucket when public</span></td>
-          </tr>
-          <tr>
-            <td>CTA ↔ access-type match</td>
-            <td><span class="blank">Would a careful visitor know wait vs open without submitting?</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">Rename or re-route before buying more traffic</span></td>
-          </tr>
-          <tr>
-            <td>Buyer-safe write-up language</td>
-            <td><span class="blank">Draft one “possible friction” sentence</span></td>
-            <td><span class="blank">G / Y / R</span></td>
-            <td><span class="blank">“Access path may be unclear,” not “waitlist kills growth”</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <h3>Operator scoring (manual, public-only)</h3>
-      <div class="grid">
-        <div class="card"><span class="score red">Red</span><br />Access CTA verbs and first screens disagree (open label → waitlist, waitlist label → open signup, or every door dumps into one unlabeled bucket) with no public explanation of availability.</div>
-        <div class="card"><span class="score yellow">Yellow</span><br />Access type is mostly clear, but thin wait expectations, shared forms, or scarcity copy that fights the path type create possible friction.</div>
-        <div class="card"><span class="score green">Green</span><br />A careful visitor can answer, for each primary access CTA: waitlist/early-access vs open door, whether the product is available now, and what happens next without submitting yet.</div>
-      </div>
-      <h3>Permission-based one-page note sample</h3>
-      <div class="card">
-        <p>I checked only public access paths. I did not join a waitlist, create an account, or submit a form.</p>
-        <p>The site shows both gated-access language and open-door language. Possible friction: a visitor who expects to start now may land on a waitlist/invite first screen (or both doors may share one unlabeled destination), so access type may need to be restarted.</p>
-        <p>A simple test would be to make the first screen after each access CTA name the path type (“Join the waitlist — we’ll notify you” vs “Start free — open the product”) and split destinations when the work after the click is different.</p>
-        <p>If useful, I can send a one-page waitlist vs open-door worksheet for the rest of the public doors. If not, no need to reply.</p>
-      </div>
-      <h3>Safe outreach variant (waitlist / open door)</h3>
-      <div class="card">
-        <p><strong>Use this:</strong></p>
-        <p>“I noticed the public site may mix waitlist/early-access language with open-start CTAs that could land in a similar handoff. Would it be okay if I sent a one-page public-only waitlist vs open-door check?”</p>
-        <p><strong>Not this:</strong></p>
-        <p>“Your waitlist is killing growth / early access is leaking signups / you need a launch agency.”</p>
-      </div>
-      <div class="note">Source principles used as framing only: expectation matching between CTA labels and first-screen system response (visitor should get the access type the button implies); AI/SaaS launch pages commonly mix scarcity/waitlist doors with open product doors; journey checks flag unclear “can I start now?” after high-intent clicks. This worksheet does not prove lost signups, launch failure, accessibility compliance, SEO issues, or that any waitlist vendor is required. Framing also mirrors common free-trial vs demo path-clarity guidance without claiming A/B results for any specific site.</div>
-      <a class="print" href="javascript:window.print()">Print / save the waitlist vs open-door worksheet</a>
-    </section>
-
-
-    <section>
-      <h2>Safe outreach phrasing</h2>
-      <div class="card">
-        <p><strong>Use this:</strong></p>
-        <p>“I noticed a possible demo/contact handoff issue that may be creating friction. Would it be okay if I sent a one-page public-only example with the checks I’d run?”</p>
-        <p><strong>Routing variant:</strong></p>
-        <p>“I noticed a few public CTAs that may send different buyer intents into a similar contact path. Would it be okay if I sent a one-page multi-intent routing map based only on public pages?”</p>
-        <p><strong>Booking-path variant:</strong></p>
-        <p>“I noticed the public demo CTA may promise a booking-style next step while the first screen still reads like a follow-up handoff. Would it be okay if I sent a one-page public-only booking-path vs follow-up check?”</p>
-        <p><strong>3-friction-note variant:</strong></p>
-        <p>“I checked one public path and drafted up to three friction notes with screenshot labels — no forms submitted. Would it be okay if I sent the one-page public-only version?”</p>
-        <p><strong>Self-serve vs sales variant:</strong></p>
-        <p>“I noticed the public site may offer both a self-serve-style door and a sales-assisted door that could land in a similar handoff. Would it be okay if I sent a one-page public-only self-serve vs sales-path check?”</p>
-        <p><strong>Pricing-path variant:</strong></p>
-        <p>“I noticed the public Pricing page may send different plan CTAs into a similar next step. Would it be okay if I sent a one-page public-only pricing-path consistency check?”</p>
-        <p><strong>Waitlist / open-door variant:</strong></p>
-        <p>“I noticed the public site may mix waitlist/early-access language with open-start CTAs that could land in a similar handoff. Would it be okay if I sent a one-page public-only waitlist vs open-door check?”</p>
-        <p><strong>Not this:</strong></p>
-        <p>“Your site is leaking money and I found critical conversion failures.”</p>
-      </div>
-    </section>
-
-
-
-    <section id="what-you-get-for-99">
-      <h2>What you get for $99</h2>
-      <p>If someone pays for the public-only teardown, this is the exact deliverable. No mystery package. No private-system access. No “AI transformation.”</p>
-      <div class="grid">
-        <div class="card"><strong>1 public path</strong><br />One agreed path only, like homepage → demo form or pricing → contact sales. Checked on public pages only.</div>
-        <div class="card"><strong>Up to 3 friction notes</strong><br />Each note names the visible evidence, the possible friction, and one simple test — not a revenue-loss accusation.</div>
-        <div class="card"><strong>Screenshot labels</strong><br />Named public screenshots or clear visual references tied to the note, using the screenshot checklist.</div>
-        <div class="card"><strong>One-page writeup</strong><br />A short buyer-safe teardown using the public-only template and the <a href="#three-friction-note-builder">3-friction-note builder</a>: path checked, intent, ≤3 evidence-backed notes, fix ideas, next question.</div>
-      </div>
-      <table class="worksheet" aria-label="What $99 includes and excludes">
-        <thead>
-          <tr><th>Included</th><th>Not included</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Public pages only</td><td>Logins, CRM, analytics, call recordings, customer lists</td></tr>
-          <tr><td>Possible-friction language</td><td>“You are losing money” claims or guaranteed conversion lift</td></tr>
-          <tr><td>Simple fix ideas to test</td><td>Implementation work, code changes, redesign projects</td></tr>
-          <tr><td>Async written deliverable</td><td>Standing meetings, retainer work, or rush deadlines unless separately approved</td></tr>
-        </tbody>
-      </table>
-      <div class="note">Checkout stays off this free notebook on purpose. Request the teardown first; pay only after public-only scope is clear. No cold payment-link blasting from this page.</div>
-    </section>
-
-    <section id="money-path">
-      <h2>Where the money comes from</h2>
-      <p>This project is not meant to stay as free advice forever. The free field notes prove the thinking. The paid work is helping a specific team find and fix their customer-capture friction without asking for private data first.</p>
-      <div class="grid">
-        <div class="card"><strong>$99 public-only teardown</strong><br />A one-page review of one public demo/contact/booking path. No logins, no customer data, no analytics access. Output: 3 friction points, screenshots/notes, and the next safest fix.</div>
-        <div class="card"><strong>$450 setup sprint</strong><br />If the teardown points to a clear fix, package a small implementation plan or setup sprint. Scope must be approved in writing before any work starts.</div>
-        <div class="card"><strong>$150/month watch pass</strong><br />Optional lightweight monitoring/checklist review for teams that want the handoff checked regularly. No private systems unless separately approved.</div>
-      </div>
-      <div class="note">First-dollar rule: no cold payment-link blasting. Money only comes after a real human says the public-only teardown is relevant and the scope is clear.</div>
-    </section>
-
-    <section>
-      <h2>Want a public-only teardown?</h2>
-      <p>Send one public URL and the path you care about, like <code>homepage → demo request</code> or <code>pricing → contact sales</code>. Do not send passwords, analytics, customer lists, recordings, contracts, or private files.</p>
-      <p>Commercial home: <a href="https://smirkcalls.com" target="_blank" rel="noopener">smirkcalls.com</a>. Professional SMIRK sender / intake target: <code>alerts@smirkcalls.com</code>.</p>
-      <p>Legal/evidence product home: <a href="https://www.courtreadyevidence.com" target="_blank" rel="noopener">courtreadyevidence.com</a>.</p>
-      <div class="note">Identity rule: do not use personal Gmail or non-owned domains (including artificiallyeducated.com). Owned domains only: smirkcalls.com and courtreadyevidence.com. Buyer-facing SMIRK sender / public intake: alerts@smirkcalls.com (Resend).</div>
-    </section>
-
-    <section>
-      <h2>What this project will become</h2>
-      <p>One tangible public artifact that improves every week: checklists, examples, teardown templates, reply-safe language, and small tools for people who want customer capture fixed without buying a twenty-piece software circus.</p>
-    </section>
-
-    <div class="footer">
-      Built under SMIRK / smirkcalls.com as a public workbench. No tracking scripts, no forms, no pitch trap. Current version: v2.0 — waitlist / early-access vs open-door path worksheet; TOC + safe outreach variant; Shape W/O/C scoring.</div>
-  </main>
+    draw();
+    renderTrail();
+  </script>
 </body>
 </html>

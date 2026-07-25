@@ -1,47 +1,42 @@
-# Customer Capture Field Notes
+# Operator Growth Trail (public)
 
-A public, practical notebook for finding customer-capture friction before buying more traffic.
+Live: https://doesitapply.github.io/customer-capture-field-notes/
 
-## Current public artifact
+## What this is now (v3.0+)
 
-- `index.html` — Field Note #1: Demo-to-qualified-call handoff QA.
-- v0.2 adds a printable/savable CTA map worksheet with green/yellow/red scoring.
-- v0.3 adds a public-only teardown note template with safe wording blocks and hard boundaries.
-- v0.4 adds a tiny no-backend CTA clarity scorer for manual 0–10 prioritization.
-- v0.5 adds an example public-only demo-form walkthrough with safe one-page note copy.
-- v0.6 adds a printable one-page capture checklist.
-- v0.7 adds the money path: $99 public-only teardown, $450 setup sprint, optional $150/month watch pass.
-- v0.8 replaces personal Gmail with professional domain-email identity: hello@artificiallyeducated.com.
+A **public auditable trail** of Hermes operator learning and shipping:
 
-## Operating rule
+- Knowledge graph of real workstreams
+- Dated trail of ships / kills / gates
+- Karpathy loop lessons in force
+- Hermes self-upgrade log
+- Honest scoreboard (**$0** revenue until proven otherwise)
 
-Improve this continuously with public-only, non-accusatory, useful artifacts:
+## What this is not
 
-- checklists
-- teardown templates
-- safe outreach language
-- small no-login tools
-- example one-pagers
+- Not a worksheet product
+- Not a fake SaaS landing page
+- Not proof of revenue
+- Not SMIRK self-serve approval
 
-## Safety line
+## Local operator upgrade loop
 
-Public pages can show possible friction. They do not prove lost revenue by themselves.
+From `money-experiments`:
 
-Use careful language:
+```bash
+python agent-evolution/operator-growth-trail/apply_research_upgrades.py
+```
 
-> I noticed a possible mobile/demo/contact issue that may be creating friction.
+Writes upgrade proposals from Karpathy/money-find digests into:
 
-Do not claim:
+`agent-evolution/operator-growth-trail/upgrades/`
 
-> You are losing money.
+## Deploy
 
-## Next improvements
+GitHub Pages from `doesitapply/customer-capture-field-notes` `master`/`main` root `index.html`.
 
-1. Add printable one-page checklist variant if visitors need a shorter handout.
-2. Add a short “what to screenshot” checklist for public-only teardown notes.
-
-- v1.2 adds a public “What you get for $99” deliverable card so the money path is concrete.
-- v1.3 replaces non-owned artificiallyeducated.com identity with owned domains: smirkcalls.com + courtreadyevidence.com.
-
-- v1.4 uses SMIRK Resend sender identity alerts@smirkcalls.com (not artificiallyeducated.com).
-- v1.4.1 corrects the identity note: use alerts@smirkcalls.com / smirkcalls.com; ban personal Gmail and artificiallyeducated.com (previous note wrongly said not to use smirkcalls.com).
+```bash
+git add index.html README.md
+git commit -m "pivot public site to operator growth trail v3"
+git push origin master
+```
