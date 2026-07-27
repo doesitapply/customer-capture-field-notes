@@ -1,6 +1,7 @@
 name: Public-only teardown request
 description: Request a scoped review of one public customer path. Do not include private, customer, login, or financial data.
 title: "[Teardown request]: "
+labels: ["public-only-teardown"]
 body:
   - type: markdown
     attributes:
