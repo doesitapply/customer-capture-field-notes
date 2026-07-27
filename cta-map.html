@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CTA Map Worksheet — Customer Capture Field Notes</title>
+  <meta name="description" content="A printable, public-only worksheet for mapping one visitor, one next action, and the possible friction between them." />
+  <style>
+    :root {
+      --bg: #070a12;
+      --panel: #10182b;
+      --ink: #e8eefc;
+      --muted: #a3b0cb;
+      --line: #2b3857;
+      --accent: #6ea8ff;
+      --good: #3dd68c;
+      --warn: #ffcc66;
+      --paper: #ffffff;
+      --paper-ink: #172033;
+      --paper-muted: #47546d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1000px 540px at 15% -10%, #182853 0%, transparent 55%), var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    main { max-width: 940px; margin: 0 auto; padding: 36px 18px 72px; }
+    a { color: var(--accent); }
+    .kicker { color: #5ce1e6; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .hero, .panel { border: 1px solid var(--line); background: rgba(16, 24, 43, .94); border-radius: 16px; padding: 26px; margin-bottom: 16px; }
+    h1 { margin: .35rem 0 .6rem; line-height: 1.15; font-size: clamp(1.9rem, 5vw, 3rem); }
+    h2 { margin: 0 0 .45rem; font-size: 1.25rem; }
+    h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    p, li { color: var(--muted); }
+    .lead { max-width: 70ch; font-size: 1.05rem; }
+    .rail { border-left: 3px solid var(--warn); padding: 12px 14px; background: rgba(255, 204, 102, .07); border-radius: 0 10px 10px 0; color: var(--muted); }
+    .rail.good { border-left-color: var(--good); background: rgba(61, 214, 140, .06); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .button { display: inline-block; border: 1px solid #4d76c7; background: linear-gradient(180deg, #315baf, #1d3972); border-radius: 10px; padding: 11px 14px; color: white; font-weight: 800; text-decoration: none; }
+    .button.alt { border-color: var(--line); background: transparent; color: var(--ink); }
+    .worksheet { color: var(--paper-ink); background: var(--paper); border: 1px solid #d7deea; border-radius: 14px; padding: 28px; }
+    .worksheet p, .worksheet li { color: var(--paper-muted); }
+    .worksheet h2, .worksheet h3 { color: var(--paper-ink); }
+    .step { border-top: 1px solid #d7deea; padding: 20px 0; }
+    .step:first-of-type { border-top: 0; padding-top: 6px; }
+    .label { display: inline-block; min-width: 1.8rem; margin-right: 8px; padding: 2px 7px; border-radius: 99px; background: #e6eefc; color: #1d4f9c; font-size: .8rem; font-weight: 800; text-align: center; }
+    .prompt { font-weight: 750; color: var(--paper-ink) !important; }
+    .line { min-height: 29px; border-bottom: 1px solid #9aa8be; margin: 8px 0; }
+    .line.short { max-width: 500px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 6px; font-size: .94rem; }
+    th, td { border: 1px solid #cbd5e5; padding: 9px; text-align: left; vertical-align: top; }
+    th { background: #eef3fc; color: #27354f; font-size: .78rem; letter-spacing: .03em; text-transform: uppercase; }
+    td.blank { height: 45px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .card { border: 1px solid #d7deea; border-radius: 10px; padding: 13px; }
+    .yes { color: #116139 !important; font-weight: 800; }
+    .no { color: #8b4411 !important; font-weight: 800; }
+    .footer { color: var(--muted); font-size: .88rem; margin-top: 16px; }
+    @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } .worksheet { padding: 18px; } table { font-size: .83rem; } th, td { padding: 7px; } }
+    @media print {
+      @page { margin: 0.45in; }
+      body { background: white; color: #111827; font-size: 10.5pt; }
+      main { max-width: none; padding: 0; }
+      .hero, .panel { border: 0; background: white; padding: 0; margin: 0 0 14px; }
+      .actions, .footer, .screen-only { display: none; }
+      .hero p, .panel > p { color: #334155; }
+      .worksheet { border: 0; border-radius: 0; padding: 0; }
+      .step { break-inside: avoid; padding: 12px 0; }
+      .grid { gap: 10px; }
+      .card { break-inside: avoid; }
+      a { color: #111827; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="kicker">Customer Capture Field Notes · printable field tool</div>
+      <h1>Map one clear next step before asking for more attention.</h1>
+      <p class="lead">This seven-minute CTA Map Worksheet helps an operator trace one public visitor path, identify the point where the next action becomes unclear, and write one safer replacement message.</p>
+      <p class="rail"><strong>Use one public path at a time.</strong> Read only what any visitor can see. Do not sign in, submit anything, use private analytics, or claim a business is losing revenue. The aim is to identify possible friction worth checking.</p>
+      <div class="actions screen-only">
+        <a class="button" href="index.html">Back to the Growth Trail</a>
+        <a class="button alt" href="request.html">Public teardown scope</a>
+      </div>
+    </section>
+
+    <section class="panel" id="cta-map-worksheet">
+      <h2>CTA Map Worksheet</h2>
+      <p>Print this page or work from a copy. Keep the notes literal: exact public words, visible destinations, and one visitor action.</p>
+      <div class="worksheet">
+        <div class="step">
+          <h3><span class="label">1</span>Choose the path</h3>
+          <p class="prompt">Page or public path you are reviewing:</p>
+          <div class="line"></div>
+          <p class="prompt">Visitor you have in mind (for example: first-time evaluator, returning buyer, job applicant):</p>
+          <div class="line"></div>
+          <p class="prompt">One action you want that visitor to take next:</p>
+          <div class="line"></div>
+        </div>
+
+        <div class="step">
+          <h3><span class="label">2</span>Trace the visible route</h3>
+          <p>Write the words a visitor actually sees, not what the team intended to say.</p>
+          <table>
+            <thead>
+              <tr><th>Moment</th><th>Exact public cue</th><th>What happens if clicked?</th><th>Possible friction to check</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Entry</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+              <tr><td>Primary action</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+              <tr><td>After the action</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="step">
+          <h3><span class="label">3</span>Run the clarity check</h3>
+          <div class="grid">
+            <div class="card">
+              <p class="prompt">A visitor can answer these without guessing:</p>
+              <ul>
+                <li>What is this action for?</li>
+                <li>What happens immediately after it?</li>
+                <li>Is this the same action promised by the page?</li>
+              </ul>
+              <p class="yes">If all three are clear: preserve the cue and test it later with real feedback.</p>
+            </div>
+            <div class="card">
+              <p class="prompt">If one answer is fuzzy, name the smallest fix:</p>
+              <ul>
+                <li>Make the action label name the outcome.</li>
+                <li>State the immediate next step beside the action.</li>
+                <li>Remove or subordinate a competing action.</li>
+              </ul>
+              <p class="no">Do not jump from one ambiguous cue to a redesign or a revenue claim.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3><span class="label">4</span>Write one replacement cue</h3>
+          <p>Use this plain-language pattern: <strong>“[Verb] [specific outcome] — [what happens next].”</strong></p>
+          <p class="prompt">Example: “See the implementation checklist — open the public one-page guide.”</p>
+          <p class="prompt">Your candidate cue:</p>
+          <div class="line"></div>
+          <p class="prompt">What visible promise does this replace or clarify?</p>
+          <div class="line"></div>
+        </div>
+
+        <div class="step">
+          <h3><span class="label">5</span>Make the next move proportionate</h3>
+          <table>
+            <thead><tr><th>Observed state</th><th>Safe next move</th></tr></thead>
+            <tbody>
+              <tr><td>The action label and destination already agree.</td><td>Leave the path alone; record the evidence and check another public entry point.</td></tr>
+              <tr><td>The label is vague but the destination is understandable.</td><td>Draft one clearer label for internal review; do not claim a performance outcome.</td></tr>
+              <tr><td>The promise, action, and follow-up appear to disagree.</td><td>Capture the exact public cues and ask the owner which path is intended before changing anything.</td></tr>
+            </tbody>
+          </table>
+          <p class="rail good"><strong>Boundary:</strong> this is an observation and writing aid. It does not test accounts, private messages, checkout, security, accessibility conformance, legal compliance, or business results.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer">Customer Capture Field Notes · public, static, and printable · <a href="https://github.com/doesitapply/customer-capture-field-notes">source repository</a></p>
+  </main>
+</body>
+</html>

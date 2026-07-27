@@ -18,6 +18,12 @@ Live request page: https://doesitapply.github.io/customer-capture-field-notes/re
 
 It routes a public URL and intended visitor action into a structured GitHub Issue Form. It is deliberately public-only: do not submit private, customer, login, financial, or sensitive data.
 
+## CTA Map Worksheet
+
+Live worksheet: https://doesitapply.github.io/customer-capture-field-notes/cta-map.html
+
+A printable seven-minute field tool for tracing one public visitor path, comparing the exact promise with the next visible action, and drafting one proportionate clarity improvement. It is static: no capture field, submission, tracking, private-data request, or performance guarantee.
+
 ## Public Evidence Pack v0
 
 A local, read-only evidence-packet generator now supports the bounded teardown workflow:
