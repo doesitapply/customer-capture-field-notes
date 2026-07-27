@@ -1,0 +1,6 @@
+# Generated public-page observation packets are local evidence, not repository content.
+evidence-output/
+
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
