@@ -169,7 +169,7 @@
         <span class="chip"><strong>Version</strong> v3.0 growth-trail</span>
         <span class="chip good"><strong>Public proof</strong> live</span>
         <span class="chip warn"><strong>Revenue</strong> $0 verified</span>
-        <span class="chip"><strong>Updated</strong> 2026-07-25</span>
+        <span class="chip"><strong>Updated</strong> 2026-07-26</span>
         <span class="chip"><strong>Doctrine</strong> evidence &gt; theater</span>
       </div>
       <div class="btnrow">
@@ -205,7 +205,7 @@
             <tr><td>Verified spend (this trail)</td><td class="mono">$0</td></tr>
             <tr><td>Public asset</td><td>This page + prior Field Notes history</td></tr>
             <tr><td>Stripe $99 warm rail</td><td>Exists · warm-only · not on cold posts</td></tr>
-            <tr><td>Closest distribution</td><td>LinkedIn (no HN account)</td></tr>
+            <tr><td>Closest distribution</td><td>Show HN experiment prepared · LinkedIn backup</td></tr>
             <tr><td>SMIRK self-serve</td><td>Blocked · policy drafts only</td></tr>
             <tr><td>Autonomous store</td><td>VALIDATE · teardown offer (legacy path)</td></tr>
             <tr><td>CRE predicate audit pilot</td><td>Local CLI shipped</td></tr>
@@ -292,7 +292,7 @@
       <h2><span class="dot" style="background:var(--bad)"></span> Explicitly de-centered</h2>
       <ul>
         <li><strong>Worksheet-first Field Notes</strong> as the main product — not useful enough to the operator right now.</li>
-        <li><strong>Show HN as required gate</strong> — no HN account; LinkedIn/other owned channels instead.</li>
+        <li><strong>Any single channel as a required gate</strong> — Show HN is a controlled experiment, not a dependency; LinkedIn remains the backup.</li>
         <li><strong>Paper trading as center</strong> — paused earlier; stays paused.</li>
         <li><strong>SMIRK self-serve “ready”</strong> — forbidden until real policy approval card is complete.</li>
         <li><strong>Research digests without local change</strong> — treated as failure mode.</li>
@@ -318,8 +318,8 @@
         blurb: 'This growth trail page. Replaces worksheet-first positioning.' },
       { id: 'stripe99', label: '$99 warm Stripe', type: 'ship', x: 680, y: 90,
         blurb: 'Payment link exists for warm teardown interest only. Not cold-posted.' },
-      { id: 'linkedin', label: 'LinkedIn distribute', type: 'gate', x: 420, y: 230,
-        blurb: 'Primary public distribute path after HN ruled out (no account).' },
+      { id: 'showhn', label: 'Show HN experiment', type: 'gate', x: 420, y: 230,
+        blurb: 'Primary zero-cost distribution experiment; LinkedIn is the fallback.' },
       { id: 'cre', label: 'CRE audit pilot', type: 'ship', x: 680, y: 230,
         blurb: 'Record Predicate Audit CLI + neutral demo in dueprocess-ai.' },
       { id: 'smirk', label: 'SMIRK SaaS', type: 'block', x: 420, y: 380,
@@ -335,26 +335,26 @@
     const edges = [
       ['karpathy', 'moneyfind'],
       ['karpathy', 'upgrade'],
-      ['moneyfind', 'linkedin'],
+      ['moneyfind', 'showhn'],
       ['moneyfind', 'stripe99'],
       ['moneyfind', 'fieldnotes'],
-      ['fieldnotes', 'linkedin'],
+      ['fieldnotes', 'showhn'],
       ['fieldnotes', 'stripe99'],
       ['karpathy', 'store'],
       ['store', 'fieldnotes'],
       ['cre', 'upgrade'],
       ['smirk', 'upgrade'],
       ['cua', 'upgrade'],
-      ['linkedin', 'stripe99']
+      ['showhn', 'stripe99']
     ];
 
     const trail = [
       { cls: 'ship', when: '2026-07-25', title: 'Public pivot → Operator Growth Trail v3.0',
         body: 'Killed worksheet-first positioning on the GitHub page. Rebuilt as knowledge graph + auditable trail + upgrade log.',
         tags: ['public', 'pivot', 'v3.0'] },
-      { cls: 'learn', when: '2026-07-24', title: 'Owner: no Hacker News account',
-        body: 'Distribution path switched to LinkedIn-first. HN no longer a blocker fantasy.',
-        tags: ['distribution', 'linkedin'] },
+      { cls: 'learn', when: '2026-07-26', title: 'Show HN experiment prepared',
+        body: 'HN account and submit access verified. The first post is a factual distribution experiment; LinkedIn remains the backup.',
+        tags: ['distribution', 'show-hn', 'experiment'] },
       { cls: 'ship', when: '2026-07-24', title: 'SMIRK first-dollar policy drafts (not approval)',
         body: 'Six draft policy docs + gap pack. Checkout remains gated on purpose.',
         tags: ['smirk', 'compliance', 'blocked-checkout'] },
