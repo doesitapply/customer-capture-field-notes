@@ -1,0 +1,63 @@
+name: Public-only teardown request
+description: Request a scoped review of one public customer path. Do not include private, customer, login, or financial data.
+title: "[Teardown request]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Public-only request
+
+        This intake is public because it creates a GitHub issue. Share only a public page and public context. Do **not** include logins, customer messages, analytics screenshots, payment data, or anything you would not post publicly.
+
+        This is a scope request, not an automatic purchase. If the path is a fit, the operator will reply with the narrowest safe next step.
+
+  - type: input
+    id: public_url
+    attributes:
+      label: Public page URL
+      description: The one public page to review — for example, a homepage, booking page, demo page, or contact page.
+      placeholder: https://example.com/booking
+    validations:
+      required: true
+
+  - type: dropdown
+    id: page_type
+    attributes:
+      label: What type of page is this?
+      options:
+        - Homepage
+        - Contact page
+        - Booking or scheduling page
+        - Product or demo page
+        - Pricing page
+        - Other public page
+    validations:
+      required: true
+
+  - type: textarea
+    id: visitor_action
+    attributes:
+      label: The one action you want a visitor to take
+      description: "Examples: request a quote, schedule a call, start a trial, or send a message."
+      placeholder: I want a qualified visitor to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: friction
+    attributes:
+      label: Where do you think visitors get stuck? (optional)
+      description: Keep this to public observations only.
+      placeholder: Visitors see the page but do not...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: public_only
+    attributes:
+      label: Public-only confirmation
+      options:
+        - label: I confirm this issue contains only public information and no login, customer, financial, or sensitive data.
+          required: true
+        - label: I understand this is a scope request, not an automatic purchase or a promise of results.
+          required: true
