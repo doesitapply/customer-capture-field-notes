@@ -24,6 +24,12 @@ Live worksheet: https://doesitapply.github.io/customer-capture-field-notes/cta-m
 
 A printable seven-minute field tool for tracing one public visitor path, comparing the exact promise with the next visible action, and drafting one proportionate clarity improvement. It is static: no capture field, submission, tracking, private-data request, or performance guarantee.
 
+## One-Page Public Path Check
+
+Live checklist: https://doesitapply.github.io/customer-capture-field-notes/public-path-checklist.html
+
+A printable public-only checklist for one visible promise, one intended visitor action, its destination, and the immediate handoff. It is an observation aid: no forms, scripts, tracking, private-data request, account testing, checkout testing, or outcome claim.
+
 ## Public Evidence Pack v0
 
 A local, read-only evidence-packet generator now supports the bounded teardown workflow:

@@ -24,6 +24,24 @@ class StaticSiteTests(unittest.TestCase):
         homepage = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="cta-map.html"', homepage)
 
+    def test_public_path_check_is_a_printable_public_only_checklist(self):
+        page = (ROOT / "public-path-checklist.html").read_text(encoding="utf-8")
+        self.assertIn('id="public-path-checklist"', page)
+        self.assertIn("One-Page Public Path Check", page)
+        self.assertIn("@media print", page)
+        self.assertIn("Immediate handoff", page)
+        self.assertIn("Public-only and observational", page)
+
+    def test_public_path_check_does_not_add_capture_or_payment_surface(self):
+        page = (ROOT / "public-path-checklist.html").read_text(encoding="utf-8").lower()
+        for forbidden in ("<form", "<script", "<iframe", "href=\"https://buy.stripe.com", "href=\"https://paypal.me"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, page)
+
+    def test_growth_trail_links_to_public_path_check(self):
+        homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="public-path-checklist.html"', homepage)
+
 
 if __name__ == "__main__":
     unittest.main()

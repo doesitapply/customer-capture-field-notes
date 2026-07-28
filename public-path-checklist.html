@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Public Path Check — Customer Capture Field Notes</title>
+  <meta name="description" content="A printable one-page, public-only checklist for checking whether a visitor can understand a page promise, next action, and immediate destination." />
+  <style>
+    :root {
+      --bg: #070a12;
+      --panel: #10182b;
+      --ink: #e8eefc;
+      --muted: #a3b0cb;
+      --line: #2b3857;
+      --accent: #6ea8ff;
+      --good: #3dd68c;
+      --warn: #ffcc66;
+      --paper: #ffffff;
+      --paper-ink: #172033;
+      --paper-muted: #47546d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1000px 540px at 15% -10%, #182853 0%, transparent 55%), var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.42;
+    }
+    main { max-width: 900px; margin: 0 auto; padding: 32px 18px 72px; }
+    a { color: var(--accent); }
+    .kicker { color: #5ce1e6; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .hero, .panel { border: 1px solid var(--line); background: rgba(16, 24, 43, .94); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    h1 { margin: .35rem 0 .55rem; line-height: 1.12; font-size: clamp(1.85rem, 5vw, 2.8rem); }
+    h2 { margin: 0; font-size: 1.32rem; }
+    h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    p, li { color: var(--muted); }
+    .lead { max-width: 70ch; font-size: 1.04rem; }
+    .rail { border-left: 3px solid var(--warn); padding: 11px 13px; background: rgba(255, 204, 102, .07); border-radius: 0 10px 10px 0; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+    .button { display: inline-block; border: 1px solid #4d76c7; background: linear-gradient(180deg, #315baf, #1d3972); border-radius: 10px; padding: 10px 13px; color: white; font-weight: 800; text-decoration: none; }
+    .button.alt { border-color: var(--line); background: transparent; color: var(--ink); }
+    .sheet { color: var(--paper-ink); background: var(--paper); border: 1px solid #d7deea; border-radius: 14px; padding: 26px; }
+    .sheet p, .sheet li { color: var(--paper-muted); }
+    .sheet h2, .sheet h3 { color: var(--paper-ink); }
+    .subtitle { margin: 5px 0 16px; font-size: .92rem; }
+    .route { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 9px; margin-bottom: 14px; }
+    .route-cell { border: 1px solid #cbd5e5; border-radius: 8px; padding: 8px; min-height: 48px; }
+    .route-cell strong { display: block; color: #27354f; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
+    .route-cell span { display: block; min-height: 18px; border-bottom: 1px solid #9aa8be; margin-top: 5px; }
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .check { border: 1px solid #d7deea; border-radius: 10px; padding: 11px 12px; break-inside: avoid; }
+    .check p { margin: 0 0 7px; font-size: .9rem; }
+    .tick { display: grid; grid-template-columns: 20px 1fr; gap: 7px; align-items: start; margin: 4px 0; color: #27354f; font-size: .89rem; }
+    .box { width: 15px; height: 15px; border: 1.5px solid #5f6f8d; margin-top: 2px; }
+    .next { margin-top: 12px; border-top: 1px solid #d7deea; padding-top: 12px; }
+    .line { min-height: 26px; border-bottom: 1px solid #9aa8be; margin: 5px 0 9px; }
+    .small { font-size: .82rem; }
+    .footer { color: var(--muted); font-size: .86rem; margin-top: 16px; }
+    @media (max-width: 660px) { .check-grid { grid-template-columns: 1fr; } .route { grid-template-columns: 1fr; } .sheet { padding: 18px; } }
+    @media print {
+      @page { margin: 0.42in; }
+      body { background: white; color: #111827; font-size: 9.8pt; }
+      main { max-width: none; padding: 0; }
+      .hero, .panel { border: 0; background: white; padding: 0; margin: 0 0 10px; }
+      .actions, .footer, .screen-only { display: none; }
+      .hero p { color: #334155; }
+      .sheet { border: 0; border-radius: 0; padding: 0; }
+      .check { padding: 8px 10px; }
+      .check p { margin-bottom: 4px; }
+      .route { margin-bottom: 10px; }
+      a { color: #111827; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="kicker">Customer Capture Field Notes · printable field tool</div>
+      <h1>Check one public path before proposing a bigger change.</h1>
+      <p class="lead">This one-page checklist helps an operator see whether a visitor can connect a visible promise, one next action, and the immediate destination without guessing.</p>
+      <p class="rail"><strong>Public-only and observational.</strong> Use visible page language and destinations only. Do not sign in, submit forms, use analytics, test checkout, or claim a business is losing money. A checked box is a cue to investigate—not proof of an outcome.</p>
+      <div class="actions screen-only">
+        <a class="button" href="index.html">Back to the Growth Trail</a>
+        <a class="button alt" href="cta-map.html">Use the detailed CTA map</a>
+      </div>
+    </section>
+
+    <section class="panel" id="public-path-checklist">
+      <div class="sheet">
+        <h2>One-Page Public Path Check</h2>
+        <p class="subtitle">Print this page. Review one page, one visitor, and one intended next action. Mark only what a public visitor can observe.</p>
+
+        <div class="route">
+          <div class="route-cell"><strong>Public page / path</strong><span></span></div>
+          <div class="route-cell"><strong>Visitor</strong><span></span></div>
+          <div class="route-cell"><strong>Intended next action</strong><span></span></div>
+        </div>
+
+        <div class="check-grid">
+          <section class="check">
+            <h3>1. Promise</h3>
+            <p>Can a visitor see what this page is for before needing to act?</p>
+            <div class="tick"><span class="box"></span><span>The headline or first cue names a specific outcome or use.</span></div>
+            <div class="tick"><span class="box"></span><span>The visitor can tell who the page is for.</span></div>
+            <div class="tick"><span class="box"></span><span>The next action does not promise more than the page explains.</span></div>
+          </section>
+
+          <section class="check">
+            <h3>2. Primary action</h3>
+            <p>Can a visitor identify one sensible next step?</p>
+            <div class="tick"><span class="box"></span><span>The primary control uses a concrete verb and outcome.</span></div>
+            <div class="tick"><span class="box"></span><span>Competing actions are visibly secondary or clearly different.</span></div>
+            <div class="tick"><span class="box"></span><span>The action is visible without hunting through the page.</span></div>
+          </section>
+
+          <section class="check">
+            <h3>3. Destination</h3>
+            <p>Does the click lead where the visible cue says it will?</p>
+            <div class="tick"><span class="box"></span><span>The destination preserves the original promise or names the change.</span></div>
+            <div class="tick"><span class="box"></span><span>The destination makes the next choice understandable.</span></div>
+            <div class="tick"><span class="box"></span><span>A public visitor can return or choose another route without confusion.</span></div>
+          </section>
+
+          <section class="check">
+            <h3>4. Immediate handoff</h3>
+            <p>Is the first moment after the action explained?</p>
+            <div class="tick"><span class="box"></span><span>The page states what opens, happens, or is requested next.</span></div>
+            <div class="tick"><span class="box"></span><span>Any public requirement is visible before the visitor commits.</span></div>
+            <div class="tick"><span class="box"></span><span>The path does not rely on unexplained jargon or hidden context.</span></div>
+          </section>
+        </div>
+
+        <section class="next">
+          <h3>Smallest proportionate next move</h3>
+          <p class="small"><strong>If one item is unclear:</strong> copy the exact public cue, identify the mismatch, and draft one smaller clarification. Do not jump from an observation to a redesign, accessibility/compliance claim, security claim, or performance claim.</p>
+          <p class="small"><strong>Exact cue to preserve or clarify:</strong></p>
+          <div class="line"></div>
+          <p class="small"><strong>Candidate replacement cue:</strong> “[Verb] [specific outcome] — [what happens next].”</p>
+          <div class="line"></div>
+          <p class="small"><strong>Owner question before any change:</strong></p>
+          <div class="line"></div>
+        </section>
+      </div>
+    </section>
+
+    <p class="footer">Customer Capture Field Notes · public, static, and printable · <a href="https://github.com/doesitapply/customer-capture-field-notes">source repository</a></p>
+  </main>
+</body>
+</html>
