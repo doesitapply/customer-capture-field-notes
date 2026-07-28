@@ -1,0 +1,2 @@
+date,asset_id,asset_type,public_url,repo_path,release_commit,status,spend_usd,revenue_usd,verification,notes
+2026-07-28,public-path-check-v1,printable_public_path_check,https://doesitapply.github.io/customer-capture-field-notes/public-path-checklist.html,public-path-checklist.html,8c554520f0610947e422827451ed1b779a68a805,live_verified,0,0,"GitHub Pages build 1119852767 success; cache-busted live marker check passed","Static public-only field tool; no outreach, forms, login, payment, or sensitive intake"

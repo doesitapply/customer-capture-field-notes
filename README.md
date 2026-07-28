@@ -30,6 +30,12 @@ Live checklist: https://doesitapply.github.io/customer-capture-field-notes/publi
 
 A printable public-only checklist for one visible promise, one intended visitor action, its destination, and the immediate handoff. It is an observation aid: no forms, scripts, tracking, private-data request, account testing, checkout testing, or outcome claim.
 
+## Release records
+
+- [Public asset scoreboard](ops/public-asset-scoreboard.md)
+- [Public asset ledger](trackers/public-asset-ledger.csv)
+- [2026-07-28 release report](reports/2026-07-28-public-path-check-release.md)
+
 ## Public Evidence Pack v0
 
 A local, read-only evidence-packet generator now supports the bounded teardown workflow:
