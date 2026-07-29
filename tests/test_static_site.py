@@ -42,6 +42,25 @@ class StaticSiteTests(unittest.TestCase):
         homepage = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="public-path-checklist.html"', homepage)
 
+    def test_public_teardown_template_is_printable_and_evidence_first(self):
+        page = (ROOT / "public-teardown-template.html").read_text(encoding="utf-8")
+        self.assertIn('id="public-only-teardown-template"', page)
+        self.assertIn("Public-Only Teardown Template", page)
+        self.assertIn("@media print", page)
+        self.assertIn("Evidence ledger", page)
+        self.assertIn("Owner questions before a bigger change", page)
+        self.assertIn("possible friction", page.lower())
+
+    def test_public_teardown_template_does_not_add_capture_or_payment_surface(self):
+        page = (ROOT / "public-teardown-template.html").read_text(encoding="utf-8").lower()
+        for forbidden in ("<form", "<script", "<iframe", "href=\"https://buy.stripe.com", "href=\"https://paypal.me"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, page)
+
+    def test_growth_trail_links_to_public_teardown_template(self):
+        homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="public-teardown-template.html"', homepage)
+
 
 if __name__ == "__main__":
     unittest.main()

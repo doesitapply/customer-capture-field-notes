@@ -30,6 +30,12 @@ Live checklist: https://doesitapply.github.io/customer-capture-field-notes/publi
 
 A printable public-only checklist for one visible promise, one intended visitor action, its destination, and the immediate handoff. It is an observation aid: no forms, scripts, tracking, private-data request, account testing, checkout testing, or outcome claim.
 
+## Public-Only Teardown Template
+
+Live template: https://doesitapply.github.io/customer-capture-field-notes/public-teardown-template.html
+
+A printable, evidence-first review structure for one public page, one visitor action, and the immediate handoff. It preserves exact public cues, names possible friction to check, and asks owner questions before a larger change. It is static: no capture field, submission, tracking, private-data request, account testing, checkout testing, or performance claim.
+
 ## Release records
 
 - [Public asset scoreboard](ops/public-asset-scoreboard.md)

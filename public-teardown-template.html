@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Public-Only Teardown Template — Customer Capture Field Notes</title>
+  <meta name="description" content="A printable, public-only template for turning one visible customer path into a small evidence-first review without logging in, submitting anything, or promising outcomes." />
+  <style>
+    :root {
+      --bg: #070a12;
+      --panel: #10182b;
+      --ink: #e8eefc;
+      --muted: #a3b0cb;
+      --line: #2b3857;
+      --accent: #6ea8ff;
+      --good: #3dd68c;
+      --warn: #ffcc66;
+      --paper: #ffffff;
+      --paper-ink: #172033;
+      --paper-muted: #47546d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1000px 540px at 15% -10%, #182853 0%, transparent 55%), var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.42;
+    }
+    main { max-width: 940px; margin: 0 auto; padding: 32px 18px 72px; }
+    a { color: var(--accent); }
+    .kicker { color: #5ce1e6; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .hero, .panel { border: 1px solid var(--line); background: rgba(16, 24, 43, .94); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    h1 { margin: .35rem 0 .55rem; line-height: 1.12; font-size: clamp(1.85rem, 5vw, 2.8rem); }
+    h2 { margin: 0; font-size: 1.32rem; }
+    h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    p, li { color: var(--muted); }
+    .lead { max-width: 72ch; font-size: 1.04rem; }
+    .rail { border-left: 3px solid var(--warn); padding: 11px 13px; background: rgba(255, 204, 102, .07); border-radius: 0 10px 10px 0; color: var(--muted); }
+    .rail.good { border-left-color: var(--good); background: rgba(61, 214, 140, .06); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+    .button { display: inline-block; border: 1px solid #4d76c7; background: linear-gradient(180deg, #315baf, #1d3972); border-radius: 10px; padding: 10px 13px; color: white; font-weight: 800; text-decoration: none; }
+    .button.alt { border-color: var(--line); background: transparent; color: var(--ink); }
+    .sheet { color: var(--paper-ink); background: var(--paper); border: 1px solid #d7deea; border-radius: 14px; padding: 26px; }
+    .sheet p, .sheet li { color: var(--paper-muted); }
+    .sheet h2, .sheet h3 { color: var(--paper-ink); }
+    .subtitle { margin: 5px 0 16px; font-size: .92rem; }
+    .scope { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 9px; margin-bottom: 14px; }
+    .scope-cell { border: 1px solid #cbd5e5; border-radius: 8px; padding: 8px; min-height: 48px; }
+    .scope-cell strong { display: block; color: #27354f; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
+    .scope-cell span { display: block; min-height: 18px; border-bottom: 1px solid #9aa8be; margin-top: 5px; }
+    .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .review { border: 1px solid #d7deea; border-radius: 10px; padding: 12px; break-inside: avoid; }
+    .review p { margin: 0 0 7px; font-size: .89rem; }
+    .prompt { color: #27354f !important; font-weight: 780; font-size: .82rem !important; letter-spacing: .02em; }
+    .line { min-height: 27px; border-bottom: 1px solid #9aa8be; margin: 5px 0 9px; }
+    .line.tall { min-height: 40px; }
+    .evidence { border-collapse: collapse; width: 100%; margin: 11px 0 4px; font-size: .88rem; }
+    .evidence th, .evidence td { border: 1px solid #cbd5e5; padding: 8px; text-align: left; vertical-align: top; }
+    .evidence th { color: #27354f; background: #eef3fc; font-size: .74rem; letter-spacing: .03em; text-transform: uppercase; }
+    .evidence td { height: 42px; }
+    .next { margin-top: 14px; border-top: 1px solid #d7deea; padding-top: 13px; }
+    .owner-questions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .question { border: 1px solid #d7deea; border-radius: 10px; padding: 11px 12px; }
+    .question p { margin: 0 0 7px; }
+    .small { font-size: .82rem; }
+    .footer { color: var(--muted); font-size: .86rem; margin-top: 16px; }
+    @media (max-width: 700px) { .scope, .review-grid, .owner-questions { grid-template-columns: 1fr; } .sheet { padding: 18px; } .evidence { font-size: .8rem; } }
+    @media print {
+      @page { margin: 0.42in; }
+      body { background: white; color: #111827; font-size: 9.7pt; }
+      main { max-width: none; padding: 0; }
+      .hero, .panel { border: 0; background: white; padding: 0; margin: 0 0 10px; }
+      .actions, .footer, .screen-only { display: none; }
+      .hero p { color: #334155; }
+      .sheet { border: 0; border-radius: 0; padding: 0; }
+      .review { padding: 8px 9px; }
+      .scope { margin-bottom: 10px; }
+      .next { margin-top: 10px; padding-top: 10px; }
+      a { color: #111827; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="kicker">Customer Capture Field Notes · printable field tool</div>
+      <h1>Turn one public path into a small evidence packet—not a redesign pitch.</h1>
+      <p class="lead">Use this template to review one public page, one visitor action, and the handoff after that action. It helps you preserve the exact visible cues, name possible friction to check, and ask the owner one useful question.</p>
+      <p class="rail"><strong>Public-only and observational.</strong> Read visible words and destinations only. Do not log in, submit anything, use analytics, test checkout, or claim a business is losing money. An observation is a cue to investigate—not proof of an outcome.</p>
+      <div class="actions screen-only">
+        <a class="button" href="index.html">Back to the Growth Trail</a>
+        <a class="button alt" href="public-path-checklist.html">Start with the one-page path check</a>
+        <a class="button alt" href="cta-map.html">Use the detailed CTA map</a>
+      </div>
+    </section>
+
+    <section class="panel" id="public-only-teardown-template">
+      <div class="sheet">
+        <h2>Public-Only Teardown Template</h2>
+        <p class="subtitle">Print this page. Keep every note literal: public wording, visible destinations, and a bounded possible-friction observation.</p>
+
+        <div class="scope">
+          <div class="scope-cell"><strong>Public page / path</strong><span></span></div>
+          <div class="scope-cell"><strong>Visitor</strong><span></span></div>
+          <div class="scope-cell"><strong>Intended action</strong><span></span></div>
+        </div>
+
+        <div class="review-grid">
+          <section class="review">
+            <h3>1. Entry promise</h3>
+            <p class="prompt">Exact public headline or first cue:</p>
+            <div class="line tall"></div>
+            <p class="prompt">Possible friction to check:</p>
+            <div class="line"></div>
+            <p class="small">Ask whether the cue tells this visitor what the page is for before asking them to act.</p>
+          </section>
+
+          <section class="review">
+            <h3>2. Visible action</h3>
+            <p class="prompt">Exact action label or control:</p>
+            <div class="line tall"></div>
+            <p class="prompt">What the destination visibly says:</p>
+            <div class="line"></div>
+            <p class="small">Ask whether the action names a specific outcome and fits the promise beside it.</p>
+          </section>
+
+          <section class="review">
+            <h3>3. Immediate handoff</h3>
+            <p class="prompt">First visible moment after the action:</p>
+            <div class="line tall"></div>
+            <p class="prompt">Possible friction to check:</p>
+            <div class="line"></div>
+            <p class="small">Ask whether a public visitor can tell what happens next without hidden context.</p>
+          </section>
+        </div>
+
+        <section class="next">
+          <h3>Evidence ledger</h3>
+          <p class="small">Record only what a normal visitor can see. The goal is a reproducible starting point, not an audit of private systems.</p>
+          <table class="evidence">
+            <thead><tr><th>Observed public cue</th><th>Visible destination / handoff</th><th>Possible friction to check</th><th>Smallest safe clarification</th></tr></thead>
+            <tbody>
+              <tr><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="next">
+          <h3>Owner questions before a bigger change</h3>
+          <div class="owner-questions">
+            <div class="question">
+              <p class="prompt">Which one visitor action matters most on this page?</p>
+              <div class="line tall"></div>
+            </div>
+            <div class="question">
+              <p class="prompt">What should a visitor expect immediately after that action?</p>
+              <div class="line tall"></div>
+            </div>
+          </div>
+          <p class="small"><strong>Safe conclusion pattern:</strong> “The public promise, visible action, and immediate handoff may need clarification before a larger change.” Keep the evidence and the conclusion separate.</p>
+          <p class="rail good"><strong>Boundary:</strong> this template does not test accounts, private messages, checkout, security, accessibility conformance, legal compliance, or business results. Do not turn a single public observation into a performance claim.</p>
+        </section>
+      </div>
+    </section>
+
+    <p class="footer">Customer Capture Field Notes · public, static, and printable · <a href="https://github.com/doesitapply/customer-capture-field-notes">source repository</a></p>
+  </main>
+</body>
+</html>
