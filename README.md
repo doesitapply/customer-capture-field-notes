@@ -30,6 +30,12 @@ Live checklist: https://doesitapply.github.io/customer-capture-field-notes/publi
 
 A printable public-only checklist for one visible promise, one intended visitor action, its destination, and the immediate handoff. It is an observation aid: no forms, scripts, tracking, private-data request, account testing, checkout testing, or outcome claim.
 
+## CTA Clarity Scorecard
+
+Live scorecard: https://doesitapply.github.io/customer-capture-field-notes/cta-clarity-scorecard.html
+
+A printable, paper-first six-point scorecard for checking a visible promise, one intended visitor action, and the immediate handoff. It scores public clarity cues only—not traffic, conversion, revenue, or business quality—and keeps the next move proportionate.
+
 ## Public-Only Teardown Template
 
 Live template: https://doesitapply.github.io/customer-capture-field-notes/public-teardown-template.html
@@ -52,6 +58,14 @@ python -m unittest discover -s tests -p 'test_*.py'
 ```
 
 It records public retrieval evidence (URL, status, content hash, page signals, selected headers) and explicit limits. It is **not** a compliance certification, security test, legal opinion, or outcome guarantee. See [`docs/PUBLIC_EVIDENCE_PACK.md`](docs/PUBLIC_EVIDENCE_PACK.md).
+
+## Local public-intake readiness check
+
+```bash
+python tools/check_public_intake.py
+```
+
+This is a read-only check of the live repository's public `public-only-teardown` GitHub Issues query. It reports whether a public request needs human scope review without copying untrusted issue text, authenticating, replying, labeling, or requesting payment. See [`docs/PUBLIC_INTAKE_CHECK.md`](docs/PUBLIC_INTAKE_CHECK.md).
 
 ## What this is not
 

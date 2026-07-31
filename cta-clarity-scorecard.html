@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CTA Clarity Scorecard — Customer Capture Field Notes</title>
+  <meta name="description" content="A printable, public-only six-point scorecard for checking whether a visible promise, action, and immediate handoff fit together." />
+  <style>
+    :root {
+      --bg: #070a12;
+      --panel: #10182b;
+      --ink: #e8eefc;
+      --muted: #a3b0cb;
+      --line: #2b3857;
+      --accent: #6ea8ff;
+      --good: #3dd68c;
+      --warn: #ffcc66;
+      --paper: #ffffff;
+      --paper-ink: #172033;
+      --paper-muted: #47546d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1000px 540px at 15% -10%, #182853 0%, transparent 55%), var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    main { max-width: 900px; margin: 0 auto; padding: 32px 18px 72px; }
+    a { color: var(--accent); }
+    .kicker { color: #5ce1e6; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .hero, .panel { border: 1px solid var(--line); background: rgba(16, 24, 43, .94); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    h1 { margin: .35rem 0 .55rem; line-height: 1.12; font-size: clamp(1.85rem, 5vw, 2.8rem); }
+    h2 { margin: 0 0 .45rem; font-size: 1.3rem; }
+    h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    p, li { color: var(--muted); }
+    .lead { max-width: 70ch; font-size: 1.04rem; }
+    .rail { border-left: 3px solid var(--warn); padding: 11px 13px; background: rgba(255, 204, 102, .07); border-radius: 0 10px 10px 0; color: var(--muted); }
+    .rail.good { border-left-color: var(--good); background: rgba(61, 214, 140, .06); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+    .button { display: inline-block; border: 1px solid #4d76c7; background: linear-gradient(180deg, #315baf, #1d3972); border-radius: 10px; padding: 10px 13px; color: white; font-weight: 800; text-decoration: none; }
+    .button.alt { border-color: var(--line); background: transparent; color: var(--ink); }
+    .sheet { color: var(--paper-ink); background: var(--paper); border: 1px solid #d7deea; border-radius: 14px; padding: 26px; }
+    .sheet p, .sheet li { color: var(--paper-muted); }
+    .sheet h2, .sheet h3 { color: var(--paper-ink); }
+    .subtitle { margin: 5px 0 16px; font-size: .92rem; }
+    .focus { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 9px; margin: 12px 0 16px; }
+    .focus-cell { border: 1px solid #cbd5e5; border-radius: 8px; padding: 8px; min-height: 50px; }
+    .focus-cell strong { display: block; color: #27354f; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
+    .write-line { display: block; min-height: 19px; border-bottom: 1px solid #9aa8be; margin-top: 6px; }
+    .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .score { border: 1px solid #d7deea; border-radius: 10px; padding: 11px 12px; break-inside: avoid; }
+    .score h3 { display: grid; grid-template-columns: 30px 1fr; gap: 7px; align-items: start; }
+    .box { display: inline-block; width: 19px; height: 19px; border: 1.5px solid #5f6f8d; margin-top: 1px; }
+    .score p { margin: 0 0 7px; font-size: .9rem; }
+    .exact { border-top: 1px dashed #cbd5e5; padding-top: 7px; font-size: .82rem !important; }
+    .total { display: grid; grid-template-columns: 1fr 170px; gap: 10px; align-items: center; border-top: 1px solid #d7deea; margin-top: 14px; padding-top: 12px; }
+    .total-box { border: 2px solid #4d76c7; border-radius: 10px; padding: 9px; text-align: center; color: #1d4f9c; font-weight: 800; }
+    .moves { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 12px; }
+    .move { border: 1px solid #d7deea; border-radius: 10px; padding: 10px; }
+    .move strong { color: #27354f; }
+    .move p { margin: 5px 0 0; font-size: .86rem; }
+    .footer { color: var(--muted); font-size: .86rem; margin-top: 16px; }
+    @media (max-width: 660px) { .score-grid, .moves { grid-template-columns: 1fr; } .focus, .total { grid-template-columns: 1fr; } .sheet { padding: 18px; } }
+    @media print {
+      @page { margin: 0.42in; }
+      body { background: white; color: #111827; font-size: 9.7pt; }
+      main { max-width: none; padding: 0; }
+      .hero, .panel { border: 0; background: white; padding: 0; margin: 0 0 10px; }
+      .actions, .footer, .screen-only { display: none; }
+      .hero p { color: #334155; }
+      .sheet { border: 0; border-radius: 0; padding: 0; }
+      .score { padding: 8px 10px; }
+      .score p { margin-bottom: 4px; }
+      .moves { gap: 7px; }
+      a { color: #111827; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="kicker">Customer Capture Field Notes · printable field tool</div>
+      <h1>Score one public CTA path before proposing a bigger change.</h1>
+      <p class="lead">This paper-first six-point scorecard helps an operator check whether a visible promise, one intended action, and the immediate handoff fit together. It scores clarity cues—not traffic, conversion, revenue, or business quality.</p>
+      <p class="rail"><strong>Public-only and observational.</strong> Read only what any visitor can see. Do not sign in, submit forms, use private analytics, test checkout, or claim a business is losing money. A low score is a cue to ask an owner question, not proof of an outcome.</p>
+      <div class="actions screen-only">
+        <a class="button" href="index.html">Back to the Growth Trail</a>
+        <a class="button alt" href="cta-map.html">Use the CTA map</a>
+        <a class="button alt" href="public-path-checklist.html">Print the path check</a>
+        <a class="button alt" href="public-teardown-template.html">Use the teardown template</a>
+      </div>
+    </section>
+
+    <section class="panel" id="cta-clarity-scorecard">
+      <div class="sheet">
+        <h2>CTA Clarity Scorecard</h2>
+        <p class="subtitle">Review one public path. Give one point for each cue that a visitor can confirm without guessing. Keep notes literal: quote the visible cue and name the destination.</p>
+
+        <div class="focus">
+          <div class="focus-cell"><strong>Public page / path</strong><span class="write-line"></span></div>
+          <div class="focus-cell"><strong>Visitor</strong><span class="write-line"></span></div>
+          <div class="focus-cell"><strong>Intended action</strong><span class="write-line"></span></div>
+        </div>
+
+        <div class="score-grid">
+          <section class="score">
+            <h3><span class="box" aria-hidden="true"></span><span>1. Promise names a use or outcome</span></h3>
+            <p>Before acting, a visitor can tell what this page is for in plain language.</p>
+            <p class="exact"><strong>Exact public cue:</strong> ________________________________________________</p>
+          </section>
+          <section class="score">
+            <h3><span class="box" aria-hidden="true"></span><span>2. Primary action uses a concrete verb</span></h3>
+            <p>The visible control names a specific next step instead of a vague instruction.</p>
+            <p class="exact"><strong>Exact action label:</strong> ______________________________________________</p>
+          </section>
+          <section class="score">
+            <h3><span class="box" aria-hidden="true"></span><span>3. Promise and action point to the same thing</span></h3>
+            <p>The action does not promise more, less, or something different from the page’s visible cue.</p>
+            <p class="exact"><strong>Possible mismatch to check:</strong> ________________________________________</p>
+          </section>
+          <section class="score">
+            <h3><span class="box" aria-hidden="true"></span><span>4. Immediate handoff is named</span></h3>
+            <p>A visitor can tell what opens, happens, or is requested immediately after the action.</p>
+            <p class="exact"><strong>Visible handoff cue:</strong> ______________________________________________</p>
+          </section>
+          <section class="score">
+            <h3><span class="box" aria-hidden="true"></span><span>5. Requirements are visible before the action</span></h3>
+            <p>Any public prerequisite, time expectation, or next step is explained before a visitor commits.</p>
+            <p class="exact"><strong>Visible requirement or gap:</strong> ________________________________________</p>
+          </section>
+          <section class="score">
+            <h3><span class="box" aria-hidden="true"></span><span>6. Competing actions are secondary or distinct</span></h3>
+            <p>The visitor can identify one sensible action without confusing it with unrelated choices.</p>
+            <p class="exact"><strong>Competing cue to preserve or reduce:</strong> _________________________________</p>
+          </section>
+        </div>
+
+        <div class="total">
+          <div>
+            <h3>Write the score, then make only a proportionate move.</h3>
+            <p>Add one point for each checked cue. This is a public-language snapshot, not a benchmark or a prediction.</p>
+          </div>
+          <div class="total-box">Score: ____ / 6</div>
+        </div>
+
+        <div class="moves">
+          <section class="move">
+            <strong>5–6: Preserve the strong cue</strong>
+            <p>Record the exact words that already connect. Do not declare a performance result from the score.</p>
+          </section>
+          <section class="move">
+            <strong>3–4: Draft one narrow clarification</strong>
+            <p>Try “[Verb] [specific outcome] — [what happens next]” and ask the owner if that is the intended path.</p>
+          </section>
+          <section class="move">
+            <strong>0–2: Ask before redesigning</strong>
+            <p>Capture the mismatch and ask which visitor action matters. Do not infer a business problem or make a bigger claim.</p>
+          </section>
+        </div>
+
+        <p class="rail good"><strong>Boundary:</strong> this scorecard is a public observation and writing aid. It does not collect data, submit anything, test accounts or checkout, assess security/accessibility/compliance, request private information, or establish business results.</p>
+      </div>
+    </section>
+
+    <p class="footer">Customer Capture Field Notes · public, static, and printable · <a href="https://github.com/doesitapply/customer-capture-field-notes">source repository</a></p>
+  </main>
+</body>
+</html>

@@ -61,6 +61,23 @@ class StaticSiteTests(unittest.TestCase):
         homepage = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="public-teardown-template.html"', homepage)
 
+    def test_cta_clarity_scorecard_is_printable_and_public_only(self):
+        page = (ROOT / "cta-clarity-scorecard.html").read_text(encoding="utf-8")
+        self.assertIn('id="cta-clarity-scorecard"', page)
+        self.assertIn("CTA Clarity Scorecard", page)
+        self.assertIn("Score: ____ / 6", page)
+        self.assertIn("@media print", page)
+        self.assertIn("Public-only and observational", page)
+        for forbidden in ("<form", "<script", "<iframe", "href=\"https://buy.stripe.com", "href=\"https://paypal.me"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, page.lower())
+
+    def test_growth_trail_and_cta_map_link_to_cta_clarity_scorecard(self):
+        homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+        cta_map = (ROOT / "cta-map.html").read_text(encoding="utf-8")
+        self.assertIn('href="cta-clarity-scorecard.html"', homepage)
+        self.assertIn('href="cta-clarity-scorecard.html"', cta_map)
+
 
 if __name__ == "__main__":
     unittest.main()
