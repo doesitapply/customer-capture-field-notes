@@ -78,6 +78,24 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn('href="cta-clarity-scorecard.html"', homepage)
         self.assertIn('href="cta-clarity-scorecard.html"', cta_map)
 
+    def test_public_cta_handoff_example_is_printable_and_boundaried(self):
+        page = (ROOT / "public-cta-handoff-example.html").read_text(encoding="utf-8")
+        self.assertIn('id="public-cta-handoff-example"', page)
+        self.assertIn("Fictional example; not a teardown of a real business.", page)
+        self.assertIn("Possible friction to check", page)
+        self.assertIn("Ask one owner question before a larger change", page)
+        self.assertIn("@media print", page)
+
+    def test_public_cta_handoff_example_does_not_add_capture_or_payment_surface(self):
+        page = (ROOT / "public-cta-handoff-example.html").read_text(encoding="utf-8").lower()
+        for forbidden in ("<form", "<script", "<iframe", "href=\"https://buy.stripe.com", "href=\"https://paypal.me"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, page)
+
+    def test_growth_trail_links_to_public_cta_handoff_example(self):
+        homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="public-cta-handoff-example.html"', homepage)
+
 
 if __name__ == "__main__":
     unittest.main()

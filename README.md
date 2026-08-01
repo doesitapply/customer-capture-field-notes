@@ -42,6 +42,12 @@ Live template: https://doesitapply.github.io/customer-capture-field-notes/public
 
 A printable, evidence-first review structure for one public page, one visitor action, and the immediate handoff. It preserves exact public cues, names possible friction to check, and asks owner questions before a larger change. It is static: no capture field, submission, tracking, private-data request, account testing, checkout testing, or performance claim.
 
+## Worked Public CTA Handoff Example
+
+Live example: https://doesitapply.github.io/customer-capture-field-notes/public-cta-handoff-example.html
+
+A printable fictional walkthrough that preserves a visible promise, CTA, and immediate destination; names possible friction to check; and drafts one proportionate handoff clarification. It is a public-only writing aid: no forms, tracking, private-data request, account testing, checkout testing, or performance claim.
+
 ## Release records
 
 - [Public asset scoreboard](ops/public-asset-scoreboard.md)

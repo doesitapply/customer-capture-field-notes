@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Public CTA Handoff Example — Customer Capture Field Notes</title>
+  <meta name="description" content="A printable fictional example showing how to preserve public evidence, name possible CTA friction, and draft one proportionate handoff clarification." />
+  <style>
+    :root {
+      --bg: #070a12;
+      --panel: #10182b;
+      --ink: #e8eefc;
+      --muted: #a3b0cb;
+      --line: #2b3857;
+      --accent: #6ea8ff;
+      --good: #3dd68c;
+      --warn: #ffcc66;
+      --paper: #ffffff;
+      --paper-ink: #172033;
+      --paper-muted: #47546d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1000px 540px at 15% -10%, #182853 0%, transparent 55%), var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    main { max-width: 940px; margin: 0 auto; padding: 32px 18px 72px; }
+    a { color: var(--accent); }
+    .kicker { color: #5ce1e6; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .hero, .panel { border: 1px solid var(--line); background: rgba(16, 24, 43, .94); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    h1 { margin: .35rem 0 .55rem; line-height: 1.12; font-size: clamp(1.85rem, 5vw, 2.8rem); }
+    h2 { margin: 0 0 .45rem; font-size: 1.3rem; }
+    h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    p, li { color: var(--muted); }
+    .lead { max-width: 72ch; font-size: 1.04rem; }
+    .rail { border-left: 3px solid var(--warn); padding: 11px 13px; background: rgba(255, 204, 102, .07); border-radius: 0 10px 10px 0; color: var(--muted); }
+    .rail.good { border-left-color: var(--good); background: rgba(61, 214, 140, .06); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+    .button { display: inline-block; border: 1px solid #4d76c7; background: linear-gradient(180deg, #315baf, #1d3972); border-radius: 10px; padding: 10px 13px; color: white; font-weight: 800; text-decoration: none; }
+    .button.alt { border-color: var(--line); background: transparent; color: var(--ink); }
+    .sheet { color: var(--paper-ink); background: var(--paper); border: 1px solid #d7deea; border-radius: 14px; padding: 26px; }
+    .sheet p, .sheet li { color: var(--paper-muted); }
+    .sheet h2, .sheet h3 { color: var(--paper-ink); }
+    .step { border-top: 1px solid #d7deea; padding: 16px 0; }
+    .step:first-of-type { border-top: 0; padding-top: 0; }
+    .tag { display: inline-block; margin: 0 6px 6px 0; padding: 3px 8px; border: 1px solid #cbd5e5; border-radius: 999px; color: #334155; font-size: .78rem; font-weight: 750; }
+    .route { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; margin-top: 12px; }
+    .route-cell, .card { border: 1px solid #cbd5e5; border-radius: 9px; padding: 11px; }
+    .route-cell strong { display: block; color: #27354f; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
+    .route-cell span { display: block; margin-top: 6px; color: #47546d; font-weight: 650; }
+    .evidence { border-collapse: collapse; width: 100%; margin: 11px 0 4px; font-size: .9rem; }
+    .evidence th, .evidence td { border: 1px solid #cbd5e5; padding: 8px; text-align: left; vertical-align: top; }
+    .evidence th { color: #27354f; background: #eef3fc; font-size: .74rem; letter-spacing: .03em; text-transform: uppercase; }
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .before { border-left: 4px solid #b85c5c; }
+    .after { border-left: 4px solid #2d8c60; }
+    .quote { margin: 8px 0 0; padding: 9px 10px; border-radius: 7px; background: #f2f5fb; color: #27354f !important; font-weight: 720; }
+    .footer { color: var(--muted); font-size: .86rem; margin-top: 16px; }
+    @media (max-width: 680px) { .route, .before-after { grid-template-columns: 1fr; } .sheet { padding: 18px; } .evidence { font-size: .8rem; } }
+    @media print {
+      @page { margin: 0.42in; }
+      body { background: white; color: #111827; font-size: 9.8pt; }
+      main { max-width: none; padding: 0; }
+      .hero, .panel { border: 0; background: white; padding: 0; margin: 0 0 10px; }
+      .actions, .footer, .screen-only { display: none; }
+      .hero p { color: #334155; }
+      .sheet { border: 0; border-radius: 0; padding: 0; }
+      .step, .route, .before-after { break-inside: avoid; }
+      .step { padding: 10px 0; }
+      a { color: #111827; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="kicker">Customer Capture Field Notes · worked public example</div>
+      <h1>Make the handoff legible before proposing a bigger change.</h1>
+      <p class="lead">This printable, fictional example shows how to turn one vague public CTA into a small evidence record and one clearer next-step cue. Use the method on public words and destinations only.</p>
+      <p class="rail"><strong>Fictional example; not a teardown of a real business.</strong> Do not use this page to infer traffic, conversion, revenue, accessibility, compliance, security, or customer behavior. It names possible friction to check—not an outcome.</p>
+      <div class="actions screen-only">
+        <a class="button" href="index.html">Back to the Growth Trail</a>
+        <a class="button alt" href="cta-clarity-scorecard.html">Use the CTA clarity scorecard</a>
+        <a class="button alt" href="public-teardown-template.html">Use the teardown template</a>
+        <a class="button alt" href="cta-map.html">Map a public CTA path</a>
+      </div>
+    </section>
+
+    <section class="panel" id="public-cta-handoff-example">
+      <div class="sheet">
+        <h2>Worked example: promise → action → handoff</h2>
+        <p>Imagine a fictional planning-tool homepage. The operator wants a first-time evaluator to understand pricing before creating an account.</p>
+        <div>
+          <span class="tag">public-only</span>
+          <span class="tag">fictional</span>
+          <span class="tag">one path</span>
+          <span class="tag">no submission</span>
+        </div>
+
+        <div class="step">
+          <h3>1. Bound the path</h3>
+          <div class="route">
+            <div class="route-cell"><strong>Visible promise</strong><span>“Plan every launch in one place.”</span></div>
+            <div class="route-cell"><strong>Primary action</strong><span>“Get started”</span></div>
+            <div class="route-cell"><strong>Immediate destination</strong><span>Account-creation screen</span></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>2. Preserve the literal public evidence</h3>
+          <table class="evidence">
+            <thead><tr><th>Public cue</th><th>What a visitor can see next</th><th>Possible friction to check</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>“Plan every launch in one place.”</td>
+                <td>A general invitation to begin.</td>
+                <td>The promise does not say whether the first click compares plans, opens a product tour, or begins registration.</td>
+              </tr>
+              <tr>
+                <td>“Get started”</td>
+                <td>An account-creation screen.</td>
+                <td>A visitor who only wants to compare pricing may not expect account creation as the immediate handoff.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="rail good"><strong>Observation, not diagnosis:</strong> the wording may be perfectly intentional. Capture it literally, then ask the owner what one visitor action matters most before changing it.</p>
+        </div>
+
+        <div class="step">
+          <h3>3. Draft one proportionate clarification</h3>
+          <div class="before-after">
+            <section class="card before">
+              <strong>Original public cue</strong>
+              <p class="quote">Get started</p>
+              <p>It can mean several different next steps without describing the first handoff.</p>
+            </section>
+            <section class="card after">
+              <strong>Candidate cue, if price comparison is the intended action</strong>
+              <p class="quote">Compare plans — see pricing and choose your next step</p>
+              <p>It names the desired outcome and says what happens immediately after the click.</p>
+            </section>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>4. Ask one owner question before a larger change</h3>
+          <p><strong>“For a first-time evaluator, is the intended next step to compare plans, take a product tour, or create an account?”</strong></p>
+          <p>If the answer is “compare plans,” the candidate cue may be worth internal review. If the answer is “create an account,” use a different cue that says so plainly. Do not jump from this single public observation to a redesign or a performance claim.</p>
+        </div>
+
+        <div class="step">
+          <h3>Reuse the pattern</h3>
+          <ol>
+            <li>Quote the visible promise and action exactly.</li>
+            <li>Name the first visible handoff after the action.</li>
+            <li>Write one possible-friction question, not a conclusion.</li>
+            <li>Draft one cue in the pattern: <strong>“[Verb] [specific outcome] — [what happens next].”</strong></li>
+            <li>Ask the owner whether that is the intended visitor action.</li>
+          </ol>
+          <p class="rail"><strong>Boundary:</strong> this is a public observation and writing aid. It does not collect data, test accounts or checkout, request private information, assess security/accessibility/compliance, or establish business results.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer">Customer Capture Field Notes · public, static, printable, and fictional · <a href="https://github.com/doesitapply/customer-capture-field-notes">source repository</a></p>
+  </main>
+</body>
+</html>
