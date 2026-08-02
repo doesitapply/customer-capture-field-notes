@@ -1,6 +1,6 @@
 # Customer Capture Field Notes — Public Asset Scoreboard
 
-Updated: 2026-08-01 15:24 PDT
+Updated: 2026-08-02 09:16 PDT
 
 | Measure | Verified state |
 |---|---|
@@ -16,7 +16,7 @@ Updated: 2026-08-01 15:24 PDT
 
 ## Current dollar blocker
 
-The Public CTA Handoff Example is live, and the exact public intake query returned **0** matching open `public-only-teardown` issues at `2026-08-01T22:19:38Z`. There is no paid request or customer action to advance; verified revenue remains `$0`.
+The Public CTA Handoff Example is live. Fresh read-only preflights returned `WAITING_EXTERNAL` on `2026-08-02`: the human-distribution card still has no authority/live-share receipt, and the exact public intake query returned **0** matching open `public-only-teardown` issues at `2026-08-02T16:19:53Z`. There is no paid request or customer action to advance; verified revenue remains `$0`.
 
 The next dollar blocker is **human-owned distribution or a genuine inbound request**, not more static tooling. The exact-copy human handoff remains `reports/2026-07-31-human-owned-distribution-approval-card.md` for the CTA Clarity Scorecard. `tools/check_human_distribution_gate.py` v0.2 validates the card remains private/not-posted, preserves the approved public-utility URL, and pins the quoted share copy to baseline hash `52e75f66fec5b3a2221ade1d9eb33dd0eed3b6048417b9e5e98977b017d375ed`; a local copy mismatch is `BLOCKED_SAFE`, not permission to post. Its interface and stop gates are in `docs/HUMAN_DISTRIBUTION_GATE.md`; this control upgrade is recorded in `reports/2026-08-01-exact-copy-baseline-gate.md`.
 
