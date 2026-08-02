@@ -78,6 +78,23 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn('href="cta-clarity-scorecard.html"', homepage)
         self.assertIn('href="cta-clarity-scorecard.html"', cta_map)
 
+    def test_cta_choice_matrix_is_printable_public_only_and_linked(self):
+        page = (ROOT / "cta-choice-matrix.html").read_text(encoding="utf-8")
+        homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+        cta_map = (ROOT / "cta-map.html").read_text(encoding="utf-8")
+        scorecard = (ROOT / "cta-clarity-scorecard.html").read_text(encoding="utf-8")
+        self.assertIn('id="cta-choice-matrix"', page)
+        self.assertIn("CTA Choice Matrix", page)
+        self.assertIn("Primary action or distinct action?", page)
+        self.assertIn("Public-only and observational", page)
+        self.assertIn("@media print", page)
+        for forbidden in ("<form", "<script", "<iframe", "href=\"https://buy.stripe.com", "href=\"https://paypal.me"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, page.lower())
+        self.assertIn('href="cta-choice-matrix.html"', homepage)
+        self.assertIn('href="cta-choice-matrix.html"', cta_map)
+        self.assertIn('href="cta-choice-matrix.html"', scorecard)
+
     def test_public_cta_handoff_example_is_printable_and_boundaried(self):
         page = (ROOT / "public-cta-handoff-example.html").read_text(encoding="utf-8")
         self.assertIn('id="public-cta-handoff-example"', page)

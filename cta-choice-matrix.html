@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CTA Choice Matrix — Customer Capture Field Notes</title>
+  <meta name="description" content="A printable, public-only worksheet for comparing two visible calls to action and deciding whether one action should be primary, distinct, or clarified." />
+  <style>
+    :root {
+      --bg: #070a12;
+      --panel: #10182b;
+      --ink: #e8eefc;
+      --muted: #a3b0cb;
+      --line: #2b3857;
+      --accent: #6ea8ff;
+      --good: #3dd68c;
+      --warn: #ffcc66;
+      --paper: #ffffff;
+      --paper-ink: #172033;
+      --paper-muted: #47546d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1000px 540px at 15% -10%, #182853 0%, transparent 55%), var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    main { max-width: 940px; margin: 0 auto; padding: 32px 18px 72px; }
+    a { color: var(--accent); }
+    .kicker { color: #5ce1e6; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .hero, .panel { border: 1px solid var(--line); background: rgba(16, 24, 43, .94); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+    h1 { margin: .35rem 0 .55rem; line-height: 1.12; font-size: clamp(1.85rem, 5vw, 2.8rem); }
+    h2 { margin: 0 0 .45rem; font-size: 1.3rem; }
+    h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    p, li { color: var(--muted); }
+    .lead { max-width: 72ch; font-size: 1.04rem; }
+    .rail { border-left: 3px solid var(--warn); padding: 11px 13px; background: rgba(255, 204, 102, .07); border-radius: 0 10px 10px 0; color: var(--muted); }
+    .rail.good { border-left-color: var(--good); background: rgba(61, 214, 140, .06); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+    .button { display: inline-block; border: 1px solid #4d76c7; background: linear-gradient(180deg, #315baf, #1d3972); border-radius: 10px; padding: 10px 13px; color: white; font-weight: 800; text-decoration: none; }
+    .button.alt { border-color: var(--line); background: transparent; color: var(--ink); }
+    .sheet { color: var(--paper-ink); background: var(--paper); border: 1px solid #d7deea; border-radius: 14px; padding: 26px; }
+    .sheet p, .sheet li { color: var(--paper-muted); }
+    .sheet h2, .sheet h3 { color: var(--paper-ink); }
+    .step { border-top: 1px solid #d7deea; padding: 16px 0; }
+    .step:first-of-type { border-top: 0; padding-top: 0; }
+    .label { display: inline-block; min-width: 1.8rem; margin-right: 8px; padding: 2px 7px; border-radius: 99px; background: #e6eefc; color: #1d4f9c; font-size: .8rem; font-weight: 800; text-align: center; }
+    .prompt { font-weight: 750; color: var(--paper-ink) !important; }
+    .line { min-height: 28px; border-bottom: 1px solid #9aa8be; margin: 7px 0; }
+    .line.short { max-width: 460px; }
+    .focus { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 9px; margin: 12px 0 4px; }
+    .focus-cell, .card { border: 1px solid #cbd5e5; border-radius: 9px; padding: 10px; }
+    .focus-cell strong { display: block; color: #27354f; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
+    .write-line { display: block; min-height: 20px; border-bottom: 1px solid #9aa8be; margin-top: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0 4px; font-size: .9rem; }
+    th, td { border: 1px solid #cbd5e5; padding: 8px; text-align: left; vertical-align: top; }
+    th { background: #eef3fc; color: #27354f; font-size: .74rem; letter-spacing: .03em; text-transform: uppercase; }
+    td.blank { height: 48px; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .choice { border: 1px solid #d7deea; border-radius: 10px; padding: 11px 12px; }
+    .choice h3 { display: grid; grid-template-columns: 24px 1fr; gap: 7px; align-items: start; }
+    .box { display: inline-block; width: 18px; height: 18px; border: 1.5px solid #5f6f8d; margin-top: 1px; }
+    .choice p { margin: 0; font-size: .89rem; }
+    .decision { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+    .decision .card { min-height: 105px; }
+    .decision strong { color: #27354f; }
+    .footer { color: var(--muted); font-size: .86rem; margin-top: 16px; }
+    @media (max-width: 680px) { .focus, .compare, .decision { grid-template-columns: 1fr; } .sheet { padding: 18px; } table { font-size: .8rem; } }
+    @media print {
+      @page { margin: 0.42in; }
+      body { background: white; color: #111827; font-size: 9.6pt; }
+      main { max-width: none; padding: 0; }
+      .hero, .panel { border: 0; background: white; padding: 0; margin: 0 0 10px; }
+      .actions, .footer, .screen-only { display: none; }
+      .hero p { color: #334155; }
+      .sheet { border: 0; border-radius: 0; padding: 0; }
+      .step, .choice, .decision .card { break-inside: avoid; }
+      .step { padding: 10px 0; }
+      .decision { gap: 6px; }
+      .decision .card { padding: 8px; }
+      a { color: #111827; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="kicker">Customer Capture Field Notes · printable field tool</div>
+      <h1>Compare competing next actions before declaring one primary.</h1>
+      <p class="lead">This public-only CTA Choice Matrix helps an operator compare two visible calls to action, their immediate handoffs, and the visitor each one appears to serve. It is a writing and prioritization aid—not a traffic, conversion, or revenue estimate.</p>
+      <p class="rail"><strong>Public-only and observational.</strong> Work from visible page language and destinations only. Do not sign in, submit anything, use private analytics, test checkout, or infer customer behavior. Two actions can both be valid; the point is to make their roles legible before changing them.</p>
+      <div class="actions screen-only">
+        <a class="button" href="index.html">Back to the Growth Trail</a>
+        <a class="button alt" href="cta-map.html">Map a CTA path</a>
+        <a class="button alt" href="cta-clarity-scorecard.html">Score one CTA path</a>
+        <a class="button alt" href="public-cta-handoff-example.html">Read a worked example</a>
+      </div>
+    </section>
+
+    <section class="panel" id="cta-choice-matrix">
+      <div class="sheet">
+        <h2>CTA Choice Matrix</h2>
+        <p>Use one public page at a time. Quote visible labels exactly, then compare the first thing a visitor sees after each action. Leave a box blank when the public page does not state the answer.</p>
+
+        <div class="step">
+          <h3><span class="label">1</span>Bound the comparison</h3>
+          <div class="focus">
+            <div class="focus-cell"><strong>Public page / path</strong><span class="write-line"></span></div>
+            <div class="focus-cell"><strong>Visitor in view</strong><span class="write-line"></span></div>
+            <div class="focus-cell"><strong>One page promise</strong><span class="write-line"></span></div>
+          </div>
+          <p class="prompt">What decision should this visitor be able to make without guessing?</p>
+          <div class="line"></div>
+        </div>
+
+        <div class="step">
+          <h3><span class="label">2</span>Preserve the visible evidence</h3>
+          <table>
+            <thead><tr><th>Public action</th><th>Exact visible label</th><th>Nearby promise or cue</th><th>Immediate destination / handoff</th><th>Requirement stated before action</th></tr></thead>
+            <tbody>
+              <tr><td>Action A</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+              <tr><td>Action B</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+            </tbody>
+          </table>
+          <p class="rail good"><strong>Literal evidence first:</strong> an absent cue is not proof of a problem. Record what a visitor can see, then ask whether the page is meant to serve more than one path.</p>
+        </div>
+
+        <div class="step">
+          <h3><span class="label">3</span>Sort the role of each action</h3>
+          <div class="compare">
+            <section class="choice">
+              <h3><span class="box" aria-hidden="true"></span><span>One action clearly fits the named visitor and page promise</span></h3>
+              <p>That action may deserve the most visible treatment. Record why its label and immediate handoff match the visitor’s stated decision.</p>
+            </section>
+            <section class="choice">
+              <h3><span class="box" aria-hidden="true"></span><span>Both actions serve distinct visitors or distinct decisions</span></h3>
+              <p>Keep both only if the page can name the difference before a visitor chooses. A nearby qualifier can be enough.</p>
+            </section>
+            <section class="choice">
+              <h3><span class="box" aria-hidden="true"></span><span>The actions point to the same next step with different labels</span></h3>
+              <p>Choose one plain label and subordinate the duplicate. Do not assume the duplicate creates an outcome problem.</p>
+            </section>
+            <section class="choice">
+              <h3><span class="box" aria-hidden="true"></span><span>Neither action has a legible handoff</span></h3>
+              <p>Capture the exact cues and ask an owner which first decision matters before drafting a broader change.</p>
+            </section>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3><span class="label">4</span>Primary action or distinct action?</h3>
+          <p>Choose the smallest truthful treatment supported by the public cues. This is an internal decision prompt, not a performance verdict.</p>
+          <div class="decision">
+            <section class="card"><strong>Action A is primary</strong><p>Why its promise, visitor, and handoff align:</p><span class="write-line"></span></section>
+            <section class="card"><strong>Action B is primary</strong><p>Why its promise, visitor, and handoff align:</p><span class="write-line"></span></section>
+            <section class="card"><strong>Two paths stay distinct</strong><p>Write the visible qualifier each path needs:</p><span class="write-line"></span></section>
+            <section class="card"><strong>Ask before changing</strong><p>One owner question that resolves the intended path:</p><span class="write-line"></span></section>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3><span class="label">5</span>Draft one proportionate clarifier</h3>
+          <p>Use the cue pattern: <strong>“[Verb] [specific path] — [what happens immediately].”</strong></p>
+          <p class="prompt">Candidate label or nearby qualifier:</p>
+          <div class="line"></div>
+          <p class="prompt">What public cue does this clarify, preserve, or distinguish?</p>
+          <div class="line"></div>
+          <p class="rail"><strong>Boundary:</strong> this matrix is a public observation and writing aid. It does not collect data, submit anything, test accounts or checkout, request private information, assess security/accessibility/compliance, or establish traffic, conversion, revenue, or business results.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer">Customer Capture Field Notes · public, static, and printable · <a href="https://github.com/doesitapply/customer-capture-field-notes">source repository</a></p>
+  </main>
+</body>
+</html>

@@ -36,6 +36,12 @@ Live scorecard: https://doesitapply.github.io/customer-capture-field-notes/cta-c
 
 A printable, paper-first six-point scorecard for checking a visible promise, one intended visitor action, and the immediate handoff. It scores public clarity cues only—not traffic, conversion, revenue, or business quality—and keeps the next move proportionate.
 
+## CTA Choice Matrix
+
+Live worksheet: https://doesitapply.github.io/customer-capture-field-notes/cta-choice-matrix.html
+
+A printable, public-only compare sheet for two visible calls to action. It preserves exact public labels and immediate handoffs, then helps an operator decide whether one action is primary, two paths are distinct, or an owner question is needed before a larger change. It is static: no capture field, submission, tracking, private-data request, account testing, checkout testing, or performance claim.
+
 ## Public-Only Teardown Template
 
 Live template: https://doesitapply.github.io/customer-capture-field-notes/public-teardown-template.html
