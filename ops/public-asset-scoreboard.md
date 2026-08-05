@@ -1,6 +1,6 @@
 # Customer Capture Field Notes — Public Asset Scoreboard
 
-Updated: 2026-08-02
+Updated: 2026-08-03
 
 | Measure | Verified state |
 |---|---|
@@ -16,9 +16,11 @@ Updated: 2026-08-02
 
 ## Current dollar blocker
 
-The CTA Choice Matrix is live. It gives a founder or operator a public-only way to compare two visible next actions before treating one as primary, but publication is not distribution or proof of demand. Fresh read-only preflights on `2026-08-02` retained `WAITING_EXTERNAL`: the human-distribution card has no authority/live-share receipt, and the exact public intake query had **0** matching open `public-only-teardown` issues.
+The CTA Choice Matrix is live. It gives a founder or operator a public-only way to compare two visible next actions before treating one as primary, but publication is not distribution or proof of demand. Fresh read-only preflights on `2026-08-03` retained `WAITING_EXTERNAL`: the human-distribution card has no authority/live-share receipt, and the exact public intake query had **0** matching open `public-only-teardown` issues.
 
-The next dollar blocker remains **human-owned distribution or a genuine inbound request**. The exact-copy human handoff remains `reports/2026-07-31-human-owned-distribution-approval-card.md` for the CTA Clarity Scorecard. `tools/check_human_distribution_gate.py` v0.2 validates that card remains private/not-posted, preserves the approved public-utility URL, and pins the quoted share copy to baseline hash `52e75f66fec5b3a2221ade1d9eb33dd0eed3b6048417b9e5e98977b017d375ed`; a local copy mismatch is `BLOCKED_SAFE`, not permission to post. Its interface and stop gates are in `docs/HUMAN_DISTRIBUTION_GATE.md`; this control upgrade is recorded in `reports/2026-08-01-exact-copy-baseline-gate.md`.
+The next dollar blocker remains **human-owned distribution or a genuine inbound request**. The exact-copy human handoff remains `reports/2026-07-31-human-owned-distribution-approval-card.md` for the **CTA Clarity Scorecard**; the newer CTA Choice Matrix is live but is not silently substituted into that private share card. At `2026-08-03T14:11Z`, `tools/check_human_distribution_gate.py` v0.2 returned `WAITING_EXTERNAL` with a pinned-copy match, while `tools/check_public_intake.py` returned `WAITING_EXTERNAL` with `0` matching open requests. The distribution helper preserves the approved public-utility URL and pins the quoted share copy to baseline hash `52e75f66fec5b3a2221ade1d9eb33dd0eed3b6048417b9e5e98977b017d375ed`; a local copy mismatch is `BLOCKED_SAFE`, not permission to post. Its interface and stop gates are in `docs/HUMAN_DISTRIBUTION_GATE.md`; this control upgrade is recorded in `reports/2026-08-01-exact-copy-baseline-gate.md`.
+
+For an actual human-approved share attempt, use the private after-result receipt shape at `reports/2026-08-02-human-distribution-receipt-template.md`. It does not authorize or record a post by itself: a canonical live URL or explicit platform success confirmation is still required before a share is considered live.
 
 Before any human-supervised distribution or reply decision, run both read-only checks:
 
